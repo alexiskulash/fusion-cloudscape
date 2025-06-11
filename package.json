@@ -1,6 +1,7 @@
 {
   "name": "@cloudscape-design/demos",
   "version": "3.0.0",
+  "type": "module",
   "scripts": {
     "typecheck": "tsc",
     "clean": "rm -rf lib",
