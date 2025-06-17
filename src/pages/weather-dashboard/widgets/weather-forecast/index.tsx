@@ -10,13 +10,15 @@ import Spinner from '@cloudscape-design/components/spinner';
 import StatusIndicator from '@cloudscape-design/components/status-indicator';
 
 import { WidgetConfig } from '../../../dashboard/widgets/interfaces';
-import { defaultLocations, generateMockWeatherData, getWeatherDescription } from '../../services/weather-api';
+import { generateMockWeatherData, getWeatherDescription } from '../../services/weather-api';
+import { useWeatherSettings, convertTemperature, getTemperatureSymbol } from '../../context/weather-settings';
 
 function WeatherForecastHeader() {
   return <Header variant="h2">7-Day Forecast</Header>;
 }
 
 function WeatherForecastWidget() {
+  const { selectedLocation, temperatureUnit } = useWeatherSettings();
   const [weatherData, setWeatherData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -26,7 +28,7 @@ function WeatherForecastWidget() {
       try {
         setLoading(true);
         // Using mock data for demo - replace with real API call if needed
-        const data = generateMockWeatherData(defaultLocations[0]); // New York
+        const data = generateMockWeatherData(selectedLocation);
         setWeatherData(data);
         setError(null);
       } catch (err) {
@@ -38,7 +40,7 @@ function WeatherForecastWidget() {
     };
 
     loadWeatherData();
-  }, []);
+  }, [selectedLocation]);
 
   if (loading) {
     return (
@@ -62,6 +64,7 @@ function WeatherForecastWidget() {
   }
 
   const { daily } = weatherData;
+  const tempSymbol = getTemperatureSymbol(temperatureUnit);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -82,6 +85,9 @@ function WeatherForecastWidget() {
     <ColumnLayout columns={1}>
       {daily.time.map((date: string, index: number) => {
         const weatherInfo = getWeatherDescription(daily.weatherCode[index]);
+        const highTemp = convertTemperature(daily.temperatureMax[index], 'celsius', temperatureUnit);
+        const lowTemp = convertTemperature(daily.temperatureMin[index], 'celsius', temperatureUnit);
+
         return (
           <div key={date} style={{ padding: '8px 0', borderBottom: index < 6 ? '1px solid #eee' : 'none' }}>
             <ColumnLayout columns={4} variant="text-grid">
@@ -94,13 +100,15 @@ function WeatherForecastWidget() {
               <div>
                 <Box variant="awsui-key-label">High</Box>
                 <Box variant="h4" color="text-label">
-                  {daily.temperatureMax[index]}°C
+                  {highTemp}
+                  {tempSymbol}
                 </Box>
               </div>
               <div>
                 <Box variant="awsui-key-label">Low</Box>
                 <Box variant="h4" color="text-label">
-                  {daily.temperatureMin[index]}°C
+                  {lowTemp}
+                  {tempSymbol}
                 </Box>
               </div>
               <div>
