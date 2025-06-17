@@ -126,7 +126,7 @@ function WeatherMapWidget() {
 export const weatherMap: WidgetConfig = {
   definition: { defaultRowSpan: 3, defaultColumnSpan: 3 },
   data: {
-    icon: 'map',
+    icon: 'mixedContent',
     title: 'Weather Map',
     description: 'Interactive global weather visualization',
     header: WeatherMapHeader,

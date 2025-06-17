@@ -80,7 +80,7 @@ function AirQualityWidget() {
 export const airQuality: WidgetConfig = {
   definition: { defaultRowSpan: 3, defaultColumnSpan: 3 },
   data: {
-    icon: 'status-info',
+    icon: 'barChart',
     title: 'Air Quality',
     description: 'Current air quality metrics',
     header: AirQualityHeader,

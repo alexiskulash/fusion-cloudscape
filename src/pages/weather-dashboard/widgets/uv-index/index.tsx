@@ -98,7 +98,7 @@ function UvIndexWidget() {
 export const uvIndex: WidgetConfig = {
   definition: { defaultRowSpan: 3, defaultColumnSpan: 3 },
   data: {
-    icon: 'status-warning',
+    icon: 'pieChart',
     title: 'UV Index',
     description: 'Ultraviolet radiation levels',
     header: UvIndexHeader,

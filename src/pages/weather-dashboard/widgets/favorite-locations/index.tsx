@@ -97,7 +97,7 @@ function FavoriteLocationsWidget() {
 export const favoriteLocations: WidgetConfig = {
   definition: { defaultRowSpan: 3, defaultColumnSpan: 3 },
   data: {
-    icon: 'star',
+    icon: 'list',
     title: 'Favorite Locations',
     description: 'Quick weather overview for saved locations',
     header: FavoriteLocationsHeader,
