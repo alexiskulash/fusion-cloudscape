@@ -10,13 +10,15 @@ import Spinner from '@cloudscape-design/components/spinner';
 import StatusIndicator from '@cloudscape-design/components/status-indicator';
 
 import { WidgetConfig } from '../../../dashboard/widgets/interfaces';
-import { defaultLocations, generateMockWeatherData, getWeatherDescription } from '../../services/weather-api';
+import { generateMockWeatherData, getWeatherDescription } from '../../services/weather-api';
+import { useWeatherSettings, convertTemperature, getTemperatureSymbol } from '../../context/weather-settings';
 
 function CurrentWeatherHeader() {
   return <Header variant="h2">Current Weather</Header>;
 }
 
 function CurrentWeatherWidget() {
+  const { selectedLocation, temperatureUnit } = useWeatherSettings();
   const [weatherData, setWeatherData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -26,7 +28,7 @@ function CurrentWeatherWidget() {
       try {
         setLoading(true);
         // Using mock data for demo - replace with real API call if needed
-        const data = generateMockWeatherData(defaultLocations[0]); // New York
+        const data = generateMockWeatherData(selectedLocation);
         setWeatherData(data);
         setError(null);
       } catch (err) {
@@ -38,7 +40,7 @@ function CurrentWeatherWidget() {
     };
 
     loadWeatherData();
-  }, []);
+  }, [selectedLocation]);
 
   if (loading) {
     return (
@@ -63,13 +65,20 @@ function CurrentWeatherWidget() {
 
   const { current } = weatherData;
   const weatherInfo = getWeatherDescription(current.weatherCode);
+  const displayTemp = convertTemperature(current.temperature, 'celsius', temperatureUnit);
+  const feelsLikeTemp = convertTemperature(
+    current.temperature + Math.round(Math.random() * 4 - 2),
+    'celsius',
+    temperatureUnit,
+  );
+  const tempSymbol = getTemperatureSymbol(temperatureUnit);
 
   return (
     <ColumnLayout columns={2} variant="text-grid">
       <div>
         <Box variant="awsui-key-label">Location</Box>
         <Box variant="h1" color="text-label">
-          New York
+          {selectedLocation.name}
         </Box>
         <Box variant="p" color="text-body-secondary">
           {weatherInfo.description}
@@ -78,10 +87,12 @@ function CurrentWeatherWidget() {
       <div>
         <Box variant="awsui-key-label">Temperature</Box>
         <Box variant="h1" color="text-label">
-          {current.temperature}°C
+          {displayTemp}
+          {tempSymbol}
         </Box>
         <Box variant="p" color="text-body-secondary">
-          Feels like {current.temperature + Math.round(Math.random() * 4 - 2)}°C
+          Feels like {feelsLikeTemp}
+          {tempSymbol}
         </Box>
       </div>
       <div>
