@@ -47,16 +47,20 @@ export function WeatherSettingsControls() {
       <ButtonGroup
         items={[
           {
+            type: 'button',
             text: '°C',
             pressed: temperatureUnit === 'celsius',
-            onClick: () => handleTemperatureUnitChange('celsius'),
           },
           {
+            type: 'button',
             text: '°F',
             pressed: temperatureUnit === 'fahrenheit',
-            onClick: () => handleTemperatureUnitChange('fahrenheit'),
           },
         ]}
+        onItemClick={({ detail }) => {
+          const unit = detail.item.text === '°C' ? 'celsius' : 'fahrenheit';
+          handleTemperatureUnitChange(unit as TemperatureUnit);
+        }}
         ariaLabel="Temperature unit selection"
       />
     </SpaceBetween>
