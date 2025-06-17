@@ -35,36 +35,36 @@ export function App() {
   };
 
   return (
-    {/* Provide weather settings context (location, temperature unit) to all child components */}
+    // Provide weather settings context (location, temperature unit) to all child components
     <WeatherSettingsProvider>
       {/* Provide help panel functionality context for interactive help content */}
       <HelpPanelProvider value={handleToolsContentChange}>
         <CustomAppLayout
-        ref={appLayout}
-        content={
-          <SpaceBetween size="m">
-            <WeatherDashboardHeader
-              actions={
-                {/* Refresh button that reloads the entire page to fetch fresh weather data */}
-                <Button
-                  variant="primary"
-                  iconName="refresh"
-                  onClick={() => window.location.reload()} // Full page reload to refresh all weather widgets
-                >
-                  Refresh data
-                </Button>
-              }
-            />
-            {/* Main dashboard content with all weather widgets */}
-            <Content />
-          </SpaceBetween>
-        }
-        breadcrumbs={<Breadcrumbs items={[{ text: 'Weather Dashboard', href: '#/weather-dashboard' }]} />}
-        navigation={<WeatherSideNavigation />}
-        tools={toolsContent}
-        toolsOpen={toolsOpen}
-        onToolsChange={({ detail }) => setToolsOpen(detail.open)}
-        notifications={<Notifications />}
+          ref={appLayout}
+          content={
+            <SpaceBetween size="m">
+              <WeatherDashboardHeader
+                actions={
+                  // Refresh button that reloads the entire page to fetch fresh weather data
+                  <Button
+                    variant="primary"
+                    iconName="refresh"
+                    onClick={() => window.location.reload()} // Full page reload to refresh all weather widgets with latest data
+                  >
+                    Refresh data
+                  </Button>
+                }
+              />
+              {/* Main dashboard content with all weather widgets */}
+              <Content />
+            </SpaceBetween>
+          }
+          breadcrumbs={<Breadcrumbs items={[{ text: 'Weather Dashboard', href: '#/weather-dashboard' }]} />}
+          navigation={<WeatherSideNavigation />}
+          tools={toolsContent}
+          toolsOpen={toolsOpen}
+          onToolsChange={({ detail }) => setToolsOpen(detail.open)}
+          notifications={<Notifications />}
         />
       </HelpPanelProvider>
     </WeatherSettingsProvider>
