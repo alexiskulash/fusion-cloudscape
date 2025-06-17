@@ -9,7 +9,7 @@ import Icon from '@cloudscape-design/components/icon';
 import Link from '@cloudscape-design/components/link';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 
-import { ExternalLinkItem } from '../../commons';
+import { ExternalLink } from '../../commons';
 
 interface WeatherDashboardHeaderProps {
   actions: React.ReactNode;
@@ -46,10 +46,10 @@ export function WeatherDashboardInfo() {
           </h3>
           <ul>
             <li>
-              <ExternalLinkItem href="https://open-meteo.com/" text="Open-Meteo Weather API" />
+              <ExternalLink href="https://open-meteo.com/">Open-Meteo Weather API</ExternalLink>
             </li>
             <li>
-              <ExternalLinkItem href="https://cloudscape.design/components/" text="Cloudscape Design System" />
+              <ExternalLink href="https://cloudscape.design/components/">Cloudscape Design System</ExternalLink>
             </li>
           </ul>
         </div>
