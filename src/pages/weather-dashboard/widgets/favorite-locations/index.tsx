@@ -12,6 +12,7 @@ import Spinner from '@cloudscape-design/components/spinner';
 
 import { WidgetConfig } from '../../../dashboard/widgets/interfaces';
 import { defaultLocations, generateMockWeatherData, getWeatherDescription } from '../../services/weather-api';
+import { useWeatherSettings, convertTemperature, getTemperatureSymbol } from '../../context/weather-settings';
 
 function FavoriteLocationsHeader() {
   return (
@@ -29,6 +30,7 @@ function FavoriteLocationsHeader() {
 }
 
 function FavoriteLocationsWidget() {
+  const { temperatureUnit } = useWeatherSettings();
   const [locationsData, setLocationsData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -50,7 +52,7 @@ function FavoriteLocationsWidget() {
     };
 
     loadLocationsData();
-  }, []);
+  }, [temperatureUnit]);
 
   if (loading) {
     return (
@@ -65,6 +67,11 @@ function FavoriteLocationsWidget() {
     <SpaceBetween size="s">
       {locationsData.map(({ location, weather }) => {
         const weatherInfo = getWeatherDescription(weather.current.weatherCode);
+        const currentTemp = convertTemperature(weather.current.temperature, 'celsius', temperatureUnit);
+        const highTemp = convertTemperature(weather.daily.temperatureMax[0], 'celsius', temperatureUnit);
+        const lowTemp = convertTemperature(weather.daily.temperatureMin[0], 'celsius', temperatureUnit);
+        const tempSymbol = getTemperatureSymbol(temperatureUnit);
+
         return (
           <div key={location.name} style={{ padding: '12px', border: '1px solid #e9ebed', borderRadius: '8px' }}>
             <ColumnLayout columns={3} variant="text-grid">
@@ -78,12 +85,13 @@ function FavoriteLocationsWidget() {
               </div>
               <div>
                 <Box variant="h3" color="text-label">
-                  {weather.current.temperature}°C
+                  {currentTemp}
+                  {tempSymbol}
                 </Box>
               </div>
               <div>
                 <Box variant="p" color="text-body-secondary">
-                  H: {weather.daily.temperatureMax[0]}° L: {weather.daily.temperatureMin[0]}°
+                  H: {highTemp}° L: {lowTemp}°
                 </Box>
               </div>
             </ColumnLayout>
