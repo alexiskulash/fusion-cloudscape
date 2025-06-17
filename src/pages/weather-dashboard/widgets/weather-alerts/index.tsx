@@ -50,7 +50,7 @@ function WeatherAlertsWidget() {
 export const weatherAlerts: WidgetConfig = {
   definition: { defaultRowSpan: 2, defaultColumnSpan: 3 },
   data: {
-    icon: 'notification',
+    icon: 'mixedContent',
     title: 'Weather Alerts',
     description: 'Active weather warnings and notifications',
     header: WeatherAlertsHeader,

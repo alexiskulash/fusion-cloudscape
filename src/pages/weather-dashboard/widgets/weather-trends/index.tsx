@@ -103,7 +103,7 @@ function WeatherTrendsWidget() {
 export const weatherTrends: WidgetConfig = {
   definition: { defaultRowSpan: 3, defaultColumnSpan: 6 },
   data: {
-    icon: 'trending-up',
+    icon: 'lineChart',
     title: 'Temperature Trends',
     description: '24-hour temperature chart',
     header: WeatherTrendsHeader,

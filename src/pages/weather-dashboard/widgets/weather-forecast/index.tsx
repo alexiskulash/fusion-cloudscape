@@ -120,7 +120,7 @@ function WeatherForecastWidget() {
 export const weatherForecast: WidgetConfig = {
   definition: { defaultRowSpan: 4, defaultColumnSpan: 3 },
   data: {
-    icon: 'calendar',
+    icon: 'list',
     title: '7-Day Forecast',
     description: 'Extended weather forecast',
     header: WeatherForecastHeader,
