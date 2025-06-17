@@ -11,6 +11,7 @@ import { CustomAppLayout } from '../commons/common-components';
 import { Content } from './components/content';
 import { WeatherDashboardHeader, WeatherDashboardInfo } from './components/header';
 import { WeatherSideNavigation } from './components/side-navigation';
+import { WeatherSettingsProvider } from './context/weather-settings';
 
 import '@cloudscape-design/global-styles/dark-mode-utils.css';
 
@@ -26,28 +27,30 @@ export function App() {
   };
 
   return (
-    <HelpPanelProvider value={handleToolsContentChange}>
-      <CustomAppLayout
-        ref={appLayout}
-        content={
-          <SpaceBetween size="m">
-            <WeatherDashboardHeader
-              actions={
-                <Button variant="primary" iconName="refresh" onClick={() => window.location.reload()}>
-                  Refresh data
-                </Button>
-              }
-            />
-            <Content />
-          </SpaceBetween>
-        }
-        breadcrumbs={<Breadcrumbs items={[{ text: 'Weather Dashboard', href: '#/weather-dashboard' }]} />}
-        navigation={<WeatherSideNavigation />}
-        tools={toolsContent}
-        toolsOpen={toolsOpen}
-        onToolsChange={({ detail }) => setToolsOpen(detail.open)}
-        notifications={<Notifications />}
-      />
-    </HelpPanelProvider>
+    <WeatherSettingsProvider>
+      <HelpPanelProvider value={handleToolsContentChange}>
+        <CustomAppLayout
+          ref={appLayout}
+          content={
+            <SpaceBetween size="m">
+              <WeatherDashboardHeader
+                actions={
+                  <Button variant="primary" iconName="refresh" onClick={() => window.location.reload()}>
+                    Refresh data
+                  </Button>
+                }
+              />
+              <Content />
+            </SpaceBetween>
+          }
+          breadcrumbs={<Breadcrumbs items={[{ text: 'Weather Dashboard', href: '#/weather-dashboard' }]} />}
+          navigation={<WeatherSideNavigation />}
+          tools={toolsContent}
+          toolsOpen={toolsOpen}
+          onToolsChange={({ detail }) => setToolsOpen(detail.open)}
+          notifications={<Notifications />}
+        />
+      </HelpPanelProvider>
+    </WeatherSettingsProvider>
   );
 }
