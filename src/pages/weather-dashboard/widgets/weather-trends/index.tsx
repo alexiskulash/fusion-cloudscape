@@ -9,13 +9,15 @@ import Spinner from '@cloudscape-design/components/spinner';
 import StatusIndicator from '@cloudscape-design/components/status-indicator';
 
 import { WidgetConfig } from '../../../dashboard/widgets/interfaces';
-import { defaultLocations, generateMockWeatherData } from '../../services/weather-api';
+import { generateMockWeatherData } from '../../services/weather-api';
+import { useWeatherSettings, convertTemperature, getTemperatureSymbol } from '../../context/weather-settings';
 
 function WeatherTrendsHeader() {
   return <Header variant="h2">24-Hour Temperature Trend</Header>;
 }
 
 function WeatherTrendsWidget() {
+  const { selectedLocation, temperatureUnit } = useWeatherSettings();
   const [chartData, setChartData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -25,16 +27,17 @@ function WeatherTrendsWidget() {
       try {
         setLoading(true);
         // Using mock data for demo - replace with real API call if needed
-        const data = generateMockWeatherData(defaultLocations[0]); // New York
+        const data = generateMockWeatherData(selectedLocation);
+        const tempSymbol = getTemperatureSymbol(temperatureUnit);
 
         const temperatureData = data.hourly.time.map((time: string, index: number) => ({
           x: new Date(time),
-          y: data.hourly.temperature[index],
+          y: convertTemperature(data.hourly.temperature[index], 'celsius', temperatureUnit),
         }));
 
         setChartData([
           {
-            title: 'Temperature (°C)',
+            title: `Temperature (${tempSymbol})`,
             type: 'line',
             data: temperatureData,
           },
@@ -49,7 +52,7 @@ function WeatherTrendsWidget() {
     };
 
     loadWeatherData();
-  }, []);
+  }, [selectedLocation, temperatureUnit]);
 
   if (loading) {
     return (
@@ -77,7 +80,7 @@ function WeatherTrendsWidget() {
         Math.max(...chartData[0]?.data.map((d: any) => d.y)) + 2,
       ]}
       xTitle="Time"
-      yTitle="Temperature (°C)"
+      yTitle={`Temperature (${getTemperatureSymbol(temperatureUnit)})`}
       height={300}
       hideFilter
       hideLegend
