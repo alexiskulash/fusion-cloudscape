@@ -10,12 +10,14 @@ import Spinner from '@cloudscape-design/components/spinner';
 
 import { WidgetConfig } from '../../../dashboard/widgets/interfaces';
 import { defaultLocations, generateMockWeatherData } from '../../services/weather-api';
+import { useWeatherSettings, convertTemperature, getTemperatureSymbol } from '../../context/weather-settings';
 
 function WeatherSummaryHeader() {
   return <Header variant="h2">Weather Summary</Header>;
 }
 
 function WeatherSummaryWidget() {
+  const { temperatureUnit } = useWeatherSettings();
   const [summaryData, setSummaryData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -27,12 +29,22 @@ function WeatherSummaryWidget() {
         const locationsWeather = defaultLocations.slice(0, 5).map(location => generateMockWeatherData(location));
 
         const totalLocations = locationsWeather.length;
-        const avgTemp = Math.round(
-          locationsWeather.reduce((sum, weather) => sum + weather.current.temperature, 0) / totalLocations,
+        const avgTemp = convertTemperature(
+          Math.round(locationsWeather.reduce((sum, weather) => sum + weather.current.temperature, 0) / totalLocations),
+          'celsius',
+          temperatureUnit,
         );
         const rainyLocations = locationsWeather.filter(weather => weather.current.precipitation > 0).length;
-        const maxTemp = Math.max(...locationsWeather.map(weather => weather.current.temperature));
-        const minTemp = Math.min(...locationsWeather.map(weather => weather.current.temperature));
+        const maxTemp = convertTemperature(
+          Math.max(...locationsWeather.map(weather => weather.current.temperature)),
+          'celsius',
+          temperatureUnit,
+        );
+        const minTemp = convertTemperature(
+          Math.min(...locationsWeather.map(weather => weather.current.temperature)),
+          'celsius',
+          temperatureUnit,
+        );
 
         setSummaryData({
           totalLocations,
@@ -49,7 +61,7 @@ function WeatherSummaryWidget() {
     };
 
     loadSummaryData();
-  }, []);
+  }, [temperatureUnit]);
 
   if (loading) {
     return (
@@ -59,6 +71,8 @@ function WeatherSummaryWidget() {
       </Box>
     );
   }
+
+  const tempSymbol = getTemperatureSymbol(temperatureUnit);
 
   return (
     <KeyValuePairs
@@ -76,7 +90,8 @@ function WeatherSummaryWidget() {
           label: 'Average Temperature',
           value: (
             <Box variant="awsui-value-large" color="text-label">
-              {summaryData.avgTemp}°C
+              {summaryData.avgTemp}
+              {tempSymbol}
             </Box>
           ),
         },
@@ -92,7 +107,8 @@ function WeatherSummaryWidget() {
           label: 'Temperature Range',
           value: (
             <Box variant="awsui-value-large" color="text-label">
-              {summaryData.minTemp}° - {summaryData.maxTemp}°C
+              {summaryData.minTemp}° - {summaryData.maxTemp}
+              {tempSymbol}
             </Box>
           ),
         },
