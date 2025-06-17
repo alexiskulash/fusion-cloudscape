@@ -10,12 +10,16 @@ import Link from '@cloudscape-design/components/link';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 
 import { ExternalLink } from '../../commons';
+import { WeatherSettingsControls } from './settings-controls';
+import { useWeatherSettings } from '../context/weather-settings';
 
 interface WeatherDashboardHeaderProps {
   actions: React.ReactNode;
 }
 
 export function WeatherDashboardHeader({ actions }: WeatherDashboardHeaderProps) {
+  const { selectedLocation } = useWeatherSettings();
+
   return (
     <Header
       variant="h1"
@@ -24,8 +28,13 @@ export function WeatherDashboardHeader({ actions }: WeatherDashboardHeaderProps)
           Info
         </Link>
       }
-      description="Real-time weather information powered by Open-Meteo API"
-      actions={actions}
+      description={`Real-time weather information for ${selectedLocation.name} powered by Open-Meteo API`}
+      actions={
+        <SpaceBetween direction="horizontal" size="s">
+          <WeatherSettingsControls />
+          {actions}
+        </SpaceBetween>
+      }
     >
       Weather Dashboard
     </Header>
