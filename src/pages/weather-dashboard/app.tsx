@@ -125,6 +125,11 @@ export function App() {
     [addNotification, removeNotification],
   );
 
+  /**
+   * Handler for location changes from the location selector widget
+   * Updates current location state and immediately fetches weather for the new location
+   * This provides instant feedback when users change locations
+   */
   const handleLocationChange = useCallback(
     (newLocation: WeatherLocation) => {
       setCurrentLocation(newLocation);
@@ -133,20 +138,38 @@ export function App() {
     [fetchWeatherForLocation],
   );
 
+  /**
+   * Manual refresh handler for the refresh button
+   * Re-fetches weather data for the current location
+   * Useful when user wants to get the latest data or recover from errors
+   */
   const handleRefresh = useCallback(() => {
     fetchWeatherForLocation(currentLocation);
   }, [fetchWeatherForLocation, currentLocation]);
 
-  // Initialize with user's current location or default
+  /**
+   * Initialization effect - runs once on component mount
+   * Attempts to get user's current location via browser geolocation API
+   * Falls back to default location (NYC) if geolocation fails or is denied
+   *
+   * Flow:
+   * 1. Request user's current coordinates
+   * 2. Resolve coordinates to human-readable location name
+   * 3. Update location state and fetch weather data
+   * 4. On any error, use default location instead
+   */
   useEffect(() => {
     const initializeLocation = async () => {
       try {
+        // Request user's current location via browser geolocation
         const userLocation = await getCurrentLocation();
+        // Resolve coordinates to city/country names for better UX
         const locationInfo = await getLocationName(userLocation);
         const fullLocation = { ...userLocation, ...locationInfo };
         setCurrentLocation(fullLocation);
         fetchWeatherForLocation(fullLocation);
       } catch (error) {
+        // Geolocation can fail for many reasons: permission denied, unavailable, timeout
         console.warn('Could not get user location, using default:', error);
         fetchWeatherForLocation(DEFAULT_LOCATION);
       }
@@ -155,14 +178,22 @@ export function App() {
     initializeLocation();
   }, [fetchWeatherForLocation]);
 
-  // Auto-refresh every 10 minutes
+  /**
+   * Auto-refresh effect - keeps weather data current without user intervention
+   * Refreshes data every 10 minutes (600,000ms) when not actively loading
+   * Prevents overlapping requests by checking loading state
+   *
+   * Cleanup function clears interval on component unmount or dependency changes
+   */
   useEffect(() => {
     const interval = setInterval(() => {
+      // Only auto-refresh if not currently loading to prevent request conflicts
       if (!isLoading) {
         fetchWeatherForLocation(currentLocation);
       }
-    }, 600000); // 10 minutes
+    }, 600000); // 10 minutes - matches typical weather data update frequency
 
+    // Cleanup interval on unmount or dependency changes
     return () => clearInterval(interval);
   }, [fetchWeatherForLocation, currentLocation, isLoading]);
 
