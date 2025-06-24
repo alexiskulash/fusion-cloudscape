@@ -197,15 +197,24 @@ export function App() {
     return () => clearInterval(interval);
   }, [fetchWeatherForLocation, currentLocation, isLoading]);
 
+  /**
+   * Dashboard header component with dynamic greeting and action buttons
+   * - Shows time-based greeting (Good morning/afternoon/evening)
+   * - Refresh button to manually update data (shows loading state)
+   * - Settings button for future configuration options
+   * - Last updated timestamp badge when data is available
+   */
   const dashboardHeader = (
     <Header
       variant="h1"
       description={`${getTimeOfDayGreeting()}! Here's your local weather information and forecast.`}
       actions={
         <SpaceBetween direction="horizontal" size="xs">
+          {/* Manual refresh button - disabled during loading to prevent multiple requests */}
           <Button iconName="refresh" loading={isLoading} onClick={handleRefresh}>
             Refresh
           </Button>
+          {/* Settings button - placeholder for future configuration features */}
           <Button variant="primary" iconName="settings">
             Settings
           </Button>
@@ -217,6 +226,11 @@ export function App() {
     </Header>
   );
 
+  /**
+   * Informational panel explaining dashboard features and data source
+   * Serves as both documentation and marketing for the weather dashboard
+   * Positioned at the bottom of the grid to provide context without cluttering main content
+   */
   const weatherOverviewInfo = (
     <Container>
       <SpaceBetween size="m">
@@ -227,6 +241,7 @@ export function App() {
         </Box>
         <SpaceBetween size="s">
           <Box variant="h4">Features:</Box>
+          {/* Feature list highlighting key capabilities */}
           <ul style={{ margin: 0, paddingLeft: '20px' }}>
             <li>Real-time current weather conditions</li>
             <li>24-hour hourly forecast</li>
@@ -236,6 +251,7 @@ export function App() {
             <li>Automatic location detection</li>
           </ul>
         </SpaceBetween>
+        {/* Attribution and auto-refresh information */}
         <Box variant="small" color="text-status-inactive">
           Weather data provided by Open-Meteo • Updates automatically every 10 minutes
         </Box>
