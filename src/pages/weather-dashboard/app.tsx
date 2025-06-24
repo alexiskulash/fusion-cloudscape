@@ -35,29 +35,64 @@ const DEFAULT_LOCATION: WeatherLocation = {
 };
 
 export function App() {
+  // Core weather data state - stores the complete API response from Open-Meteo
+  // Contains current conditions, hourly forecasts, and daily forecasts
   const [weatherData, setWeatherData] = useState<WeatherResponse | null>(null);
+
+  // Current location being displayed - includes lat/lng coordinates and optional city/country names
+  // Defaults to New York City but gets updated with user's actual location on mount
   const [currentLocation, setCurrentLocation] = useState<WeatherLocation>(DEFAULT_LOCATION);
+
+  // Loading state to show spinners and disable interactions during API calls
   const [isLoading, setIsLoading] = useState(false);
+
+  // Notification queue for user feedback - limited to 5 items to prevent UI overflow
+  // Each notification has a unique ID for targeted removal
   const [notifications, setNotifications] = useState<FlashbarProps.MessageDefinition[]>([]);
+
+  // Timestamp of last successful data fetch - used for "last updated" display
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
+  /**
+   * Adds a new notification to the queue with automatic ID generation
+   * Limits queue to 5 items by removing oldest notifications
+   * Uses current timestamp as unique ID to ensure no conflicts
+   */
   const addNotification = useCallback((notification: FlashbarProps.MessageDefinition) => {
     setNotifications(prev => [{ ...notification, id: Date.now().toString() }, ...prev.slice(0, 4)]);
   }, []);
 
+  /**
+   * Removes a specific notification by ID
+   * Used for manual dismissal or automatic cleanup
+   */
   const removeNotification = useCallback((id: string) => {
     setNotifications(prev => prev.filter(notification => notification.id !== id));
   }, []);
 
+  /**
+   * Core function to fetch weather data for a given location
+   * Handles the complete flow: loading state, API call, data processing, and user feedback
+   *
+   * Process:
+   * 1. Set loading state to show spinners
+   * 2. Call Open-Meteo API with location coordinates
+   * 3. Update weather data and timestamp on success
+   * 4. Attempt to resolve location name if not already known (reverse geocoding)
+   * 5. Show success/error notifications to user
+   * 6. Always clear loading state in finally block
+   */
   const fetchWeatherForLocation = useCallback(
     async (location: WeatherLocation) => {
       setIsLoading(true);
       try {
+        // Fetch weather data from Open-Meteo API
         const weather = await fetchWeatherData(location);
         setWeatherData(weather);
         setLastUpdated(new Date());
 
-        // Try to get location name if not provided
+        // Attempt to resolve human-readable location name if not already provided
+        // This happens when user provides raw coordinates or uses geolocation
         if (!location.city || !location.country) {
           const locationInfo = await getLocationName(location);
           setCurrentLocation(prev => ({
@@ -66,6 +101,7 @@ export function App() {
           }));
         }
 
+        // Show success feedback to user
         addNotification({
           type: 'success',
           content: 'Weather data updated successfully',
@@ -73,6 +109,7 @@ export function App() {
           onDismiss: () => removeNotification('weather-success'),
         });
       } catch (error) {
+        // Log error for debugging and show user-friendly error message
         console.error('Error fetching weather data:', error);
         addNotification({
           type: 'error',
@@ -81,6 +118,7 @@ export function App() {
           onDismiss: () => removeNotification('weather-error'),
         });
       } finally {
+        // Always clear loading state, regardless of success or failure
         setIsLoading(false);
       }
     },
