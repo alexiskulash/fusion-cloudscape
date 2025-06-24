@@ -263,42 +263,76 @@ export function App() {
     <CustomAppLayout
       content={
         <SpaceBetween size="l">
+          {/* Main dashboard header with greeting, actions, and last updated info */}
           {dashboardHeader}
 
+          {/* Global notification system for user feedback */}
           <Flashbar items={notifications} />
 
+          {/*
+            Responsive grid layout optimized for weather dashboard content:
+            - Row 1: Current weather (8 cols) + Location selector (4 cols) on large screens
+            - Row 2: Hourly forecast (6 cols) + Daily forecast (6 cols) on large screens
+            - Row 3: Temperature chart (full width)
+            - Row 4: Info panel (full width)
+
+            On smaller screens, all components stack vertically (12 cols each)
+          */}
           <Grid
             gridDefinition={[
-              { colspan: { default: 12, l: 8 } },
-              { colspan: { default: 12, l: 4 } },
-              { colspan: { default: 12, l: 6 } },
-              { colspan: { default: 12, l: 6 } },
-              { colspan: { default: 12 } },
-              { colspan: { default: 12 } },
+              { colspan: { default: 12, l: 8 } }, // Current weather - primary content
+              { colspan: { default: 12, l: 4 } }, // Location selector - sidebar
+              { colspan: { default: 12, l: 6 } }, // Hourly forecast - left half
+              { colspan: { default: 12, l: 6 } }, // Daily forecast - right half
+              { colspan: { default: 12 } }, // Temperature chart - full width
+              { colspan: { default: 12 } }, // Info panel - full width
             ]}
           >
-            {/* Current Weather - Main */}
+            {/*
+              Current Weather Widget - Primary content area
+              Shows current conditions, temperature, humidity, wind, etc.
+              Only renders when weather data is available
+            */}
             {weatherData && (
               <CurrentWeatherWidget weather={weatherData.current} location={currentLocation} isLoading={isLoading} />
             )}
 
-            {/* Location Selector - Sidebar */}
+            {/*
+              Location Selector Widget - Sidebar component
+              Allows users to change location via popular cities, coordinates, or geolocation
+              Always visible to allow location changes even without initial data
+            */}
             <LocationSelectorWidget
               currentLocation={currentLocation}
               onLocationChange={handleLocationChange}
               isLoading={isLoading}
             />
 
-            {/* Hourly Forecast */}
+            {/*
+              Hourly Forecast Widget - Next 24 hours preview
+              Scrollable horizontal layout showing hourly conditions
+              Only renders when weather data is available
+            */}
             {weatherData && <HourlyForecastWidget hourlyWeather={weatherData.hourly} isLoading={isLoading} />}
 
-            {/* Daily Forecast */}
+            {/*
+              Daily Forecast Widget - 7-day outlook
+              Vertical list showing daily conditions with min/max temps
+              Only renders when weather data is available
+            */}
             {weatherData && <DailyForecastWidget dailyWeather={weatherData.daily} isLoading={isLoading} />}
 
-            {/* Temperature Chart */}
+            {/*
+              Temperature Chart Widget - Visual trend analysis
+              Line chart showing temperature changes over next 24 hours
+              Only renders when weather data is available
+            */}
             {weatherData && <TemperatureChartWidget hourlyWeather={weatherData.hourly} isLoading={isLoading} />}
 
-            {/* Info Panel */}
+            {/*
+              Information Panel - Dashboard documentation and features
+              Always visible to provide context and feature explanation
+            */}
             {weatherOverviewInfo}
           </Grid>
         </SpaceBetween>
