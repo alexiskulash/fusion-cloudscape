@@ -45,26 +45,37 @@ export function App() {
   };
 
   return (
+    // Provide context for tools panel content management to all child components
     <HelpPanelProvider value={handleToolsContentChange}>
+      {/* Main application layout using Cloudscape's CustomAppLayout wrapper */}
       <CustomAppLayout
         ref={appLayout}
+        // Main content area containing the dashboard header and weather widgets
         content={
           <SpaceBetween size="m">
+            {/* Dashboard header with title, description, and refresh action */}
             <WeatherHeader
               actions={
+                // Primary action button to refresh weather data by reloading the page
                 <Button variant="primary" iconName="refresh" onClick={() => window.location.reload()}>
                   Refresh Data
                 </Button>
               }
             />
+            {/* Main weather dashboard content with all widgets and functionality */}
             <WeatherContent />
           </SpaceBetween>
         }
+        // Navigation breadcrumbs showing current page location
         breadcrumbs={<Breadcrumbs items={[{ text: 'Weather Dashboard', href: '#/' }]} />}
+        // Left sidebar navigation menu for weather dashboard sections
         navigation={<WeatherSideNavigation />}
+        // Right sidebar tools panel content (help, info, tutorials)
         tools={toolsContent}
+        // Control tools panel open/closed state
         toolsOpen={toolsOpen}
         onToolsChange={({ detail }) => setToolsOpen(detail.open)}
+        // Global notifications component for system messages
         notifications={<Notifications />}
       />
     </HelpPanelProvider>
