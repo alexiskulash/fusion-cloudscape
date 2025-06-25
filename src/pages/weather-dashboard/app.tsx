@@ -12,15 +12,36 @@ import { WeatherContent } from './components/weather-content';
 import { WeatherHeader, WeatherMainInfo } from './components/weather-header';
 import { WeatherSideNavigation } from './components/weather-side-navigation';
 
+/**
+ * Main Weather Dashboard Application Component
+ *
+ * This component serves as the main entry point for the weather dashboard application.
+ * It sets up the overall layout structure using Cloudscape's AppLayout pattern and manages
+ * the state for the help panel/tools sidebar functionality.
+ */
 export function App() {
+  // State to control whether the tools panel (right sidebar) is open or closed
   const [toolsOpen, setToolsOpen] = useState(false);
+
+  // State to control the content displayed in the tools panel
+  // Initialized with WeatherMainInfo component showing dashboard information
   const [toolsContent, setToolsContent] = useState<React.ReactNode>(() => <WeatherMainInfo />);
+
+  // Reference to the AppLayout component for programmatic control (e.g., focus management)
   const appLayout = useRef<AppLayoutProps.Ref>(null);
 
+  /**
+   * Handler function for changing the tools panel content
+   *
+   * This function is passed to child components via HelpPanelProvider context,
+   * allowing them to update the tools panel with relevant help content.
+   *
+   * @param content - The React node content to display in the tools panel
+   */
   const handleToolsContentChange = (content: React.ReactNode) => {
-    setToolsOpen(true);
-    setToolsContent(content);
-    appLayout.current?.focusToolsClose();
+    setToolsOpen(true); // Automatically open the tools panel when content changes
+    setToolsContent(content); // Update the tools panel content
+    appLayout.current?.focusToolsClose(); // Focus the close button for accessibility
   };
 
   return (
