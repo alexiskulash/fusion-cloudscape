@@ -1,5 +1,31 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
+
+/**
+ * Current Weather Widget Component
+ *
+ * This is the primary weather display widget that shows the most important
+ * current weather information in a prominent, easy-to-read format. It serves
+ * as the main focal point of the weather dashboard.
+ *
+ * Features:
+ * - Large temperature display with feels-like temperature
+ * - Current weather condition description
+ * - Key metrics in compact key-value format (humidity, wind, pressure, clouds)
+ * - Real-time data with last updated timestamp
+ * - Dynamic color coding for day/night conditions
+ * - Comprehensive error handling and loading states
+ *
+ * Layout:
+ * - Takes up 8 columns on large screens for prominence
+ * - Responsive design that stacks on mobile devices
+ * - Visual hierarchy with large temperature as primary focus
+ * - Secondary metrics arranged in organized key-value pairs
+ *
+ * Data Source: Open-Meteo current weather endpoint
+ * Updates: Real-time with manual refresh capability
+ */
+
 import React from 'react';
 
 import Box from '@cloudscape-design/components/box';
@@ -12,6 +38,10 @@ import { DEFAULT_LOCATION, getWeatherDescription } from '../../services/weather-
 import { useCurrentWeather } from '../../hooks/use-weather-data';
 import { WidgetConfig } from '../interfaces';
 
+/**
+ * Header component for the current weather widget
+ * Displays the widget title and location information
+ */
 function CurrentWeatherHeader() {
   return (
     <Header variant="h2" description={`Current conditions for ${DEFAULT_LOCATION.name}`}>
