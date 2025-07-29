@@ -158,7 +158,7 @@ describe('BaseStaticWidget', () => {
     expect(screen.getByTestId('mock-content')).toBeInTheDocument();
     expect(screen.getByTestId('mock-footer')).toBeInTheDocument();
     expect(screen.getByTestId('disable-content-paddings')).toHaveTextContent('true');
-    
+
     const widgetDiv = container.firstChild as HTMLElement;
     expect(widgetDiv).toHaveStyle('min-height: 250px');
   });

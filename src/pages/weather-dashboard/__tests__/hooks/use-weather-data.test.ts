@@ -18,7 +18,7 @@ describe('Weather Data Hooks', () => {
   describe('useCurrentWeather', () => {
     it('should return loading state initially', () => {
       mockWeatherApi.fetchCurrentWeather.mockImplementation(() => new Promise(() => {}));
-      
+
       const { result } = renderHook(() => useCurrentWeather());
 
       expect(result.current.loading).toBe(true);
@@ -139,7 +139,7 @@ describe('Weather Data Hooks', () => {
   describe('useHourlyForecast', () => {
     it('should return loading state initially', () => {
       mockWeatherApi.fetchHourlyForecast.mockImplementation(() => new Promise(() => {}));
-      
+
       const { result } = renderHook(() => useHourlyForecast());
 
       expect(result.current.loading).toBe(true);
@@ -197,7 +197,7 @@ describe('Weather Data Hooks', () => {
   describe('useDailyForecast', () => {
     it('should return loading state initially', () => {
       mockWeatherApi.fetchDailyForecast.mockImplementation(() => new Promise(() => {}));
-      
+
       const { result } = renderHook(() => useDailyForecast());
 
       expect(result.current.loading).toBe(true);

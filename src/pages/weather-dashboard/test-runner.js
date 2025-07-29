@@ -3,24 +3,24 @@
 
 /**
  * Simple test runner for weather dashboard unit tests
- * 
+ *
  * This file serves as documentation for how to run unit tests for the weather dashboard
  * components in a development environment. The main project uses browser integration
  * tests, but this provides guidance for unit testing individual components.
- * 
+ *
  * To run these tests in a development environment:
  * 1. Install testing dependencies: @testing-library/react, @testing-library/jest-dom
- * 2. Set up a Jest configuration for React components  
+ * 2. Set up a Jest configuration for React components
  * 3. Run: jest src/pages/weather-dashboard/__tests__
- * 
+ *
  * Test Coverage:
  * - weather-api.test.ts: Tests for Open-Meteo API integration
  * - components/content.test.tsx: Tests for main dashboard layout
- * - components/header.test.tsx: Tests for dashboard header components  
+ * - components/header.test.tsx: Tests for dashboard header components
  * - components/side-navigation.test.tsx: Tests for navigation structure
  * - hooks/use-weather-data.test.ts: Tests for data fetching hooks
  * - widgets/base-static-widget.test.tsx: Tests for widget wrapper component
- * 
+ *
  * Key Testing Features:
  * - Mocked API calls to prevent network requests during testing
  * - Component rendering validation with React Testing Library

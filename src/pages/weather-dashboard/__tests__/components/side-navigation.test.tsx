@@ -59,11 +59,11 @@ describe('WeatherDashboardSideNavigation', () => {
 
   it('should render Weather Dashboard section with nested items', () => {
     render(<WeatherDashboardSideNavigation />);
-    
+
     // Check Weather Dashboard section
     expect(screen.getByTestId('item-0-type')).toHaveTextContent('section');
     expect(screen.getByTestId('item-0-text')).toHaveTextContent('Weather Dashboard');
-    
+
     // Check nested Current Weather link
     expect(screen.getByTestId('item-0-child-0-type')).toHaveTextContent('link');
     expect(screen.getByTestId('item-0-child-0-text')).toHaveTextContent('Current Weather');
@@ -77,16 +77,16 @@ describe('WeatherDashboardSideNavigation', () => {
 
   it('should render Other Dashboards section with nested items', () => {
     render(<WeatherDashboardSideNavigation />);
-    
+
     // Check Other Dashboards section
     expect(screen.getByTestId('item-2-type')).toHaveTextContent('section');
     expect(screen.getByTestId('item-2-text')).toHaveTextContent('Other Dashboards');
-    
+
     // Check Service Dashboard link
     expect(screen.getByTestId('item-2-child-0-type')).toHaveTextContent('link');
     expect(screen.getByTestId('item-2-child-0-text')).toHaveTextContent('Service Dashboard');
     expect(screen.getByTestId('item-2-child-0-href')).toHaveTextContent('#/dashboard');
-    
+
     // Check Configurable Dashboard link
     expect(screen.getByTestId('item-2-child-1-type')).toHaveTextContent('link');
     expect(screen.getByTestId('item-2-child-1-text')).toHaveTextContent('Configurable Dashboard');
@@ -95,7 +95,7 @@ describe('WeatherDashboardSideNavigation', () => {
 
   it('should render All Demos link', () => {
     render(<WeatherDashboardSideNavigation />);
-    
+
     // Check All Demos link (after second divider)
     expect(screen.getByTestId('item-3-type')).toHaveTextContent('link');
     expect(screen.getByTestId('item-3-text')).toHaveTextContent('All Demos');
@@ -104,11 +104,11 @@ describe('WeatherDashboardSideNavigation', () => {
 
   it('should have proper navigation structure', () => {
     render(<WeatherDashboardSideNavigation />);
-    
+
     // Verify that sections have child items
     expect(screen.getByTestId('item-0-children')).toBeInTheDocument();
     expect(screen.getByTestId('item-2-children')).toBeInTheDocument();
-    
+
     // Verify dividers don't have children
     expect(screen.queryByTestId('item-1-children')).not.toBeInTheDocument();
   });

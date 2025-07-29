@@ -43,7 +43,9 @@ describe('Weather Dashboard Header Components', () => {
       render(<WeatherDashboardMainInfo />);
 
       expect(screen.getByText(/This weather dashboard provides comprehensive weather information/)).toBeInTheDocument();
-      expect(screen.getByText(/including current conditions, hourly forecasts, and daily forecasts/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/including current conditions, hourly forecasts, and daily forecasts/),
+      ).toBeInTheDocument();
     });
 
     it('should render data source information', () => {

@@ -63,14 +63,14 @@ export function Content() {
         The order matches the grid definition above for proper layout positioning.
       */}
       {[
-        currentWeatherWidget,      // Primary temperature and basic conditions
-        weatherConditionsWidget,   // Detailed weather status and visibility
-        windInfoWidget,           // Wind speed, direction and strength indicators
-        humidityPressureWidget,   // Atmospheric pressure and humidity levels
-        uvIndexWidget,            // UV index with safety recommendations
-        precipitationWidget,      // Current precipitation amounts by type
-        dailyForecastWidget,      // 7-day weather forecast table
-        hourlyForecastWidget,     // 24-hour detailed forecast table
+        currentWeatherWidget, // Primary temperature and basic conditions
+        weatherConditionsWidget, // Detailed weather status and visibility
+        windInfoWidget, // Wind speed, direction and strength indicators
+        humidityPressureWidget, // Atmospheric pressure and humidity levels
+        uvIndexWidget, // UV index with safety recommendations
+        precipitationWidget, // Current precipitation amounts by type
+        dailyForecastWidget, // 7-day weather forecast table
+        hourlyForecastWidget, // 24-hour detailed forecast table
       ].map((widget, index) => (
         <BaseStaticWidget key={index} config={widget.data} />
       ))}

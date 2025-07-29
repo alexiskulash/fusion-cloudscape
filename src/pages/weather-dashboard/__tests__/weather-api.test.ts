@@ -39,9 +39,7 @@ describe('Weather API Service', () => {
       const result = await fetchCurrentWeather();
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
-      expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining('api.open-meteo.com/v1/forecast'),
-      );
+      expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining('api.open-meteo.com/v1/forecast'));
       expect(result).toEqual(mockResponse);
     });
 
@@ -67,12 +65,8 @@ describe('Weather API Service', () => {
 
       const result = await fetchCurrentWeather(customLocation);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining(`latitude=${customLocation.latitude}`),
-      );
-      expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining(`longitude=${customLocation.longitude}`),
-      );
+      expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining(`latitude=${customLocation.latitude}`));
+      expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining(`longitude=${customLocation.longitude}`));
       expect(result).toEqual(mockResponse);
     });
 
@@ -82,9 +76,7 @@ describe('Weather API Service', () => {
         statusText: 'Internal Server Error',
       });
 
-      await expect(fetchCurrentWeather()).rejects.toThrow(
-        'Failed to fetch weather data: Internal Server Error',
-      );
+      await expect(fetchCurrentWeather()).rejects.toThrow('Failed to fetch weather data: Internal Server Error');
     });
   });
 
@@ -105,9 +97,7 @@ describe('Weather API Service', () => {
 
       const result = await fetchHourlyForecast();
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining('hourly='),
-      );
+      expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining('hourly='));
       expect(result).toEqual(mockResponse);
     });
 
@@ -145,9 +135,7 @@ describe('Weather API Service', () => {
 
       const result = await fetchDailyForecast();
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining('daily='),
-      );
+      expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining('daily='));
       expect(result).toEqual(mockResponse);
     });
 
