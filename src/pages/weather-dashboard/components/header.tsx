@@ -8,11 +8,7 @@ import SpaceBetween from '@cloudscape-design/components/space-between';
 
 export function WeatherDashboardHeader({ actions }: { actions?: React.ReactNode }) {
   return (
-    <Header
-      variant="h1"
-      actions={actions}
-      description="Real-time weather data and forecasts powered by Open-Meteo API"
-    >
+    <Header variant="h1" actions={actions} description="Real-time weather data and forecasts powered by Open-Meteo API">
       Weather Dashboard
     </Header>
   );

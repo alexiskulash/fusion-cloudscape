@@ -67,16 +67,12 @@ function WeatherConditionsWidget() {
     <SpaceBetween size="m">
       <Box>
         <Box variant="h3">Sky Condition</Box>
-        <StatusIndicator type={getConditionStatus()}>
-          {getWeatherDescription(current.weather_code)}
-        </StatusIndicator>
+        <StatusIndicator type={getConditionStatus()}>{getWeatherDescription(current.weather_code)}</StatusIndicator>
       </Box>
 
       <Box>
         <Box variant="h3">Time of Day</Box>
-        <StatusIndicator type={isDay ? 'success' : 'info'}>
-          {isDay ? 'Daytime' : 'Nighttime'}
-        </StatusIndicator>
+        <StatusIndicator type={isDay ? 'success' : 'info'}>{isDay ? 'Daytime' : 'Nighttime'}</StatusIndicator>
       </Box>
 
       <Box>
@@ -87,7 +83,13 @@ function WeatherConditionsWidget() {
       <Box>
         <Box variant="h3">Visibility</Box>
         <StatusIndicator type={current.cloud_cover < 25 ? 'success' : current.cloud_cover < 75 ? 'warning' : 'error'}>
-          {current.cloud_cover < 25 ? 'Excellent' : current.cloud_cover < 50 ? 'Good' : current.cloud_cover < 75 ? 'Fair' : 'Poor'}
+          {current.cloud_cover < 25
+            ? 'Excellent'
+            : current.cloud_cover < 50
+              ? 'Good'
+              : current.cloud_cover < 75
+                ? 'Fair'
+                : 'Poor'}
         </StatusIndicator>
       </Box>
     </SpaceBetween>

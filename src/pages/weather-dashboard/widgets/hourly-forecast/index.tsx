@@ -47,16 +47,16 @@ function HourlyForecastWidget() {
   }
 
   const hourly = data.hourly;
-  
+
   // Show next 24 hours
   const forecastItems = hourly.time.slice(0, 24).map((time, index) => ({
-    time: new Date(time).toLocaleTimeString('en-US', { 
+    time: new Date(time).toLocaleTimeString('en-US', {
       hour: 'numeric',
-      hour12: true 
+      hour12: true,
     }),
-    date: new Date(time).toLocaleDateString('en-US', { 
+    date: new Date(time).toLocaleDateString('en-US', {
       month: 'short',
-      day: 'numeric' 
+      day: 'numeric',
     }),
     condition: getWeatherDescription(hourly.weather_code[index]),
     temperature: Math.round(hourly.temperature_2m[index]),
@@ -75,7 +75,9 @@ function HourlyForecastWidget() {
           cell: item => (
             <Box>
               <Box variant="strong">{item.time}</Box>
-              <Box variant="small" color="text-body-secondary">{item.date}</Box>
+              <Box variant="small" color="text-body-secondary">
+                {item.date}
+              </Box>
             </Box>
           ),
           sortingField: 'time',

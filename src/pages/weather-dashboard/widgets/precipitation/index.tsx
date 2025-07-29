@@ -46,7 +46,7 @@ function PrecipitationWidget() {
   }
 
   const current = data.current;
-  
+
   const getPrecipitationStatus = () => {
     const total = current.precipitation;
     if (total === 0) return { status: 'success', text: 'No precipitation' };
@@ -66,9 +66,7 @@ function PrecipitationWidget() {
           value: (
             <Box>
               <Box variant="h3">{current.precipitation} mm</Box>
-              <StatusIndicator type={precipitationStatus.status as any}>
-                {precipitationStatus.text}
-              </StatusIndicator>
+              <StatusIndicator type={precipitationStatus.status as any}>{precipitationStatus.text}</StatusIndicator>
             </Box>
           ),
         },

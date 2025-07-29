@@ -68,9 +68,7 @@ function WindInfoWidget() {
           {windSpeed}
         </Box>
         <Box variant="h3">km/h</Box>
-        <StatusIndicator type={windStrength.status as any}>
-          {windStrength.text}
-        </StatusIndicator>
+        <StatusIndicator type={windStrength.status as any}>{windStrength.text}</StatusIndicator>
       </Box>
 
       <KeyValuePairs

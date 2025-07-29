@@ -46,7 +46,7 @@ function HumidityPressureWidget() {
   }
 
   const current = data.current;
-  
+
   const getHumidityStatus = () => {
     if (current.relative_humidity_2m < 30) return { status: 'warning', text: 'Low' };
     if (current.relative_humidity_2m > 70) return { status: 'info', text: 'High' };
@@ -71,9 +71,7 @@ function HumidityPressureWidget() {
           value: (
             <Box>
               <Box variant="h3">{current.relative_humidity_2m}%</Box>
-              <StatusIndicator type={humidityStatus.status as any}>
-                {humidityStatus.text}
-              </StatusIndicator>
+              <StatusIndicator type={humidityStatus.status as any}>{humidityStatus.text}</StatusIndicator>
             </Box>
           ),
         },
@@ -82,9 +80,7 @@ function HumidityPressureWidget() {
           value: (
             <Box>
               <Box variant="h3">{Math.round(current.pressure_msl)} hPa</Box>
-              <StatusIndicator type={pressureStatus.status as any}>
-                {pressureStatus.text}
-              </StatusIndicator>
+              <StatusIndicator type={pressureStatus.status as any}>{pressureStatus.text}</StatusIndicator>
             </Box>
           ),
         },

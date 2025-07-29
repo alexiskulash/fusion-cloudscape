@@ -117,23 +117,26 @@ export async function fetchCurrentWeather(location: WeatherLocation = DEFAULT_LO
   const url = new URL('https://api.open-meteo.com/v1/forecast');
   url.searchParams.set('latitude', location.latitude.toString());
   url.searchParams.set('longitude', location.longitude.toString());
-  url.searchParams.set('current', [
-    'temperature_2m',
-    'relative_humidity_2m',
-    'apparent_temperature',
-    'is_day',
-    'precipitation',
-    'rain',
-    'showers',
-    'snowfall',
-    'weather_code',
-    'cloud_cover',
-    'pressure_msl',
-    'surface_pressure',
-    'wind_speed_10m',
-    'wind_direction_10m',
-    'wind_gusts_10m',
-  ].join(','));
+  url.searchParams.set(
+    'current',
+    [
+      'temperature_2m',
+      'relative_humidity_2m',
+      'apparent_temperature',
+      'is_day',
+      'precipitation',
+      'rain',
+      'showers',
+      'snowfall',
+      'weather_code',
+      'cloud_cover',
+      'pressure_msl',
+      'surface_pressure',
+      'wind_speed_10m',
+      'wind_direction_10m',
+      'wind_gusts_10m',
+    ].join(','),
+  );
   url.searchParams.set('timezone', 'auto');
 
   const response = await fetch(url.toString());
@@ -151,15 +154,18 @@ export async function fetchHourlyForecast(location: WeatherLocation = DEFAULT_LO
   const url = new URL('https://api.open-meteo.com/v1/forecast');
   url.searchParams.set('latitude', location.latitude.toString());
   url.searchParams.set('longitude', location.longitude.toString());
-  url.searchParams.set('hourly', [
-    'temperature_2m',
-    'relative_humidity_2m',
-    'precipitation_probability',
-    'precipitation',
-    'weather_code',
-    'wind_speed_10m',
-    'wind_direction_10m',
-  ].join(','));
+  url.searchParams.set(
+    'hourly',
+    [
+      'temperature_2m',
+      'relative_humidity_2m',
+      'precipitation_probability',
+      'precipitation',
+      'weather_code',
+      'wind_speed_10m',
+      'wind_direction_10m',
+    ].join(','),
+  );
   url.searchParams.set('timezone', 'auto');
   url.searchParams.set('forecast_days', '3');
 
@@ -178,19 +184,22 @@ export async function fetchDailyForecast(location: WeatherLocation = DEFAULT_LOC
   const url = new URL('https://api.open-meteo.com/v1/forecast');
   url.searchParams.set('latitude', location.latitude.toString());
   url.searchParams.set('longitude', location.longitude.toString());
-  url.searchParams.set('daily', [
-    'weather_code',
-    'temperature_2m_max',
-    'temperature_2m_min',
-    'sunrise',
-    'sunset',
-    'uv_index_max',
-    'precipitation_sum',
-    'rain_sum',
-    'snowfall_sum',
-    'wind_speed_10m_max',
-    'wind_direction_10m_dominant',
-  ].join(','));
+  url.searchParams.set(
+    'daily',
+    [
+      'weather_code',
+      'temperature_2m_max',
+      'temperature_2m_min',
+      'sunrise',
+      'sunset',
+      'uv_index_max',
+      'precipitation_sum',
+      'rain_sum',
+      'snowfall_sum',
+      'wind_speed_10m_max',
+      'wind_direction_10m_dominant',
+    ].join(','),
+  );
   url.searchParams.set('timezone', 'auto');
   url.searchParams.set('forecast_days', '7');
 
@@ -260,7 +269,24 @@ export function getWeatherIcon(code: number, isDay: boolean): string {
  * Format wind direction from degrees to compass direction
  */
 export function getWindDirection(degrees: number): string {
-  const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+  const directions = [
+    'N',
+    'NNE',
+    'NE',
+    'ENE',
+    'E',
+    'ESE',
+    'SE',
+    'SSE',
+    'S',
+    'SSW',
+    'SW',
+    'WSW',
+    'W',
+    'WNW',
+    'NW',
+    'NNW',
+  ];
   const index = Math.round(degrees / 22.5) % 16;
   return directions[index];
 }

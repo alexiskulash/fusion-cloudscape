@@ -47,12 +47,12 @@ function DailyForecastWidget() {
   }
 
   const daily = data.daily;
-  
+
   const forecastItems = daily.time.map((date, index) => ({
-    date: new Date(date).toLocaleDateString('en-US', { 
-      weekday: 'short', 
-      month: 'short', 
-      day: 'numeric' 
+    date: new Date(date).toLocaleDateString('en-US', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
     }),
     condition: getWeatherDescription(daily.weather_code[index]),
     maxTemp: Math.round(daily.temperature_2m_max[index]),
@@ -105,12 +105,15 @@ function DailyForecastWidget() {
           id: 'uv',
           header: 'UV',
           cell: item => (
-            <Box 
+            <Box
               color={
-                item.uvIndex <= 2 ? 'text-status-success' :
-                item.uvIndex <= 5 ? 'text-status-info' :
-                item.uvIndex <= 7 ? 'text-status-warning' :
-                'text-status-error'
+                item.uvIndex <= 2
+                  ? 'text-status-success'
+                  : item.uvIndex <= 5
+                    ? 'text-status-info'
+                    : item.uvIndex <= 7
+                      ? 'text-status-warning'
+                      : 'text-status-error'
               }
             >
               {item.uvIndex}

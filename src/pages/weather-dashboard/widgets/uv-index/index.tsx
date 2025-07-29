@@ -45,7 +45,7 @@ function UvIndexWidget() {
   }
 
   const uvIndex = Math.round(data.daily.uv_index_max[0]);
-  
+
   const getUvStatus = () => {
     if (uvIndex <= 2) return { status: 'success', text: 'Low', advice: 'No protection required' };
     if (uvIndex <= 5) return { status: 'info', text: 'Moderate', advice: 'Some protection required' };
@@ -61,15 +61,15 @@ function UvIndexWidget() {
       <Box fontSize="display-l" fontWeight="bold" color="text-status-warning" margin={{ bottom: 's' }}>
         {uvIndex}
       </Box>
-      
+
       <StatusIndicator type={uvStatus.status as any} iconAriaLabel={uvStatus.text}>
         <Box variant="h3">{uvStatus.text}</Box>
       </StatusIndicator>
-      
+
       <Box variant="small" color="text-body-secondary" margin={{ top: 'm' }}>
         {uvStatus.advice}
       </Box>
-      
+
       <Box variant="small" color="text-body-secondary" margin={{ top: 's' }}>
         Max UV index for today
       </Box>
