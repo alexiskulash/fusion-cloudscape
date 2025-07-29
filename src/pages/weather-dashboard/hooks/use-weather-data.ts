@@ -1,5 +1,28 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
+
+/**
+ * Custom React Hooks for Weather Data Management
+ *
+ * This module provides specialized hooks for fetching and managing weather data
+ * from the Open-Meteo API with proper React state management, error handling,
+ * and loading states.
+ *
+ * Features:
+ * - Automatic data fetching on component mount
+ * - Loading states for UI feedback
+ * - Comprehensive error handling with user-friendly messages
+ * - Manual refetch capability for data refresh
+ * - Location-based data fetching with customizable coordinates
+ * - Proper cleanup and dependency management
+ *
+ * Each hook follows the same pattern:
+ * 1. Initialize loading state
+ * 2. Fetch data from API
+ * 3. Handle success/error states
+ * 4. Provide refetch functionality
+ */
+
 import { useEffect, useState } from 'react';
 
 import {
@@ -11,6 +34,10 @@ import {
   WeatherResponse,
 } from '../services/weather-api';
 
+/**
+ * Standard return interface for all weather data hooks
+ * Provides consistent API across different weather data types
+ */
 interface UseWeatherDataResult {
   data: WeatherResponse | null;
   loading: boolean;

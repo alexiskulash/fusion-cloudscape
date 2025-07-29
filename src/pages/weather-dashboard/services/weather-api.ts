@@ -1,6 +1,30 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
 
+/**
+ * Weather API Service for Open-Meteo Integration
+ *
+ * This module provides a comprehensive interface to the Open-Meteo weather API,
+ * a free and open-source weather service that provides accurate meteorological data.
+ *
+ * Features:
+ * - Current weather conditions with real-time data
+ * - Hourly forecasts for detailed short-term planning
+ * - Daily forecasts for week-ahead outlook
+ * - Weather condition descriptions and icon mappings
+ * - Wind direction utilities and data formatting
+ *
+ * API Documentation: https://open-meteo.com/en/docs
+ * No API key required - completely free service
+ *
+ * Default Location: Berlin, Germany (52.52°N, 13.41°E)
+ * Can be customized to any worldwide location using lat/lng coordinates
+ */
+
+/**
+ * Interface for current weather data returned by Open-Meteo API
+ * Contains real-time meteorological measurements and conditions
+ */
 export interface CurrentWeather {
   time: string;
   temperature_2m: number;
