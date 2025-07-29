@@ -10,26 +10,35 @@ export function WeatherDashboardSideNavigation() {
       activeHref="#/weather-dashboard"
       header={{ href: '#/', text: 'Demo Hub' }}
       items={[
-        { type: 'section', text: 'Weather Dashboard' },
         {
-          type: 'link',
-          text: 'Current Weather',
-          href: '#/weather-dashboard',
+          type: 'section',
+          text: 'Weather Dashboard',
+          items: [
+            {
+              type: 'link',
+              text: 'Current Weather',
+              href: '#/weather-dashboard',
+            },
+          ],
         },
         { type: 'divider' },
-        { type: 'section', text: 'Other Dashboards' },
         {
-          type: 'link',
-          text: 'Service Dashboard',
-          href: '#/dashboard',
-        },
-        {
-          type: 'link',
-          text: 'Configurable Dashboard',
-          href: '#/configurable-dashboard',
+          type: 'section',
+          text: 'Other Dashboards',
+          items: [
+            {
+              type: 'link',
+              text: 'Service Dashboard',
+              href: '#/dashboard',
+            },
+            {
+              type: 'link',
+              text: 'Configurable Dashboard',
+              href: '#/configurable-dashboard',
+            },
+          ],
         },
         { type: 'divider' },
-        { type: 'section', text: 'Demo Hub' },
         {
           type: 'link',
           text: 'All Demos',
