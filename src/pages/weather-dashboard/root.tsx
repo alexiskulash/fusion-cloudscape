@@ -50,7 +50,6 @@ interface ForecastResponse {
   };
 }
 
-
 export function App() {
   const [query, setQuery] = useState('Seattle');
   const [selectedPlace, setSelectedPlace] = useState<GeoResult | null>(null);
@@ -117,7 +116,9 @@ export function App() {
             header={<Header variant="h1">Weather Dashboard</Header>}
             actions={
               <SpaceBetween direction="horizontal" size="xs">
-                <Button variant="link" href="#/">Back</Button>
+                <Button variant="link" href="#/">
+                  Back
+                </Button>
                 <Button variant="primary" loading={loading} onClick={searchAndLoad}>
                   Fetch weather
                 </Button>
@@ -139,10 +140,7 @@ export function App() {
                   </FormField>
                   <FormField label="Temperature unit">
                     <SpaceBetween size="xs" direction="horizontal">
-                      <Button
-                        variant={unit === 'celsius' ? 'primary' : 'normal'}
-                        onClick={() => setUnit('celsius')}
-                      >
+                      <Button variant={unit === 'celsius' ? 'primary' : 'normal'} onClick={() => setUnit('celsius')}>
                         °C
                       </Button>
                       <Button
@@ -160,7 +158,10 @@ export function App() {
                 header={<Header variant="h2">Current conditions</Header>}
                 footer={
                   <Box variant="p">
-                    Source: <Link external href="https://open-meteo.com/">Open-Meteo</Link>
+                    Source:{' '}
+                    <Link external href="https://open-meteo.com/">
+                      Open-Meteo
+                    </Link>
                   </Box>
                 }
               >
@@ -182,10 +183,12 @@ export function App() {
                       <b>Temperature:</b> {forecast.current_weather.temperature} {unitSymbol}
                     </Box>
                     <Box>
-                      <b>Wind:</b> {forecast.current_weather.windspeed} km/h at {forecast.current_weather.winddirection}°
+                      <b>Wind:</b> {forecast.current_weather.windspeed} km/h at {forecast.current_weather.winddirection}
+                      °
                     </Box>
                     <Box>
-                      <b>Observed:</b> {format(new Date(forecast.current_weather.time), 'PPpp')} ({selectedPlace.timezone})
+                      <b>Observed:</b> {format(new Date(forecast.current_weather.time), 'PPpp')} (
+                      {selectedPlace.timezone})
                     </Box>
                   </SpaceBetween>
                 )}
@@ -200,7 +203,11 @@ export function App() {
                       header: 'Time',
                       cell: (item: { time: string }) => format(new Date(item.time), 'PPpp'),
                     },
-                    { id: 'temp', header: `Temperature (${unitSymbol})`, cell: (item: { temperature: string }) => item.temperature },
+                    {
+                      id: 'temp',
+                      header: `Temperature (${unitSymbol})`,
+                      cell: (item: { temperature: string }) => item.temperature,
+                    },
                   ]}
                   items={rows}
                   loading={loading}
