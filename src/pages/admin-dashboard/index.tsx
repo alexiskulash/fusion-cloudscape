@@ -84,10 +84,10 @@ function App() {
   const paginatedItems = filteredItems.slice((currentPageIndex - 1) * itemsPerPage, currentPageIndex * itemsPerPage);
 
   const areaSeries = [
-    { title: 'Site 1', data: areaChartRaw.map(d => ({ x: d.date, y: d.site1 })) },
-    { title: 'Site 2', data: areaChartRaw.map(d => ({ x: d.date, y: d.site2 })) },
+    { title: 'Site 1', type: 'area', data: areaChartRaw.map(d => ({ x: d.date, y: d.site1 })) },
+    { title: 'Site 2', type: 'area', data: areaChartRaw.map(d => ({ x: d.date, y: d.site2 })) },
   ];
-  const barSeries = [{ title: 'Site 1', data: barChartRaw.map(d => ({ x: d.category, y: d.value })) }];
+  const barSeries = [{ title: 'Site 1', type: 'bar', data: barChartRaw.map(d => ({ x: d.category, y: d.value })) }];
 
   return (
     <HelpPanelProvider value={() => {}}>
