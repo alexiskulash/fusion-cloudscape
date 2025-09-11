@@ -184,6 +184,7 @@ function App() {
                 <BarChart
                   series={barSeries}
                   xDomain={barChartRaw.map(d => d.category)}
+                  xScaleType="categorical"
                   xTitle="X-axis label"
                   yTitle="y-axis label"
                   hideFilter
