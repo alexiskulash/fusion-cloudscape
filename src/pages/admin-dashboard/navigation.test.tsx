@@ -50,27 +50,27 @@ describe('AdminDashboardNavigation', () => {
 
   it('sets the correct active href', () => {
     render(<AdminDashboardNavigation />);
-    
+
     const activeHref = screen.getByTestId('active-href');
     expect(activeHref).toHaveTextContent('#/admin-dashboard');
   });
 
   it('renders the header with service name', () => {
     render(<AdminDashboardNavigation />);
-    
+
     const header = screen.getByTestId('nav-header');
     expect(header).toHaveTextContent('Service name');
-    
+
     const headerLink = header.querySelector('a');
     expect(headerLink).toHaveAttribute('href', '#/');
   });
 
   it('renders main navigation items', () => {
     render(<AdminDashboardNavigation />);
-    
+
     const navLinks = screen.getAllByTestId('nav-link');
     const linkTexts = navLinks.map(link => link.textContent);
-    
+
     expect(linkTexts).toContain('Overview');
     expect(linkTexts).toContain('Analytics');
     expect(linkTexts).toContain('Users');
@@ -81,30 +81,30 @@ describe('AdminDashboardNavigation', () => {
 
   it('renders navigation dividers', () => {
     render(<AdminDashboardNavigation />);
-    
+
     const dividers = screen.getAllByTestId('nav-divider');
     expect(dividers).toHaveLength(2); // Two dividers in the navigation
   });
 
   it('renders expandable navigation groups', () => {
     render(<AdminDashboardNavigation />);
-    
+
     const expandableGroups = screen.getAllByTestId('nav-expandable-group');
     expect(expandableGroups).toHaveLength(2); // Reports and Administration groups
-    
+
     const groupTexts = screen.getAllByTestId('nav-group-text');
     const groupNames = groupTexts.map(text => text.textContent);
-    
+
     expect(groupNames).toContain('Reports');
     expect(groupNames).toContain('Administration');
   });
 
   it('renders Reports submenu items', () => {
     render(<AdminDashboardNavigation />);
-    
+
     const subItems = screen.getAllByTestId('nav-sub-item');
     const subItemTexts = subItems.map(item => item.textContent);
-    
+
     expect(subItemTexts).toContain('Performance');
     expect(subItemTexts).toContain('Usage');
     expect(subItemTexts).toContain('Revenue');
@@ -112,10 +112,10 @@ describe('AdminDashboardNavigation', () => {
 
   it('renders Administration submenu items', () => {
     render(<AdminDashboardNavigation />);
-    
+
     const subItems = screen.getAllByTestId('nav-sub-item');
     const subItemTexts = subItems.map(item => item.textContent);
-    
+
     expect(subItemTexts).toContain('User Management');
     expect(subItemTexts).toContain('Permissions');
     expect(subItemTexts).toContain('System Config');
@@ -123,69 +123,69 @@ describe('AdminDashboardNavigation', () => {
 
   it('has correct href attributes for main items', () => {
     render(<AdminDashboardNavigation />);
-    
+
     const navLinks = screen.getAllByTestId('nav-link');
-    
+
     // Find specific links and check their hrefs
     const overviewLink = navLinks.find(link => link.textContent === 'Overview');
     expect(overviewLink).toHaveAttribute('href', '#/admin-dashboard');
-    
+
     const analyticsLink = navLinks.find(link => link.textContent === 'Analytics');
     expect(analyticsLink).toHaveAttribute('href', '#/admin-dashboard/analytics');
-    
+
     const usersLink = navLinks.find(link => link.textContent === 'Users');
     expect(usersLink).toHaveAttribute('href', '#/admin-dashboard/users');
-    
+
     const settingsLink = navLinks.find(link => link.textContent === 'Settings');
     expect(settingsLink).toHaveAttribute('href', '#/admin-dashboard/settings');
   });
 
   it('has correct href attributes for Reports submenu', () => {
     render(<AdminDashboardNavigation />);
-    
+
     const subItems = screen.getAllByTestId('nav-sub-item');
-    
+
     const performanceLink = subItems.find(item => item.textContent === 'Performance')?.querySelector('a');
     expect(performanceLink).toHaveAttribute('href', '#/admin-dashboard/reports/performance');
-    
+
     const usageLink = subItems.find(item => item.textContent === 'Usage')?.querySelector('a');
     expect(usageLink).toHaveAttribute('href', '#/admin-dashboard/reports/usage');
-    
+
     const revenueLink = subItems.find(item => item.textContent === 'Revenue')?.querySelector('a');
     expect(revenueLink).toHaveAttribute('href', '#/admin-dashboard/reports/revenue');
   });
 
   it('has correct href attributes for Administration submenu', () => {
     render(<AdminDashboardNavigation />);
-    
+
     const subItems = screen.getAllByTestId('nav-sub-item');
-    
+
     const userMgmtLink = subItems.find(item => item.textContent === 'User Management')?.querySelector('a');
     expect(userMgmtLink).toHaveAttribute('href', '#/admin-dashboard/admin/users');
-    
+
     const permissionsLink = subItems.find(item => item.textContent === 'Permissions')?.querySelector('a');
     expect(permissionsLink).toHaveAttribute('href', '#/admin-dashboard/admin/permissions');
-    
+
     const configLink = subItems.find(item => item.textContent === 'System Config')?.querySelector('a');
     expect(configLink).toHaveAttribute('href', '#/admin-dashboard/admin/config');
   });
 
   it('marks documentation link as external', () => {
     render(<AdminDashboardNavigation />);
-    
+
     const navLinks = screen.getAllByTestId('nav-link');
     const docLink = navLinks.find(link => link.textContent === 'Documentation');
-    
+
     expect(docLink).toHaveAttribute('data-external', 'true');
     expect(docLink).toHaveAttribute('href', '#/admin-dashboard/docs');
   });
 
   it('renders support link', () => {
     render(<AdminDashboardNavigation />);
-    
+
     const navLinks = screen.getAllByTestId('nav-link');
     const supportLink = navLinks.find(link => link.textContent === 'Support');
-    
+
     expect(supportLink).toHaveAttribute('href', '#/admin-dashboard/support');
   });
 

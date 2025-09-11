@@ -34,12 +34,7 @@ export default defineConfig({
     css: true,
     coverage: {
       reporter: ['text', 'json', 'html'],
-      exclude: [
-        'node_modules/',
-        'test/',
-        'dist/',
-        '**/*.config.*',
-      ],
+      exclude: ['node_modules/', 'test/', 'dist/', '**/*.config.*'],
     },
   },
 });

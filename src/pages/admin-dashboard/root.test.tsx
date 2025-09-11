@@ -14,7 +14,7 @@ vi.mock('./index', () => ({
 describe('AdminDashboard Root Component', () => {
   it('renders the admin dashboard app component', () => {
     render(<AdminDashboard />);
-    
+
     expect(screen.getByTestId('admin-dashboard-app')).toBeInTheDocument();
     expect(screen.getByText('Admin Dashboard App')).toBeInTheDocument();
   });
@@ -26,7 +26,7 @@ describe('AdminDashboard Root Component', () => {
 
   it('returns the App component without any additional wrappers', () => {
     const { container } = render(<AdminDashboard />);
-    
+
     // Should have one direct child which is the mocked App component
     expect(container.firstChild).toEqual(screen.getByTestId('admin-dashboard-app'));
   });

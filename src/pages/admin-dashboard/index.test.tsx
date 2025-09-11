@@ -99,7 +99,9 @@ vi.mock('@cloudscape-design/components/box', () => ({
 vi.mock('@cloudscape-design/components/area-chart', () => ({
   default: ({ series, xTitle, yTitle }: any) => (
     <div data-testid="area-chart">
-      <div data-testid="chart-title">{xTitle} / {yTitle}</div>
+      <div data-testid="chart-title">
+        {xTitle} / {yTitle}
+      </div>
       <div data-testid="chart-series-count">{series?.length || 0}</div>
     </div>
   ),
@@ -108,7 +110,9 @@ vi.mock('@cloudscape-design/components/area-chart', () => ({
 vi.mock('@cloudscape-design/components/bar-chart', () => ({
   default: ({ series, xTitle, yTitle }: any) => (
     <div data-testid="bar-chart">
-      <div data-testid="chart-title">{xTitle} / {yTitle}</div>
+      <div data-testid="chart-title">
+        {xTitle} / {yTitle}
+      </div>
       <div data-testid="chart-series-count">{series?.length || 0}</div>
     </div>
   ),
@@ -134,7 +138,7 @@ vi.mock('@cloudscape-design/components/text-filter', () => ({
         data-testid="filter-input"
         value={filteringText}
         placeholder={filteringPlaceholder}
-        onChange={(e) => onChange?.({ detail: { filteringText: e.target.value } })}
+        onChange={e => onChange?.({ detail: { filteringText: e.target.value } })}
       />
       <span data-testid="filter-count">{countText}</span>
     </div>
@@ -151,7 +155,9 @@ vi.mock('@cloudscape-design/components/pagination', () => ({
       >
         Previous
       </button>
-      <span data-testid="page-info">{currentPageIndex} of {pagesCount}</span>
+      <span data-testid="page-info">
+        {currentPageIndex} of {pagesCount}
+      </span>
       <button
         data-testid="next-page"
         onClick={() => onChange?.({ detail: { currentPageIndex: currentPageIndex + 1 } })}
@@ -166,23 +172,23 @@ vi.mock('@cloudscape-design/components/pagination', () => ({
 describe('AdministrationDashboardDemo', () => {
   it('renders the dashboard with all main components', () => {
     render(<AdministrationDashboardDemo />);
-    
+
     // Check main layout
     expect(screen.getByTestId('app-layout')).toBeInTheDocument();
     expect(screen.getByTestId('admin-navigation')).toBeInTheDocument();
     expect(screen.getByTestId('breadcrumbs')).toBeInTheDocument();
-    
+
     // Check header
     expect(screen.getByText('Administration Dashboard')).toBeInTheDocument();
     expect(screen.getByText('Collection description')).toBeInTheDocument();
     expect(screen.getByText('Refresh Data')).toBeInTheDocument();
-    
+
     // Check charts
     expect(screen.getByTestId('area-chart')).toBeInTheDocument();
     expect(screen.getByTestId('bar-chart')).toBeInTheDocument();
     expect(screen.getByText('Performance Overview')).toBeInTheDocument();
     expect(screen.getByText('Category Performance')).toBeInTheDocument();
-    
+
     // Check table
     expect(screen.getByTestId('table')).toBeInTheDocument();
     expect(screen.getByText('Data Table')).toBeInTheDocument();
@@ -190,17 +196,17 @@ describe('AdministrationDashboardDemo', () => {
 
   it('displays correct chart data', () => {
     render(<AdministrationDashboardDemo />);
-    
+
     const areaChartSeriesCount = screen.getByTestId('area-chart').querySelector('[data-testid="chart-series-count"]');
     const barChartSeriesCount = screen.getByTestId('bar-chart').querySelector('[data-testid="chart-series-count"]');
-    
+
     expect(areaChartSeriesCount).toHaveTextContent('2'); // Site 1 and Site 2
     expect(barChartSeriesCount).toHaveTextContent('1'); // Site 1 only
   });
 
   it('displays correct table configuration', () => {
     render(<AdministrationDashboardDemo />);
-    
+
     const table = screen.getByTestId('table');
     expect(table.querySelector('[data-testid="table-items-count"]')).toHaveTextContent('10'); // First page items
     expect(table.querySelector('[data-testid="table-columns-count"]')).toHaveTextContent('8'); // 7 data columns + selection
@@ -210,15 +216,15 @@ describe('AdministrationDashboardDemo', () => {
   it('handles text filtering correctly', async () => {
     const user = userEvent.setup();
     render(<AdministrationDashboardDemo />);
-    
+
     const filterInput = screen.getAllByTestId('filter-input')[0]; // Get the first filter input
-    
+
     // Initial state should show all items
     expect(screen.getAllByTestId('filter-count')[0]).toHaveTextContent('12 matches');
-    
+
     // Type in filter
     await user.type(filterInput, 'test');
-    
+
     // Since all dummy data has "Cell Value", filtering for "test" should show 0 matches
     await waitFor(() => {
       expect(screen.getAllByTestId('filter-count')[0]).toHaveTextContent('0 matches');
@@ -252,7 +258,7 @@ describe('AdministrationDashboardDemo', () => {
 
   it('renders breadcrumbs correctly', () => {
     render(<AdministrationDashboardDemo />);
-    
+
     const breadcrumbs = screen.getByTestId('breadcrumbs');
     expect(breadcrumbs).toHaveTextContent('Service');
     expect(breadcrumbs).toHaveTextContent('Administrative Dashboard');
@@ -260,7 +266,7 @@ describe('AdministrationDashboardDemo', () => {
 
   it('renders action buttons in header', () => {
     render(<AdministrationDashboardDemo />);
-    
+
     expect(screen.getByText('Refresh Data')).toBeInTheDocument();
     expect(screen.getByText('View details')).toBeInTheDocument();
     expect(screen.getByText('Edit')).toBeInTheDocument();
