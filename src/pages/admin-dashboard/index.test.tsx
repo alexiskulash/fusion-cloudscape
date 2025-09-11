@@ -33,7 +33,69 @@ vi.mock('../commons/common-components', () => ({
   ),
 }));
 
-// Mock Cloudscape components
+// Mock all Cloudscape components
+vi.mock('@cloudscape-design/components/app-layout', () => ({
+  default: () => <div data-testid="mock-app-layout">App Layout</div>,
+}));
+
+vi.mock('@cloudscape-design/components/button', () => ({
+  default: ({ children, iconName, variant, ...props }: any) => (
+    <button data-testid="button" data-variant={variant} data-icon={iconName} {...props}>
+      {children}
+    </button>
+  ),
+}));
+
+vi.mock('@cloudscape-design/components/space-between', () => ({
+  default: ({ children, size, direction }: any) => (
+    <div data-testid="space-between" data-size={size} data-direction={direction}>
+      {children}
+    </div>
+  ),
+}));
+
+vi.mock('@cloudscape-design/components/container', () => ({
+  default: ({ children, header }: any) => (
+    <div data-testid="container">
+      {header}
+      {children}
+    </div>
+  ),
+}));
+
+vi.mock('@cloudscape-design/components/header', () => ({
+  default: ({ children, variant, description, actions, counter }: any) => (
+    <div data-testid="header" data-variant={variant}>
+      <h1>{children}</h1>
+      {description && <p>{description}</p>}
+      {counter && <span data-testid="counter">{counter}</span>}
+      {actions && <div data-testid="actions">{actions}</div>}
+    </div>
+  ),
+}));
+
+vi.mock('@cloudscape-design/components/grid', () => ({
+  default: ({ children, gridDefinition }: any) => (
+    <div data-testid="grid" data-cols={gridDefinition?.length}>
+      {children}
+    </div>
+  ),
+}));
+
+vi.mock('@cloudscape-design/components/box', () => ({
+  default: ({ children, variant, textAlign, width, height, style, margin, color }: any) => (
+    <div
+      data-testid="box"
+      data-variant={variant}
+      data-text-align={textAlign}
+      data-color={color}
+      style={{ width, height, ...style, ...margin }}
+    >
+      {children}
+    </div>
+  ),
+}));
+
 vi.mock('@cloudscape-design/components/area-chart', () => ({
   default: ({ series, xTitle, yTitle }: any) => (
     <div data-testid="area-chart">
