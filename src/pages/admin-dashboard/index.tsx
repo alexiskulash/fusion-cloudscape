@@ -155,6 +155,7 @@ function App() {
                 <AreaChart
                   series={areaSeries}
                   xDomain={areaChartRaw.map(d => d.date)}
+                  xScaleType="categorical"
                   xTitle="X-axis label"
                   yTitle="y-axis label"
                   hideFilter
