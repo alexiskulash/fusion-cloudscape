@@ -228,20 +228,21 @@ describe('AdministrationDashboardDemo', () => {
   it('handles pagination correctly', async () => {
     const user = userEvent.setup();
     render(<AdministrationDashboardDemo />);
-    
-    const pagination = screen.getByTestId('pagination');
-    const pageInfo = pagination.querySelector('[data-testid="page-info"]');
-    const nextButton = pagination.querySelector('[data-testid="next-page"]') as HTMLButtonElement;
-    const prevButton = pagination.querySelector('[data-testid="prev-page"]') as HTMLButtonElement;
-    
+
+    const paginations = screen.getAllByTestId('pagination');
+    const tablePagination = paginations[1]; // Second pagination is for the table
+    const pageInfo = tablePagination.querySelector('[data-testid="page-info"]');
+    const nextButton = tablePagination.querySelector('[data-testid="next-page"]') as HTMLButtonElement;
+    const prevButton = tablePagination.querySelector('[data-testid="prev-page"]') as HTMLButtonElement;
+
     // Initial state
     expect(pageInfo).toHaveTextContent('1 of 2'); // 12 items with 10 per page = 2 pages
     expect(prevButton).toBeDisabled();
     expect(nextButton).not.toBeDisabled();
-    
+
     // Go to next page
     await user.click(nextButton);
-    
+
     await waitFor(() => {
       expect(pageInfo).toHaveTextContent('2 of 2');
       expect(nextButton).toBeDisabled();
