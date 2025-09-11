@@ -46,6 +46,7 @@
     "@typescript-eslint/eslint-plugin": "^8.15.0",
     "@typescript-eslint/parser": "^8.15.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^3.2.4",
     "ace-builds": "^1.32.6",
     "axe-core": "^4.4.3",
     "date-fns": "^4.1.0",
