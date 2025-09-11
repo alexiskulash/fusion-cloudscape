@@ -269,12 +269,16 @@ describe('AdministrationDashboardDemo', () => {
 
   it('displays chart legends', () => {
     render(<AdministrationDashboardDemo />);
-    
+
     // Area chart should have Site 1 and Site 2 legends
-    const legends = screen.getAllByText('Site 1');
-    expect(legends).toHaveLength(2); // One in area chart, one in bar chart
-    expect(screen.getByText('Site 2')).toBeInTheDocument();
-    expect(screen.getAllByText('Performance goal')).toHaveLength(2);
+    const site1Legends = screen.getAllByText('Site 1');
+    expect(site1Legends).toHaveLength(2); // One in area chart, one in bar chart
+
+    const site2Legends = screen.getAllByText('Site 2');
+    expect(site2Legends).toHaveLength(1); // Only in area chart
+
+    const performanceGoalLegends = screen.getAllByText('Performance goal');
+    expect(performanceGoalLegends).toHaveLength(2); // One in each chart
   });
 
   it('initializes with correct default state', () => {
