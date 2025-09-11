@@ -143,12 +143,20 @@ export function App() {
                     />
                   </FormField>
                   <FormField label="Temperature unit">
-                    <Select
-                      selectedOption={unitOptions.find(o => o.value === unit) as any}
-                      onChange={({ detail }) => setUnit((detail.selectedOption.value as Unit) ?? 'celsius')}
-                      options={unitOptions as any}
-                      selectedAriaLabel="Selected unit"
-                    />
+                    <SpaceBetween size="xs" direction="horizontal">
+                      <Button
+                        variant={unit === 'celsius' ? 'primary' : 'normal'}
+                        onClick={() => setUnit('celsius')}
+                      >
+                        °C
+                      </Button>
+                      <Button
+                        variant={unit === 'fahrenheit' ? 'primary' : 'normal'}
+                        onClick={() => setUnit('fahrenheit')}
+                      >
+                        °F
+                      </Button>
+                    </SpaceBetween>
                   </FormField>
                 </Grid>
               </Container>
