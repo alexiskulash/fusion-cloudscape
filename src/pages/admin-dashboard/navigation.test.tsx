@@ -191,11 +191,11 @@ describe('AdminDashboardNavigation', () => {
 
   it('has the correct structure with proper nesting', () => {
     render(<AdminDashboardNavigation />);
-    
+
     // Check that we have the expected number of navigation items
     const navItems = screen.getAllByTestId('nav-item');
-    expect(navItems).toHaveLength(8); // 6 regular items + 2 expandable groups
-    
+    expect(navItems).toHaveLength(10); // 6 regular items + 2 expandable groups + 2 dividers
+
     // Check that expandable groups have sub-items
     const expandableGroups = screen.getAllByTestId('nav-expandable-group');
     expandableGroups.forEach(group => {
