@@ -283,14 +283,19 @@ describe('AdministrationDashboardDemo', () => {
 
   it('initializes with correct default state', () => {
     render(<AdministrationDashboardDemo />);
-    
+
     const filterInputs = screen.getAllByTestId('filter-input');
     filterInputs.forEach(input => {
       expect(input).toHaveValue('');
     });
-    
-    const pagination = screen.getByTestId('pagination');
-    const pageInfo = pagination.querySelector('[data-testid="page-info"]');
-    expect(pageInfo).toHaveTextContent('1 of 2');
+
+    const paginations = screen.getAllByTestId('pagination');
+    // Check the first pagination (header pagination)
+    const headerPageInfo = paginations[0].querySelector('[data-testid="page-info"]');
+    expect(headerPageInfo).toHaveTextContent('1 of 2');
+
+    // Check the second pagination (table pagination)
+    const tablePageInfo = paginations[1].querySelector('[data-testid="page-info"]');
+    expect(tablePageInfo).toHaveTextContent('1 of 2');
   });
 });
