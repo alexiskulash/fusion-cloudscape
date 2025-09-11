@@ -1,14 +1,7 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
 
-import '@testing-library/jest-dom';
 import { beforeAll, vi } from 'vitest';
-
-// Extend Vitest matchers with jest-dom matchers
-import { expect } from 'vitest';
-import * as matchers from '@testing-library/jest-dom/matchers';
-
-expect.extend(matchers);
 
 // Mock window.matchMedia
 beforeAll(() => {
