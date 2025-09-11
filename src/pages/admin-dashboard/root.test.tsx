@@ -5,8 +5,9 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import AdminDashboard from './root';
 
-// Mock the main App component
+// Mock the main component
 vi.mock('./index', () => ({
+  __esModule: true,
   default: () => <div data-testid="admin-dashboard-app">Admin Dashboard App</div>,
 }));
 
