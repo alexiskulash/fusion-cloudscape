@@ -190,15 +190,14 @@ export function App() {
 
               <Container header={<Header variant="h2">Hourly temperature (next 24h)</Header>}>
                 <Table
-                  trackBy={row => row.time}
                   variant="embedded"
                   columnDefinitions={[
                     {
                       id: 'time',
                       header: 'Time',
-                      cell: item => format(new Date(item.time), 'PPpp'),
+                      cell: (item: { time: string }) => format(new Date(item.time), 'PPpp'),
                     },
-                    { id: 'temp', header: `Temperature (${unitSymbol})`, cell: item => item.temperature },
+                    { id: 'temp', header: `Temperature (${unitSymbol})`, cell: (item: { temperature: string }) => item.temperature },
                   ]}
                   items={rows}
                   loading={loading}
