@@ -45,29 +45,172 @@ const barChartRaw = [
 
 // Dummy data for table
 const tableData = [
-  { id: '1', columnHeader1: 'Cell Value', columnHeader2: 'Cell Value', columnHeader3: 'Cell Value', columnHeader4: 'Cell Value', columnHeader5: 'Cell Value', columnHeader6: 'Cell Value', columnHeader7: 'Cell Value' },
-  { id: '2', columnHeader1: 'Cell Value', columnHeader2: 'Cell Value', columnHeader3: 'Cell Value', columnHeader4: 'Cell Value', columnHeader5: 'Cell Value', columnHeader6: 'Cell Value', columnHeader7: 'Cell Value' },
-  { id: '3', columnHeader1: 'Cell Value', columnHeader2: 'Cell Value', columnHeader3: 'Cell Value', columnHeader4: 'Cell Value', columnHeader5: 'Cell Value', columnHeader6: 'Cell Value', columnHeader7: 'Cell Value' },
-  { id: '4', columnHeader1: 'Cell Value', columnHeader2: 'Cell Value', columnHeader3: 'Cell Value', columnHeader4: 'Cell Value', columnHeader5: 'Cell Value', columnHeader6: 'Cell Value', columnHeader7: 'Cell Value' },
-  { id: '5', columnHeader1: 'Cell Value', columnHeader2: 'Cell Value', columnHeader3: 'Cell Value', columnHeader4: 'Cell Value', columnHeader5: 'Cell Value', columnHeader6: 'Cell Value', columnHeader7: 'Cell Value' },
-  { id: '6', columnHeader1: 'Cell Value', columnHeader2: 'Cell Value', columnHeader3: 'Cell Value', columnHeader4: 'Cell Value', columnHeader5: 'Cell Value', columnHeader6: 'Cell Value', columnHeader7: 'Cell Value' },
-  { id: '7', columnHeader1: 'Cell Value', columnHeader2: 'Cell Value', columnHeader3: 'Cell Value', columnHeader4: 'Cell Value', columnHeader5: 'Cell Value', columnHeader6: 'Cell Value', columnHeader7: 'Cell Value' },
-  { id: '8', columnHeader1: 'Cell Value', columnHeader2: 'Cell Value', columnHeader3: 'Cell Value', columnHeader4: 'Cell Value', columnHeader5: 'Cell Value', columnHeader6: 'Cell Value', columnHeader7: 'Cell Value' },
-  { id: '9', columnHeader1: 'Cell Value', columnHeader2: 'Cell Value', columnHeader3: 'Cell Value', columnHeader4: 'Cell Value', columnHeader5: 'Cell Value', columnHeader6: 'Cell Value', columnHeader7: 'Cell Value' },
-  { id: '10', columnHeader1: 'Cell Value', columnHeader2: 'Cell Value', columnHeader3: 'Cell Value', columnHeader4: 'Cell Value', columnHeader5: 'Cell Value', columnHeader6: 'Cell Value', columnHeader7: 'Cell Value' },
-  { id: '11', columnHeader1: 'Cell Value', columnHeader2: 'Cell Value', columnHeader3: 'Cell Value', columnHeader4: 'Cell Value', columnHeader5: 'Cell Value', columnHeader6: 'Cell Value', columnHeader7: 'Cell Value' },
-  { id: '12', columnHeader1: 'Cell Value', columnHeader2: 'Cell Value', columnHeader3: 'Cell Value', columnHeader4: 'Cell Value', columnHeader5: 'Cell Value', columnHeader6: 'Cell Value', columnHeader7: 'Cell Value' },
+  {
+    id: '1',
+    columnHeader1: 'Cell Value',
+    columnHeader2: 'Cell Value',
+    columnHeader3: 'Cell Value',
+    columnHeader4: 'Cell Value',
+    columnHeader5: 'Cell Value',
+    columnHeader6: 'Cell Value',
+    columnHeader7: 'Cell Value',
+  },
+  {
+    id: '2',
+    columnHeader1: 'Cell Value',
+    columnHeader2: 'Cell Value',
+    columnHeader3: 'Cell Value',
+    columnHeader4: 'Cell Value',
+    columnHeader5: 'Cell Value',
+    columnHeader6: 'Cell Value',
+    columnHeader7: 'Cell Value',
+  },
+  {
+    id: '3',
+    columnHeader1: 'Cell Value',
+    columnHeader2: 'Cell Value',
+    columnHeader3: 'Cell Value',
+    columnHeader4: 'Cell Value',
+    columnHeader5: 'Cell Value',
+    columnHeader6: 'Cell Value',
+    columnHeader7: 'Cell Value',
+  },
+  {
+    id: '4',
+    columnHeader1: 'Cell Value',
+    columnHeader2: 'Cell Value',
+    columnHeader3: 'Cell Value',
+    columnHeader4: 'Cell Value',
+    columnHeader5: 'Cell Value',
+    columnHeader6: 'Cell Value',
+    columnHeader7: 'Cell Value',
+  },
+  {
+    id: '5',
+    columnHeader1: 'Cell Value',
+    columnHeader2: 'Cell Value',
+    columnHeader3: 'Cell Value',
+    columnHeader4: 'Cell Value',
+    columnHeader5: 'Cell Value',
+    columnHeader6: 'Cell Value',
+    columnHeader7: 'Cell Value',
+  },
+  {
+    id: '6',
+    columnHeader1: 'Cell Value',
+    columnHeader2: 'Cell Value',
+    columnHeader3: 'Cell Value',
+    columnHeader4: 'Cell Value',
+    columnHeader5: 'Cell Value',
+    columnHeader6: 'Cell Value',
+    columnHeader7: 'Cell Value',
+  },
+  {
+    id: '7',
+    columnHeader1: 'Cell Value',
+    columnHeader2: 'Cell Value',
+    columnHeader3: 'Cell Value',
+    columnHeader4: 'Cell Value',
+    columnHeader5: 'Cell Value',
+    columnHeader6: 'Cell Value',
+    columnHeader7: 'Cell Value',
+  },
+  {
+    id: '8',
+    columnHeader1: 'Cell Value',
+    columnHeader2: 'Cell Value',
+    columnHeader3: 'Cell Value',
+    columnHeader4: 'Cell Value',
+    columnHeader5: 'Cell Value',
+    columnHeader6: 'Cell Value',
+    columnHeader7: 'Cell Value',
+  },
+  {
+    id: '9',
+    columnHeader1: 'Cell Value',
+    columnHeader2: 'Cell Value',
+    columnHeader3: 'Cell Value',
+    columnHeader4: 'Cell Value',
+    columnHeader5: 'Cell Value',
+    columnHeader6: 'Cell Value',
+    columnHeader7: 'Cell Value',
+  },
+  {
+    id: '10',
+    columnHeader1: 'Cell Value',
+    columnHeader2: 'Cell Value',
+    columnHeader3: 'Cell Value',
+    columnHeader4: 'Cell Value',
+    columnHeader5: 'Cell Value',
+    columnHeader6: 'Cell Value',
+    columnHeader7: 'Cell Value',
+  },
+  {
+    id: '11',
+    columnHeader1: 'Cell Value',
+    columnHeader2: 'Cell Value',
+    columnHeader3: 'Cell Value',
+    columnHeader4: 'Cell Value',
+    columnHeader5: 'Cell Value',
+    columnHeader6: 'Cell Value',
+    columnHeader7: 'Cell Value',
+  },
+  {
+    id: '12',
+    columnHeader1: 'Cell Value',
+    columnHeader2: 'Cell Value',
+    columnHeader3: 'Cell Value',
+    columnHeader4: 'Cell Value',
+    columnHeader5: 'Cell Value',
+    columnHeader6: 'Cell Value',
+    columnHeader7: 'Cell Value',
+  },
 ];
 
 const columnDefinitions = [
   { id: 'selection', header: '', cell: () => '', width: 50, minWidth: 50 },
-  { id: 'columnHeader1', header: 'Column header', cell: (item: any) => item.columnHeader1, sortingField: 'columnHeader1' },
-  { id: 'columnHeader2', header: 'Column header', cell: (item: any) => item.columnHeader2, sortingField: 'columnHeader2' },
-  { id: 'columnHeader3', header: 'Column header', cell: (item: any) => item.columnHeader3, sortingField: 'columnHeader3' },
-  { id: 'columnHeader4', header: 'Column header', cell: (item: any) => item.columnHeader4, sortingField: 'columnHeader4' },
-  { id: 'columnHeader5', header: 'Column header', cell: (item: any) => item.columnHeader5, sortingField: 'columnHeader5' },
-  { id: 'columnHeader6', header: 'Column header', cell: (item: any) => item.columnHeader6, sortingField: 'columnHeader6' },
-  { id: 'columnHeader7', header: 'Column header', cell: (item: any) => item.columnHeader7, sortingField: 'columnHeader7' },
+  {
+    id: 'columnHeader1',
+    header: 'Column header',
+    cell: (item: any) => item.columnHeader1,
+    sortingField: 'columnHeader1',
+  },
+  {
+    id: 'columnHeader2',
+    header: 'Column header',
+    cell: (item: any) => item.columnHeader2,
+    sortingField: 'columnHeader2',
+  },
+  {
+    id: 'columnHeader3',
+    header: 'Column header',
+    cell: (item: any) => item.columnHeader3,
+    sortingField: 'columnHeader3',
+  },
+  {
+    id: 'columnHeader4',
+    header: 'Column header',
+    cell: (item: any) => item.columnHeader4,
+    sortingField: 'columnHeader4',
+  },
+  {
+    id: 'columnHeader5',
+    header: 'Column header',
+    cell: (item: any) => item.columnHeader5,
+    sortingField: 'columnHeader5',
+  },
+  {
+    id: 'columnHeader6',
+    header: 'Column header',
+    cell: (item: any) => item.columnHeader6,
+    sortingField: 'columnHeader6',
+  },
+  {
+    id: 'columnHeader7',
+    header: 'Column header',
+    cell: (item: any) => item.columnHeader7,
+    sortingField: 'columnHeader7',
+  },
 ];
 
 function App() {
@@ -226,7 +369,9 @@ function App() {
                 empty={
                   <Box textAlign="center" color="inherit">
                     <b>No resources</b>
-                    <Box variant="p" color="inherit">No resources to display.</Box>
+                    <Box variant="p" color="inherit">
+                      No resources to display.
+                    </Box>
                   </Box>
                 }
                 filter={
@@ -243,7 +388,9 @@ function App() {
                 header={
                   <Header
                     counter={
-                      selectedItems.length ? `(${selectedItems.length}/${filteredItems.length})` : `(${filteredItems.length})`
+                      selectedItems.length
+                        ? `(${selectedItems.length}/${filteredItems.length})`
+                        : `(${filteredItems.length})`
                     }
                     actions={
                       <SpaceBetween direction="horizontal" size="xs">
