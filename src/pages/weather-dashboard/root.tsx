@@ -50,10 +50,6 @@ interface ForecastResponse {
   };
 }
 
-const unitOptions = [
-  { label: 'Celsius (°C)', value: 'celsius' },
-  { label: 'Fahrenheit (°F)', value: 'fahrenheit' },
-] as const;
 
 export function App() {
   const [query, setQuery] = useState('Seattle');
