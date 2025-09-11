@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT-0
 import React from 'react';
 
-import { App } from '.';
+import AdministrationDashboardDemo from '.';
 
 export default function AdminDashboard() {
-  return <App />;
+  return <AdministrationDashboardDemo />;
 }
