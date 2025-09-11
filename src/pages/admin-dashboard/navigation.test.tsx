@@ -44,8 +44,8 @@ vi.mock('@cloudscape-design/components/side-navigation', () => ({
 describe('AdminDashboardNavigation', () => {
   it('renders the navigation component', () => {
     render(<AdminDashboardNavigation />);
-    
-    expect(screen.getByTestId('side-navigation')).toBeInTheDocument();
+
+    expect(screen.getByTestId('side-navigation')).toBeDefined();
   });
 
   it('sets the correct active href', () => {
