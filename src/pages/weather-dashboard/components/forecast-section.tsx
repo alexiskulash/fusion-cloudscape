@@ -8,9 +8,6 @@ import LineChart from '@cloudscape-design/components/line-chart';
 import Alert from '@cloudscape-design/components/alert';
 import Spinner from '@cloudscape-design/components/spinner';
 import Button from '@cloudscape-design/components/button';
-import Toggle from '@cloudscape-design/components/toggle';
-import FormField from '@cloudscape-design/components/form-field';
-import SpaceBetween from '@cloudscape-design/components/space-between';
 
 import { WeatherData, fetchWeatherData, formatTemperature } from '../services/weather-api';
 import { useWeather } from '../contexts/weather-context';
@@ -19,7 +16,6 @@ export function ForecastSection() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showExtended, setShowExtended] = useState(false);
   const { selectedLocation } = useWeather();
 
   useEffect(() => {
@@ -96,9 +92,8 @@ export function ForecastSection() {
     );
   }
 
-  // Get forecast data (24h or 7 days based on toggle)
-  const hoursToShow = showExtended ? 168 : 24; // 7 days = 168 hours
-  const forecastData = weatherData.hourly.time.slice(0, hoursToShow).map((time, index) => ({
+  // Get next 24 hours of forecast data
+  const forecastData = weatherData.hourly.time.slice(0, 24).map((time, index) => ({
     x: new Date(time),
     y: weatherData.hourly.temperature_2m[index],
   }));
@@ -117,24 +112,7 @@ export function ForecastSection() {
   return (
     <Container
       header={
-        <Header
-          variant="h2"
-          description="Temperature trends and weather forecasts"
-          actions={
-            <FormField
-              label=""
-              constraintText="Toggle between 24-hour and 7-day forecast view"
-            >
-              <Toggle
-                onChange={({ detail }) => setShowExtended(detail.checked)}
-                checked={showExtended}
-                ariaLabel="Show extended forecast"
-              >
-                Extended view (7 days)
-              </Toggle>
-            </FormField>
-          }
-        >
+        <Header variant="h2" description="24-hour temperature trends and forecasts">
           Weather forecast
         </Header>
       }
@@ -148,21 +126,14 @@ export function ForecastSection() {
         height={300}
         hideFilter={true}
         ariaLabel={`Temperature forecast for ${selectedLocation.name}`}
-        ariaDescription={`Line chart showing ${showExtended ? '7-day' : '24-hour'} temperature forecast for ${selectedLocation.name}`}
+        ariaDescription={`Line chart showing 24-hour temperature forecast for ${selectedLocation.name}`}
         i18nStrings={{
-          xTickFormatter: (value: Date) => {
-            if (showExtended) {
-              return value.toLocaleDateString('en-US', { 
-                month: 'short',
-                day: 'numeric'
-              });
-            }
-            return value.toLocaleTimeString('en-US', { 
+          xTickFormatter: (value: Date) => 
+            value.toLocaleTimeString('en-US', { 
               hour: '2-digit', 
               minute: '2-digit',
               hour12: false 
-            });
-          },
+            }),
           yTickFormatter: (value: number) => formatTemperature(value),
           filterLabel: 'Filter displayed data',
           filterPlaceholder: 'Filter forecast data',
