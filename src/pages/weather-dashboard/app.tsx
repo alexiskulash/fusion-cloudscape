@@ -10,12 +10,13 @@ import { CustomAppLayout } from '../commons/common-components';
 import { Content } from './components/content';
 import { WeatherHeader } from './components/header';
 import { WeatherProvider } from './contexts/weather-context';
+import { WeatherHelpContent } from './components/help-content';
 
 import '@cloudscape-design/global-styles/dark-mode-utils.css';
 
 export function App() {
   const [toolsOpen, setToolsOpen] = useState(false);
-  const [toolsContent, setToolsContent] = useState<React.ReactNode>(() => <div>Weather Dashboard Help</div>);
+  const [toolsContent, setToolsContent] = useState<React.ReactNode>(() => <WeatherHelpContent />);
   const appLayout = useRef<AppLayoutProps.Ref>(null);
 
   const handleToolsContentChange = (content: React.ReactNode) => {
