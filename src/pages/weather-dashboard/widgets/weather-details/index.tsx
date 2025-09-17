@@ -9,7 +9,8 @@ import StatusIndicator from '@cloudscape-design/components/status-indicator';
 import Spinner from '@cloudscape-design/components/spinner';
 import Alert from '@cloudscape-design/components/alert';
 
-import { WeatherData, LocationCoords, fetchWeatherData, formatTemperature, formatWindSpeed, formatHumidity, defaultLocations } from '../../services/weather-api';
+import { WeatherData, fetchWeatherData, formatTemperature, formatWindSpeed, formatHumidity } from '../../services/weather-api';
+import { useWeather } from '../../contexts/weather-context';
 import { WeatherWidgetConfig } from '../interfaces';
 
 function WeatherDetailsHeader() {
@@ -24,7 +25,7 @@ function WeatherDetailsWidget() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [location] = useState<LocationCoords>(defaultLocations[0]); // Berlin as default
+  const { selectedLocation: location } = useWeather();
 
   useEffect(() => {
     const loadWeatherData = async () => {
