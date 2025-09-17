@@ -11,7 +11,14 @@ import Spinner from '@cloudscape-design/components/spinner';
 import Alert from '@cloudscape-design/components/alert';
 import Button from '@cloudscape-design/components/button';
 
-import { WeatherData, fetchWeatherData, formatTemperature, formatWindSpeed, formatHumidity, getWeatherCodeDescription } from '../services/weather-api';
+import {
+  WeatherData,
+  fetchWeatherData,
+  formatTemperature,
+  formatWindSpeed,
+  formatHumidity,
+  getWeatherCodeDescription,
+} from '../services/weather-api';
 import { useWeather } from '../contexts/weather-context';
 
 export function CurrentWeatherSection() {
@@ -72,11 +79,7 @@ export function CurrentWeatherSection() {
         <Alert
           type="error"
           header="Unable to load weather data"
-          action={
-            <Button onClick={() => window.location.reload()}>
-              Retry
-            </Button>
-          }
+          action={<Button onClick={() => window.location.reload()}>Retry</Button>}
         >
           {error}
         </Alert>
@@ -108,11 +111,7 @@ export function CurrentWeatherSection() {
         <Header
           variant="h2"
           description="Current weather conditions and atmospheric data"
-          actions={
-            <StatusIndicator type="success">
-              Live data
-            </StatusIndicator>
-          }
+          actions={<StatusIndicator type="success">Live data</StatusIndicator>}
         >
           Current conditions
         </Header>
@@ -124,7 +123,11 @@ export function CurrentWeatherSection() {
           items={[
             {
               label: 'Temperature',
-              value: <strong style={{ fontSize: '24px', color: '#0972d3' }}>{formatTemperature(current.temperature_2m)}</strong>,
+              value: (
+                <strong style={{ fontSize: '24px', color: '#0972d3' }}>
+                  {formatTemperature(current.temperature_2m)}
+                </strong>
+              ),
             },
             {
               label: 'Feels like',

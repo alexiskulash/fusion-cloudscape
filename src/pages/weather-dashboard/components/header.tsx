@@ -36,13 +36,7 @@ export function WeatherHeader() {
           {selectedLocation.name}
         </ButtonDropdown>
       }
-      info={
-        <Button
-          variant="icon"
-          iconName="status-info"
-          ariaLabel="Information about weather dashboard"
-        />
-      }
+      info={<Button variant="icon" iconName="status-info" ariaLabel="Information about weather dashboard" />}
     >
       Weather monitoring
     </Header>

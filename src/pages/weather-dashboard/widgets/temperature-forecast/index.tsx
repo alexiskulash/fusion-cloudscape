@@ -97,11 +97,11 @@ function TemperatureForecastWidget() {
       ariaLabel="Temperature forecast"
       ariaDescription="Line chart showing 24-hour temperature forecast"
       i18nStrings={{
-        xTickFormatter: (value: Date) => 
-          value.toLocaleTimeString('en-US', { 
-            hour: '2-digit', 
+        xTickFormatter: (value: Date) =>
+          value.toLocaleTimeString('en-US', {
+            hour: '2-digit',
             minute: '2-digit',
-            hour12: false 
+            hour12: false,
           }),
         yTickFormatter: (value: number) => formatTemperature(value),
         filterLabel: 'Filter displayed data',

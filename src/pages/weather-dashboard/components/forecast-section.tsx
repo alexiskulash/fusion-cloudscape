@@ -64,11 +64,7 @@ export function ForecastSection() {
         <Alert
           type="error"
           header="Unable to load forecast data"
-          action={
-            <Button onClick={() => window.location.reload()}>
-              Retry
-            </Button>
-          }
+          action={<Button onClick={() => window.location.reload()}>Retry</Button>}
         >
           {error}
         </Alert>
@@ -128,11 +124,11 @@ export function ForecastSection() {
         ariaLabel={`Temperature forecast for ${selectedLocation.name}`}
         ariaDescription={`Line chart showing 24-hour temperature forecast for ${selectedLocation.name}`}
         i18nStrings={{
-          xTickFormatter: (value: Date) => 
-            value.toLocaleTimeString('en-US', { 
-              hour: '2-digit', 
+          xTickFormatter: (value: Date) =>
+            value.toLocaleTimeString('en-US', {
+              hour: '2-digit',
               minute: '2-digit',
-              hour12: false 
+              hour12: false,
             }),
           yTickFormatter: (value: number) => formatTemperature(value),
           filterLabel: 'Filter displayed data',

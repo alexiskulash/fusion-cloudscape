@@ -67,13 +67,8 @@ export function WeatherConfiguration() {
             />
           </FormField>
 
-          <FormField
-            label="Monitoring status"
-            description="Current status of weather data collection"
-          >
-            <StatusIndicator type="success">
-              Active monitoring for {selectedLocation.name}
-            </StatusIndicator>
+          <FormField label="Monitoring status" description="Current status of weather data collection">
+            <StatusIndicator type="success">Active monitoring for {selectedLocation.name}</StatusIndicator>
           </FormField>
         </ColumnLayout>
       </SpaceBetween>

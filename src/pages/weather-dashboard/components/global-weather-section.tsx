@@ -11,7 +11,15 @@ import Alert from '@cloudscape-design/components/alert';
 import Button from '@cloudscape-design/components/button';
 import ExpandableSection from '@cloudscape-design/components/expandable-section';
 
-import { WeatherData, LocationCoords, fetchWeatherData, formatTemperature, formatWindSpeed, getWeatherCodeDescription, defaultLocations } from '../services/weather-api';
+import {
+  WeatherData,
+  LocationCoords,
+  fetchWeatherData,
+  formatTemperature,
+  formatWindSpeed,
+  getWeatherCodeDescription,
+  defaultLocations,
+} from '../services/weather-api';
 
 interface LocationWeatherData {
   location: LocationCoords;
@@ -27,12 +35,12 @@ export function GlobalWeatherSection() {
     try {
       setLoading(true);
       setError(null);
-      
-      const weatherPromises = defaultLocations.map(async (location) => {
+
+      const weatherPromises = defaultLocations.map(async location => {
         const weather = await fetchWeatherData(location);
         return { location, weather };
       });
-      
+
       const results = await Promise.all(weatherPromises);
       setLocationData(results);
     } catch (err) {
@@ -87,11 +95,7 @@ export function GlobalWeatherSection() {
           <Alert
             type="error"
             header="Unable to load global weather data"
-            action={
-              <Button onClick={loadAllWeatherData}>
-                Retry
-              </Button>
-            }
+            action={<Button onClick={loadAllWeatherData}>Retry</Button>}
           >
             {error}
           </Alert>
@@ -101,14 +105,14 @@ export function GlobalWeatherSection() {
               {
                 id: 'location',
                 header: 'Location',
-                cell: (item) => <strong>{item.location.name}</strong>,
+                cell: item => <strong>{item.location.name}</strong>,
                 minWidth: 120,
                 sortingField: 'location.name',
               },
               {
                 id: 'conditions',
                 header: 'Conditions',
-                cell: (item) => (
+                cell: item => (
                   <Badge color={getConditionsBadgeColor(item.weather.current.weather_code)}>
                     {getWeatherCodeDescription(item.weather.current.weather_code)}
                   </Badge>
@@ -118,7 +122,7 @@ export function GlobalWeatherSection() {
               {
                 id: 'temperature',
                 header: 'Temperature',
-                cell: (item) => (
+                cell: item => (
                   <Badge color={getTemperatureColor(item.weather.current.temperature_2m)}>
                     {formatTemperature(item.weather.current.temperature_2m)}
                   </Badge>
@@ -129,14 +133,14 @@ export function GlobalWeatherSection() {
               {
                 id: 'wind',
                 header: 'Wind speed',
-                cell: (item) => formatWindSpeed(item.weather.current.wind_speed_10m),
+                cell: item => formatWindSpeed(item.weather.current.wind_speed_10m),
                 minWidth: 100,
                 sortingField: 'weather.current.wind_speed_10m',
               },
               {
                 id: 'coordinates',
                 header: 'Coordinates',
-                cell: (item) => `${item.location.latitude}°, ${item.location.longitude}°`,
+                cell: item => `${item.location.latitude}°, ${item.location.longitude}°`,
                 minWidth: 140,
               },
             ]}

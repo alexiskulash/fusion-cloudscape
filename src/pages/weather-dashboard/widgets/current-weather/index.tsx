@@ -8,7 +8,14 @@ import StatusIndicator from '@cloudscape-design/components/status-indicator';
 import Spinner from '@cloudscape-design/components/spinner';
 import Alert from '@cloudscape-design/components/alert';
 
-import { WeatherData, fetchWeatherData, formatTemperature, formatWindSpeed, formatHumidity, getWeatherCodeDescription } from '../../services/weather-api';
+import {
+  WeatherData,
+  fetchWeatherData,
+  formatTemperature,
+  formatWindSpeed,
+  formatHumidity,
+  getWeatherCodeDescription,
+} from '../../services/weather-api';
 import { useWeather } from '../../contexts/weather-context';
 import { WeatherWidgetConfig } from '../interfaces';
 

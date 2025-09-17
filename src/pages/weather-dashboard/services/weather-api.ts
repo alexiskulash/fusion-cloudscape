@@ -37,22 +37,22 @@ export interface LocationCoords {
 // Default locations to demonstrate different weather conditions
 export const defaultLocations: LocationCoords[] = [
   { latitude: 52.52, longitude: 13.41, name: 'Berlin' },
-  { latitude: 40.7128, longitude: -74.0060, name: 'New York' },
+  { latitude: 40.7128, longitude: -74.006, name: 'New York' },
   { latitude: 35.6762, longitude: 139.6503, name: 'Tokyo' },
   { latitude: -33.8688, longitude: 151.2093, name: 'Sydney' },
 ];
 
 export const fetchWeatherData = async (coords: LocationCoords): Promise<WeatherData> => {
   const { latitude, longitude } = coords;
-  
+
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,precipitation&timezone=auto`;
-  
+
   const response = await fetch(url);
-  
+
   if (!response.ok) {
     throw new Error(`Weather API request failed: ${response.statusText}`);
   }
-  
+
   return await response.json();
 };
 
@@ -80,7 +80,7 @@ export const getWeatherCodeDescription = (code: number): string => {
     96: 'Thunderstorm with slight hail',
     99: 'Thunderstorm with heavy hail',
   };
-  
+
   return weatherCodes[code] || 'Unknown';
 };
 

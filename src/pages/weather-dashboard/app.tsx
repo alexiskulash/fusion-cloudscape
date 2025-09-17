@@ -40,7 +40,7 @@ export function App() {
             <Breadcrumbs
               items={[
                 { text: 'Home', href: '#/' },
-                { text: 'Weather monitoring', href: '#/weather-dashboard' }
+                { text: 'Weather monitoring', href: '#/weather-dashboard' },
               ]}
             />
           }

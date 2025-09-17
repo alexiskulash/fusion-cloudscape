@@ -9,7 +9,13 @@ import StatusIndicator from '@cloudscape-design/components/status-indicator';
 import Spinner from '@cloudscape-design/components/spinner';
 import Alert from '@cloudscape-design/components/alert';
 
-import { WeatherData, fetchWeatherData, formatTemperature, formatWindSpeed, formatHumidity } from '../../services/weather-api';
+import {
+  WeatherData,
+  fetchWeatherData,
+  formatTemperature,
+  formatWindSpeed,
+  formatHumidity,
+} from '../../services/weather-api';
 import { useWeather } from '../../contexts/weather-context';
 import { WeatherWidgetConfig } from '../interfaces';
 
@@ -70,11 +76,11 @@ function WeatherDetailsWidget() {
   }
 
   const { current, hourly } = weatherData;
-  
+
   // Calculate average conditions for next 6 hours
   const next6Hours = hourly.precipitation.slice(0, 6);
   const avgPrecipitation = next6Hours.reduce((sum, val) => sum + val, 0) / next6Hours.length;
-  
+
   const getWindDirection = (degrees: number): string => {
     const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
     const index = Math.round(degrees / 45) % 8;
@@ -101,7 +107,7 @@ function WeatherDetailsWidget() {
           <strong>Direction:</strong> {getWindDirection(current.wind_direction_10m)} ({current.wind_direction_10m}°)
         </Box>
       </div>
-      
+
       <div>
         <Box variant="awsui-key-label">Atmospheric Conditions</Box>
         <Box variant="p">
@@ -111,12 +117,10 @@ function WeatherDetailsWidget() {
           <strong>Feels like:</strong> {formatTemperature(current.apparent_temperature)}
         </Box>
       </div>
-      
+
       <div style={{ gridColumn: '1 / -1', marginTop: '16px' }}>
         <Box variant="awsui-key-label">Precipitation Forecast (6h)</Box>
-        <StatusIndicator type={precipitationStatus.type}>
-          {precipitationStatus.text}
-        </StatusIndicator>
+        <StatusIndicator type={precipitationStatus.type}>{precipitationStatus.text}</StatusIndicator>
         {avgPrecipitation > 0 && (
           <Box variant="p" margin={{ top: 'xs' }}>
             Average: {avgPrecipitation.toFixed(1)} mm/h
