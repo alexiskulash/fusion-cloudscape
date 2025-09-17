@@ -109,7 +109,7 @@ function CurrentWeatherWidget() {
 export const currentWeather: WeatherWidgetConfig = {
   definition: { defaultRowSpan: 3, defaultColumnSpan: 2 },
   data: {
-    icon: 'list',
+    icon: 'mixedContent',
     title: 'Current Weather',
     description: 'Real-time weather conditions',
     header: CurrentWeatherHeader,

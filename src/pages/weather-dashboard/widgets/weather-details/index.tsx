@@ -129,7 +129,7 @@ function WeatherDetailsWidget() {
 export const weatherDetails: WeatherWidgetConfig = {
   definition: { defaultRowSpan: 3, defaultColumnSpan: 2 },
   data: {
-    icon: 'list',
+    icon: 'mixedContent',
     title: 'Weather Details',
     description: 'Detailed weather metrics and conditions',
     header: WeatherDetailsHeader,
