@@ -36,7 +36,14 @@ export function App() {
               <Content />
             </SpaceBetween>
           }
-          breadcrumbs={<Breadcrumbs items={[{ text: 'Weather Dashboard', href: '#/weather-dashboard' }]} />}
+          breadcrumbs={
+            <Breadcrumbs
+              items={[
+                { text: 'Home', href: '#/' },
+                { text: 'Weather monitoring', href: '#/weather-dashboard' }
+              ]}
+            />
+          }
           tools={toolsContent}
           toolsOpen={toolsOpen}
           onToolsChange={({ detail }) => setToolsOpen(detail.open)}
