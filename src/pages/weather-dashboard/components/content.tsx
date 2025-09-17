@@ -3,10 +3,11 @@
 import React from 'react';
 
 import SpaceBetween from '@cloudscape-design/components/space-between';
-import Container from '@cloudscape-design/components/container';
-import Header from '@cloudscape-design/components/header';
 
 import { WeatherConfiguration } from './configuration';
+import { CurrentWeatherSection } from './current-weather-section';
+import { ForecastSection } from './forecast-section';
+import { GlobalWeatherSection } from './global-weather-section';
 
 export function Content() {
   return (
@@ -14,16 +15,14 @@ export function Content() {
       {/* Primary configuration section */}
       <WeatherConfiguration />
 
-      {/* Test container */}
-      <Container
-        header={
-          <Header variant="h2" description="Testing weather dashboard">
-            Test section
-          </Header>
-        }
-      >
-        Weather dashboard is loading...
-      </Container>
+      {/* Current weather monitoring */}
+      <CurrentWeatherSection />
+
+      {/* Weather forecasts and analysis */}
+      <ForecastSection />
+
+      {/* Additional monitoring (expandable section) */}
+      <GlobalWeatherSection />
     </SpaceBetween>
   );
 }
