@@ -9,6 +9,7 @@ import { Breadcrumbs, HelpPanelProvider, Notifications } from '../commons';
 import { CustomAppLayout } from '../commons/common-components';
 import { Content } from './components/content';
 import { WeatherHeader } from './components/header';
+import { WeatherProvider } from './contexts/weather-context';
 
 import '@cloudscape-design/global-styles/dark-mode-utils.css';
 
@@ -24,22 +25,24 @@ export function App() {
   };
 
   return (
-    <HelpPanelProvider value={handleToolsContentChange}>
-      <CustomAppLayout
-        ref={appLayout}
-        content={
-          <SpaceBetween size="m">
-            <WeatherHeader />
-            <Content />
-          </SpaceBetween>
-        }
-        breadcrumbs={<Breadcrumbs items={[{ text: 'Weather Dashboard', href: '#/weather-dashboard' }]} />}
-        tools={toolsContent}
-        toolsOpen={toolsOpen}
-        onToolsChange={({ detail }) => setToolsOpen(detail.open)}
-        notifications={<Notifications />}
-        navigationHide
-      />
-    </HelpPanelProvider>
+    <WeatherProvider>
+      <HelpPanelProvider value={handleToolsContentChange}>
+        <CustomAppLayout
+          ref={appLayout}
+          content={
+            <SpaceBetween size="m">
+              <WeatherHeader />
+              <Content />
+            </SpaceBetween>
+          }
+          breadcrumbs={<Breadcrumbs items={[{ text: 'Weather Dashboard', href: '#/weather-dashboard' }]} />}
+          tools={toolsContent}
+          toolsOpen={toolsOpen}
+          onToolsChange={({ detail }) => setToolsOpen(detail.open)}
+          notifications={<Notifications />}
+          navigationHide
+        />
+      </HelpPanelProvider>
+    </WeatherProvider>
   );
 }
