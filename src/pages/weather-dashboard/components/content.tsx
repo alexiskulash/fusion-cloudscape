@@ -7,7 +7,6 @@ import SpaceBetween from '@cloudscape-design/components/space-between';
 import { WeatherConfiguration } from './configuration';
 import { CurrentWeatherSection } from './current-weather-section';
 import { ForecastSection } from './forecast-section';
-import { GlobalWeatherSection } from './global-weather-section';
 
 export function Content() {
   return (
@@ -20,9 +19,6 @@ export function Content() {
 
       {/* Weather forecasts and analysis */}
       <ForecastSection />
-
-      {/* Additional monitoring (expandable section) */}
-      <GlobalWeatherSection />
     </SpaceBetween>
   );
 }
