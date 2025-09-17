@@ -4,51 +4,47 @@ import React from 'react';
 
 import Header from '@cloudscape-design/components/header';
 import Button from '@cloudscape-design/components/button';
-import Select from '@cloudscape-design/components/select';
-import SpaceBetween from '@cloudscape-design/components/space-between';
+import ButtonDropdown from '@cloudscape-design/components/button-dropdown';
 
 import { useWeather } from '../contexts/weather-context';
 
 export function WeatherHeader() {
   const { selectedLocation, setSelectedLocation, availableLocations } = useWeather();
 
-  const locationOptions = availableLocations.map(location => ({
-    label: location.name,
-    value: location.name,
+  const locationActions = availableLocations.map(location => ({
+    text: location.name,
+    id: location.name,
     description: `${location.latitude}°, ${location.longitude}°`,
   }));
-
-  const selectedOption = locationOptions.find(option => option.value === selectedLocation.name);
 
   return (
     <Header
       variant="h1"
-      description={`Real-time weather monitoring dashboard for ${selectedLocation.name}`}
+      description="Monitor real-time weather conditions and forecasts across multiple locations"
       actions={
-        <SpaceBetween direction="horizontal" size="s">
-          <Select
-            selectedOption={selectedOption}
-            onChange={({ detail }) => {
-              const location = availableLocations.find(loc => loc.name === detail.selectedOption.value);
-              if (location) {
-                setSelectedLocation(location);
-              }
-            }}
-            options={locationOptions}
-            placeholder="Select city"
-            selectedAriaLabel="Selected city"
-          />
-          <Button
-            variant="primary"
-            iconName="refresh"
-            onClick={() => window.location.reload()}
-          >
-            Refresh data
-          </Button>
-        </SpaceBetween>
+        <ButtonDropdown
+          items={locationActions}
+          variant="primary"
+          onItemClick={({ detail }) => {
+            const location = availableLocations.find(loc => loc.name === detail.id);
+            if (location) {
+              setSelectedLocation(location);
+            }
+          }}
+          ariaLabel="Select location for weather monitoring"
+        >
+          {selectedLocation.name}
+        </ButtonDropdown>
+      }
+      info={
+        <Button
+          variant="icon"
+          iconName="status-info"
+          ariaLabel="Information about weather dashboard"
+        />
       }
     >
-      Weather Dashboard
+      Weather monitoring
     </Header>
   );
 }
