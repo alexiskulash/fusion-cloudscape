@@ -3,7 +3,7 @@
 import React from 'react';
 
 export interface WeatherWidgetDataType {
-  icon: string;
+  icon: 'lineChart' | 'mixedContent' | 'table' | 'list' | 'barChart' | 'pieChart';
   title: string;
   description: string;
   disableContentPaddings?: boolean;
