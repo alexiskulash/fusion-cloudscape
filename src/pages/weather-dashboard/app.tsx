@@ -97,6 +97,7 @@ export function App() {
         daily: ['temperature_2m_max', 'temperature_2m_min', 'precipitation_sum'].join(','),
         timezone: 'auto',
         temperature_unit: unitParam,
+        windspeed_unit: unitParam === 'fahrenheit' ? 'mph' : 'kmh',
       });
       const url = `https://api.open-meteo.com/v1/forecast?${params.toString()}`;
       const resp = await fetch(url, { signal: controller.signal });
