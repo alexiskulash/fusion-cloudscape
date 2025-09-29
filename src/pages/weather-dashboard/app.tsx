@@ -68,15 +68,17 @@ export function App() {
         `https://geocoding-api.open-meteo.com/v1/search?q=${encodeURIComponent(query.trim())}&limit=5`,
       );
       const data = await resp.json();
-      setResults((data?.results || []).map((r: any) => ({
-        id: r.id,
-        name: r.name,
-        latitude: r.latitude,
-        longitude: r.longitude,
-        country: r.country,
-        admin1: r.admin1,
-        timezone: r.timezone,
-      })) as GeoResult[]);
+      setResults(
+        (data?.results || []).map((r: any) => ({
+          id: r.id,
+          name: r.name,
+          latitude: r.latitude,
+          longitude: r.longitude,
+          country: r.country,
+          admin1: r.admin1,
+          timezone: r.timezone,
+        })) as GeoResult[],
+      );
     } catch (e) {
       setResults([]);
     } finally {
@@ -155,7 +157,10 @@ export function App() {
               variant="h1"
               actions={
                 <SpaceBetween direction="horizontal" size="s">
-                  <Toggle checked={unit === 'fahrenheit'} onChange={({ detail }) => setUnit(detail.checked ? 'fahrenheit' : 'celsius')}>
+                  <Toggle
+                    checked={unit === 'fahrenheit'}
+                    onChange={({ detail }) => setUnit(detail.checked ? 'fahrenheit' : 'celsius')}
+                  >
                     Use Fahrenheit
                   </Toggle>
                 </SpaceBetween>
@@ -231,11 +236,16 @@ export function App() {
               header={
                 <Header
                   variant="h2"
-                  description={selected ? (
-                    <span>
-                      Data from Open‑Meteo <Link href="https://open-meteo.com/" external>open-meteo.com</Link>
-                    </span>
-                  ) : undefined}
+                  description={
+                    selected ? (
+                      <span>
+                        Data from Open‑Meteo{' '}
+                        <Link href="https://open-meteo.com/" external>
+                          open-meteo.com
+                        </Link>
+                      </span>
+                    ) : undefined
+                  }
                 >
                   {currentLocationTitle}
                 </Header>
@@ -253,8 +263,13 @@ export function App() {
                       {!loadingWeather && current && (
                         <SpaceBetween size="s">
                           <Box variant="p">Time: {new Date(current.time).toLocaleString()}</Box>
-                          <Box variant="p">Temperature: {current.temperature}{unitSymbol}</Box>
-                          <Box variant="p">Wind: {current.windspeed} {unit === 'celsius' ? 'km/h' : 'mph'}</Box>
+                          <Box variant="p">
+                            Temperature: {current.temperature}
+                            {unitSymbol}
+                          </Box>
+                          <Box variant="p">
+                            Wind: {current.windspeed} {unit === 'celsius' ? 'km/h' : 'mph'}
+                          </Box>
                           <Box variant="p">Wind direction: {Math.round(current.winddirection)}°</Box>
                         </SpaceBetween>
                       )}
@@ -263,19 +278,27 @@ export function App() {
                     <Container header={<Header variant="h3">7‑day outlook</Header>}>
                       {loadingWeather && <Box variant="p">Loading forecast…</Box>}
                       {!loadingWeather && daily && (
-                        <Grid gridDefinition={[
-                          { colspan: { default: 12, s: 6, m: 4 } },
-                          { colspan: { default: 12, s: 6, m: 4 } },
-                          { colspan: { default: 12, s: 6, m: 4 } },
-                        ]}>
+                        <Grid
+                          gridDefinition={[
+                            { colspan: { default: 12, s: 6, m: 4 } },
+                            { colspan: { default: 12, s: 6, m: 4 } },
+                            { colspan: { default: 12, s: 6, m: 4 } },
+                          ]}
+                        >
                           {daily.time.map((t, idx) => (
                             <Container
                               key={t}
                               header={<Header variant="h4">{new Date(t).toLocaleDateString()}</Header>}
                             >
                               <SpaceBetween size="xs">
-                                <Box variant="p">High: {daily.temperature_2m_max[idx]}{unitSymbol}</Box>
-                                <Box variant="p">Low: {daily.temperature_2m_min[idx]}{unitSymbol}</Box>
+                                <Box variant="p">
+                                  High: {daily.temperature_2m_max[idx]}
+                                  {unitSymbol}
+                                </Box>
+                                <Box variant="p">
+                                  Low: {daily.temperature_2m_min[idx]}
+                                  {unitSymbol}
+                                </Box>
                                 {typeof daily.precipitation_sum?.[idx] === 'number' && (
                                   <Box variant="p">Precipitation: {daily.precipitation_sum?.[idx]} mm</Box>
                                 )}
