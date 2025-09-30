@@ -34,7 +34,14 @@ export function App() {
             <Content />
           </SpaceBetween>
         }
-        breadcrumbs={<Breadcrumbs items={[{ text: 'Service', href: '#/' }, { text: 'Administrative Dashboard', href: '#/admin-dashboard' }]} />}
+        breadcrumbs={
+          <Breadcrumbs
+            items={[
+              { text: 'Service', href: '#/' },
+              { text: 'Administrative Dashboard', href: '#/admin-dashboard' },
+            ]}
+          />
+        }
         navigation={<AdminDashboardSideNavigation />}
         tools={toolsContent}
         toolsOpen={toolsOpen}

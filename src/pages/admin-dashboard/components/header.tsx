@@ -24,9 +24,9 @@ export function AdminDashboardMainInfo() {
       }
     >
       <p>
-        The Administration Dashboard provides comprehensive system monitoring and management capabilities. Monitor key 
-        performance indicators, manage system resources, and access detailed operational data to ensure optimal 
-        system performance and reliability.
+        The Administration Dashboard provides comprehensive system monitoring and management capabilities. Monitor key
+        performance indicators, manage system resources, and access detailed operational data to ensure optimal system
+        performance and reliability.
       </p>
     </HelpPanel>
   );
@@ -34,7 +34,7 @@ export function AdminDashboardMainInfo() {
 
 export function AdminDashboardHeader() {
   const loadHelpPanelContent = useHelpPanel();
-  
+
   const handleRefreshData = () => {
     // Simulate data refresh
     console.log('Refreshing dashboard data...');

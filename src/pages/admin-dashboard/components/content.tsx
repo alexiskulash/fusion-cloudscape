@@ -76,61 +76,169 @@ const barChartSeries: BarChartProps<string>['series'] = [
 
 // Sample data for Table
 const tableItems = [
-  { id: '1', column1: 'Cell Value', column2: 'Cell Value', column3: 'Cell Value', column4: 'Cell Value', column5: 'Cell Value', column6: 'Cell Value', column7: 'Cell Value' },
-  { id: '2', column1: 'Cell Value', column2: 'Cell Value', column3: 'Cell Value', column4: 'Cell Value', column5: 'Cell Value', column6: 'Cell Value', column7: 'Cell Value' },
-  { id: '3', column1: 'Cell Value', column2: 'Cell Value', column3: 'Cell Value', column4: 'Cell Value', column5: 'Cell Value', column6: 'Cell Value', column7: 'Cell Value' },
-  { id: '4', column1: 'Cell Value', column2: 'Cell Value', column3: 'Cell Value', column4: 'Cell Value', column5: 'Cell Value', column6: 'Cell Value', column7: 'Cell Value' },
-  { id: '5', column1: 'Cell Value', column2: 'Cell Value', column3: 'Cell Value', column4: 'Cell Value', column5: 'Cell Value', column6: 'Cell Value', column7: 'Cell Value' },
-  { id: '6', column1: 'Cell Value', column2: 'Cell Value', column3: 'Cell Value', column4: 'Cell Value', column5: 'Cell Value', column6: 'Cell Value', column7: 'Cell Value' },
-  { id: '7', column1: 'Cell Value', column2: 'Cell Value', column3: 'Cell Value', column4: 'Cell Value', column5: 'Cell Value', column6: 'Cell Value', column7: 'Cell Value' },
-  { id: '8', column1: 'Cell Value', column2: 'Cell Value', column3: 'Cell Value', column4: 'Cell Value', column5: 'Cell Value', column6: 'Cell Value', column7: 'Cell Value' },
-  { id: '9', column1: 'Cell Value', column2: 'Cell Value', column3: 'Cell Value', column4: 'Cell Value', column5: 'Cell Value', column6: 'Cell Value', column7: 'Cell Value' },
-  { id: '10', column1: 'Cell Value', column2: 'Cell Value', column3: 'Cell Value', column4: 'Cell Value', column5: 'Cell Value', column6: 'Cell Value', column7: 'Cell Value' },
-  { id: '11', column1: 'Cell Value', column2: 'Cell Value', column3: 'Cell Value', column4: 'Cell Value', column5: 'Cell Value', column6: 'Cell Value', column7: 'Cell Value' },
-  { id: '12', column1: 'Cell Value', column2: 'Cell Value', column3: 'Cell Value', column4: 'Cell Value', column5: 'Cell Value', column6: 'Cell Value', column7: 'Cell Value' },
+  {
+    id: '1',
+    column1: 'Cell Value',
+    column2: 'Cell Value',
+    column3: 'Cell Value',
+    column4: 'Cell Value',
+    column5: 'Cell Value',
+    column6: 'Cell Value',
+    column7: 'Cell Value',
+  },
+  {
+    id: '2',
+    column1: 'Cell Value',
+    column2: 'Cell Value',
+    column3: 'Cell Value',
+    column4: 'Cell Value',
+    column5: 'Cell Value',
+    column6: 'Cell Value',
+    column7: 'Cell Value',
+  },
+  {
+    id: '3',
+    column1: 'Cell Value',
+    column2: 'Cell Value',
+    column3: 'Cell Value',
+    column4: 'Cell Value',
+    column5: 'Cell Value',
+    column6: 'Cell Value',
+    column7: 'Cell Value',
+  },
+  {
+    id: '4',
+    column1: 'Cell Value',
+    column2: 'Cell Value',
+    column3: 'Cell Value',
+    column4: 'Cell Value',
+    column5: 'Cell Value',
+    column6: 'Cell Value',
+    column7: 'Cell Value',
+  },
+  {
+    id: '5',
+    column1: 'Cell Value',
+    column2: 'Cell Value',
+    column3: 'Cell Value',
+    column4: 'Cell Value',
+    column5: 'Cell Value',
+    column6: 'Cell Value',
+    column7: 'Cell Value',
+  },
+  {
+    id: '6',
+    column1: 'Cell Value',
+    column2: 'Cell Value',
+    column3: 'Cell Value',
+    column4: 'Cell Value',
+    column5: 'Cell Value',
+    column6: 'Cell Value',
+    column7: 'Cell Value',
+  },
+  {
+    id: '7',
+    column1: 'Cell Value',
+    column2: 'Cell Value',
+    column3: 'Cell Value',
+    column4: 'Cell Value',
+    column5: 'Cell Value',
+    column6: 'Cell Value',
+    column7: 'Cell Value',
+  },
+  {
+    id: '8',
+    column1: 'Cell Value',
+    column2: 'Cell Value',
+    column3: 'Cell Value',
+    column4: 'Cell Value',
+    column5: 'Cell Value',
+    column6: 'Cell Value',
+    column7: 'Cell Value',
+  },
+  {
+    id: '9',
+    column1: 'Cell Value',
+    column2: 'Cell Value',
+    column3: 'Cell Value',
+    column4: 'Cell Value',
+    column5: 'Cell Value',
+    column6: 'Cell Value',
+    column7: 'Cell Value',
+  },
+  {
+    id: '10',
+    column1: 'Cell Value',
+    column2: 'Cell Value',
+    column3: 'Cell Value',
+    column4: 'Cell Value',
+    column5: 'Cell Value',
+    column6: 'Cell Value',
+    column7: 'Cell Value',
+  },
+  {
+    id: '11',
+    column1: 'Cell Value',
+    column2: 'Cell Value',
+    column3: 'Cell Value',
+    column4: 'Cell Value',
+    column5: 'Cell Value',
+    column6: 'Cell Value',
+    column7: 'Cell Value',
+  },
+  {
+    id: '12',
+    column1: 'Cell Value',
+    column2: 'Cell Value',
+    column3: 'Cell Value',
+    column4: 'Cell Value',
+    column5: 'Cell Value',
+    column6: 'Cell Value',
+    column7: 'Cell Value',
+  },
 ];
 
 const columnDefinitions = [
   {
     id: 'column1',
     header: 'Column header',
-    cell: (item: typeof tableItems[0]) => item.column1,
+    cell: (item: (typeof tableItems)[0]) => item.column1,
     sortingField: 'column1',
   },
   {
     id: 'column2',
     header: 'Column header',
-    cell: (item: typeof tableItems[0]) => item.column2,
+    cell: (item: (typeof tableItems)[0]) => item.column2,
     sortingField: 'column2',
   },
   {
     id: 'column3',
     header: 'Column header',
-    cell: (item: typeof tableItems[0]) => item.column3,
+    cell: (item: (typeof tableItems)[0]) => item.column3,
     sortingField: 'column3',
   },
   {
     id: 'column4',
     header: 'Column header',
-    cell: (item: typeof tableItems[0]) => item.column4,
+    cell: (item: (typeof tableItems)[0]) => item.column4,
     sortingField: 'column4',
   },
   {
     id: 'column5',
     header: 'Column header',
-    cell: (item: typeof tableItems[0]) => item.column5,
+    cell: (item: (typeof tableItems)[0]) => item.column5,
     sortingField: 'column5',
   },
   {
     id: 'column6',
     header: 'Column header',
-    cell: (item: typeof tableItems[0]) => item.column6,
+    cell: (item: (typeof tableItems)[0]) => item.column6,
     sortingField: 'column6',
   },
   {
     id: 'column7',
     header: 'Column header',
-    cell: (item: typeof tableItems[0]) => item.column7,
+    cell: (item: (typeof tableItems)[0]) => item.column7,
     sortingField: 'column7',
   },
 ];
@@ -141,9 +249,7 @@ export function Content() {
   const [selectedItems, setSelectedItems] = useState<typeof tableItems>([]);
 
   const filteredItems = tableItems.filter(item =>
-    Object.values(item).some(value =>
-      value.toLowerCase().includes(filterText.toLowerCase())
-    )
+    Object.values(item).some(value => value.toLowerCase().includes(filterText.toLowerCase())),
   );
 
   return (
@@ -151,7 +257,12 @@ export function Content() {
       {/* Filter and Pagination Section */}
       <Container>
         <SpaceBetween size="m">
-          <Grid gridDefinition={[{ colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6, xl: 6 } }, { colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6, xl: 6 } }]}>
+          <Grid
+            gridDefinition={[
+              { colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6, xl: 6 } },
+              { colspan: { default: 12, xs: 12, s: 6, m: 6, l: 6, xl: 6 } },
+            ]}
+          >
             <TextFilter
               filteringText={filterText}
               filteringPlaceholder="Placeholder"
@@ -175,7 +286,12 @@ export function Content() {
       </Container>
 
       {/* Charts Section */}
-      <Grid gridDefinition={[{ colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } }, { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } }]}>
+      <Grid
+        gridDefinition={[
+          { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
+          { colspan: { default: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
+        ]}
+      >
         <Container>
           <AreaChart
             series={areaChartSeries}
