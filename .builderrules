@@ -1,1 +1,3 @@
 When adding new pages make sure to link to them from the homepage in src/pages/index.tsx
+
+Double-check to ensure dynamic imports do not fail due to name collisions - especially for chart components.
