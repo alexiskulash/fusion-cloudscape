@@ -16,6 +16,7 @@ import TextFilter from '@cloudscape-design/components/text-filter';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import Box from '@cloudscape-design/components/box';
+import Alert from '@cloudscape-design/components/alert';
 
 // Generate sample data for charts
 const generateAreaChartData = () => {
@@ -119,6 +120,7 @@ export function App() {
   const [areaChartData] = useState(generateAreaChartData());
   const [barChartData] = useState(generateBarChartData());
   const [tableData] = useState(generateTableData());
+  const [showBanner, setShowBanner] = useState(true);
 
   const { items, actions, filteredItemsCount, collectionProps, filterProps, paginationProps } = useCollection(
     tableData,
@@ -204,6 +206,12 @@ export function App() {
             >
               <div />
             </Container>
+
+            {showBanner && (
+              <Alert type="info" statusIconAriaLabel="Info" dismissible onDismiss={() => setShowBanner(false)}>
+                Demo environment: Metrics update every minute. Values may be delayed.
+              </Alert>
+            )}
 
             <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
               <Container>
