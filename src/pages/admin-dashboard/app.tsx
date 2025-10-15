@@ -3,7 +3,7 @@
 
 /**
  * Admin Dashboard Application
- * 
+ *
  * This component implements a comprehensive administrative dashboard that demonstrates
  * the use of Cloudscape Design System components including:
  * - Data visualization with area and bar charts
@@ -11,7 +11,7 @@
  * - Responsive grid layouts
  * - Navigation and breadcrumb components
  * - Alert banners for user notifications
- * 
+ *
  * The dashboard is designed to showcase typical cloud application patterns
  * for data monitoring and management interfaces.
  */
@@ -44,17 +44,17 @@ import Table from '@cloudscape-design/components/table';
 
 /**
  * Generate sample data for the area chart visualization
- * 
+ *
  * Creates two data series representing different sites and a performance threshold:
  * - Site 1: Random data points between 50-90
- * - Site 2: Random data points between 30-80  
+ * - Site 2: Random data points between 30-80
  * - Performance goal: Fixed threshold at 60
- * 
+ *
  * @returns Array of chart series objects with data points and configuration
  */
 const generateAreaChartData = () => {
   const xLabels = ['x1', 'x2', 'x3', 'x4', 'x5', 'x6', 'x7', 'x8', 'x9', 'x10', 'x11', 'x12'];
-  
+
   return [
     {
       title: 'Site 1',
@@ -64,7 +64,7 @@ const generateAreaChartData = () => {
       valueFormatter: (value: number) => value.toFixed(0),
     },
     {
-      title: 'Site 2', 
+      title: 'Site 2',
       type: 'area',
       // Generate random data points with different range
       data: xLabels.map((x, i) => ({ x, y: 30 + Math.random() * 50 })),
@@ -81,10 +81,10 @@ const generateAreaChartData = () => {
 
 /**
  * Generate sample data for the bar chart visualization
- * 
+ *
  * Creates a simple dataset with 5 data points representing
  * different categories with varying values for demonstration.
- * 
+ *
  * @returns Array of objects with x (category) and y (value) properties
  */
 const generateBarChartData = () => {
@@ -99,11 +99,11 @@ const generateBarChartData = () => {
 
 /**
  * Generate sample tabular data for the data table
- * 
+ *
  * Creates 13 rows of mock data with 7 columns each.
  * Each row contains identical "Cell Value" text for demonstration purposes.
  * In a real application, this would contain actual business data.
- * 
+ *
  * @returns Array of row objects with id and column data
  */
 const generateTableData = () => {
@@ -112,7 +112,7 @@ const generateTableData = () => {
     data.push({
       id: `row-${i}`, // Unique identifier for each row
       col1: 'Cell Value',
-      col2: 'Cell Value', 
+      col2: 'Cell Value',
       col3: 'Cell Value',
       col4: 'Cell Value',
       col5: 'Cell Value',
@@ -125,13 +125,13 @@ const generateTableData = () => {
 
 /**
  * Table column configuration
- * 
+ *
  * Defines the structure and behavior of each column in the data table:
  * - id: Unique identifier for the column
  * - header: Display text in the column header
  * - cell: Function to render cell content from row data
  * - sortingField: Field used for sorting operations
- * 
+ *
  * Each column is configured to be sortable and display the corresponding
  * property from the row data object.
  */
@@ -182,11 +182,11 @@ const COLUMN_DEFINITIONS = [
 
 /**
  * Main Admin Dashboard Application Component
- * 
+ *
  * This is the primary component that orchestrates the entire dashboard interface.
  * It manages state for charts, table data, and UI interactions while providing
  * a comprehensive administrative interface.
- * 
+ *
  * Key features:
  * - Responsive layout with navigation breadcrumbs
  * - Dismissible alert banner for notifications
@@ -199,19 +199,19 @@ export function App() {
   const [areaChartData] = useState(generateAreaChartData());
   const [barChartData] = useState(generateBarChartData());
   const [tableData] = useState(generateTableData());
-  
+
   // UI state for controlling alert banner visibility
   const [showBanner, setShowBanner] = useState(true);
 
   /**
    * useCollection hook configuration
-   * 
+   *
    * Provides comprehensive table functionality including:
    * - Filtering: Search through table data
    * - Pagination: Break data into manageable pages (10 items per page)
    * - Sorting: Allow column-based data sorting
    * - Selection: Enable multi-row selection
-   * 
+   *
    * Returns props and handlers that can be spread into Table components
    * for consistent behavior across the application.
    */
@@ -250,7 +250,6 @@ export function App() {
       // Hide navigation sidebar and tools panel for focused dashboard view
       navigationHide
       toolsHide
-      
       // Breadcrumb navigation showing current location in application hierarchy
       breadcrumbs={
         <BreadcrumbGroup
@@ -261,7 +260,6 @@ export function App() {
           ariaLabel="Breadcrumbs"
         />
       }
-      
       content={
         <ContentLayout
           // Page header with title, description, and primary action
@@ -281,18 +279,13 @@ export function App() {
         >
           {/* Main content area with consistent vertical spacing */}
           <SpaceBetween size="l">
-            
             {/* Filter and pagination controls container */}
             <Container
               header={
                 <Grid gridDefinition={[{ colspan: { default: 12, s: 8 } }, { colspan: { default: 12, s: 4 } }]}>
                   {/* Search/filter input - takes up most of the width */}
-                  <TextFilter
-                    {...filterProps}
-                    filteringPlaceholder="Placeholder"
-                    filteringAriaLabel="Filter data"
-                  />
-                  
+                  <TextFilter {...filterProps} filteringPlaceholder="Placeholder" filteringAriaLabel="Filter data" />
+
                   {/* Pagination and settings controls - aligned to the right */}
                   <Box float="right">
                     <SpaceBetween direction="horizontal" size="xs">
@@ -301,7 +294,7 @@ export function App() {
                         ariaLabels={{
                           nextPageLabel: 'Next page',
                           previousPageLabel: 'Previous page',
-                          pageLabel: (pageNumber) => `Page ${pageNumber}`,
+                          pageLabel: pageNumber => `Page ${pageNumber}`,
                         }}
                       />
                       <Button iconName="settings" variant="icon" ariaLabel="Settings" />
@@ -315,19 +308,13 @@ export function App() {
 
             {/* Dismissible alert banner for user notifications */}
             {showBanner && (
-              <Alert 
-                type="info" 
-                statusIconAriaLabel="Info" 
-                dismissible 
-                onDismiss={() => setShowBanner(false)}
-              >
+              <Alert type="info" statusIconAriaLabel="Info" dismissible onDismiss={() => setShowBanner(false)}>
                 Demo environment: Metrics update every minute. Values may be delayed.
               </Alert>
             )}
 
             {/* Chart visualization section - two charts side by side */}
             <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
-              
               {/* Area chart container - shows multi-series data with threshold */}
               <Container>
                 <AreaChart
@@ -340,15 +327,14 @@ export function App() {
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'area chart',
-                    xTickFormatter: (value) => value,
-                    yTickFormatter: (value) => value.toString(),
+                    xTickFormatter: value => value,
+                    yTickFormatter: value => value.toString(),
                   }}
                   ariaLabel="Area chart"
                   height={300}
                   xScaleType="categorical"
                   xTitle="X-axis label"
                   yTitle="y-axis label"
-                  
                   // Empty state when no data is available
                   empty={
                     <Box textAlign="center" color="inherit">
@@ -358,7 +344,6 @@ export function App() {
                       </Box>
                     </Box>
                   }
-                  
                   // No match state when filters exclude all data
                   noMatch={
                     <Box textAlign="center" color="inherit">
@@ -390,15 +375,14 @@ export function App() {
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'bar chart',
-                    xTickFormatter: (value) => value,
-                    yTickFormatter: (value) => value.toString(),
+                    xTickFormatter: value => value,
+                    yTickFormatter: value => value.toString(),
                   }}
                   ariaLabel="Bar chart"
                   height={300}
                   xScaleType="categorical"
                   xTitle="X-axis label"
                   yTitle="y-axis label"
-                  
                   // Empty state when no data is available
                   empty={
                     <Box textAlign="center" color="inherit">
@@ -408,7 +392,6 @@ export function App() {
                       </Box>
                     </Box>
                   }
-                  
                   // No match state when filters exclude all data
                   noMatch={
                     <Box textAlign="center" color="inherit">
@@ -431,14 +414,12 @@ export function App() {
               variant="container" // Table styling variant
               stickyHeader // Keep header visible during scroll
               resizableColumns // Allow column width adjustment
-              
               // Accessibility labels for screen readers
               ariaLabels={{
                 selectionGroupLabel: 'Items selection',
                 allItemsSelectionLabel: () => 'select all',
                 itemSelectionLabel: ({ selectedItems }, item) => item.id,
               }}
-              
               // Pagination controls at bottom of table
               pagination={<Pagination {...paginationProps} />}
             />
