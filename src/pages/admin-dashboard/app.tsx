@@ -183,11 +183,7 @@ export function App() {
             <Container
               header={
                 <Grid gridDefinition={[{ colspan: { default: 12, s: 8 } }, { colspan: { default: 12, s: 4 } }]}>
-                  <TextFilter
-                    {...filterProps}
-                    filteringPlaceholder="Placeholder"
-                    filteringAriaLabel="Filter data"
-                  />
+                  <TextFilter {...filterProps} filteringPlaceholder="Placeholder" filteringAriaLabel="Filter data" />
                   <Box float="right">
                     <SpaceBetween direction="horizontal" size="xs">
                       <Pagination
@@ -195,7 +191,7 @@ export function App() {
                         ariaLabels={{
                           nextPageLabel: 'Next page',
                           previousPageLabel: 'Previous page',
-                          pageLabel: (pageNumber) => `Page ${pageNumber}`,
+                          pageLabel: pageNumber => `Page ${pageNumber}`,
                         }}
                       />
                       <Button iconName="settings" variant="icon" ariaLabel="Settings" />
@@ -225,8 +221,8 @@ export function App() {
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'area chart',
-                    xTickFormatter: (value) => value,
-                    yTickFormatter: (value) => value.toString(),
+                    xTickFormatter: value => value,
+                    yTickFormatter: value => value.toString(),
                   }}
                   ariaLabel="Area chart"
                   height={300}
@@ -270,8 +266,8 @@ export function App() {
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'bar chart',
-                    xTickFormatter: (value) => value,
-                    yTickFormatter: (value) => value.toString(),
+                    xTickFormatter: value => value,
+                    yTickFormatter: value => value.toString(),
                   }}
                   ariaLabel="Bar chart"
                   height={300}
