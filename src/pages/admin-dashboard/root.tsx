@@ -17,6 +17,7 @@ import BarChart from '@cloudscape-design/components/bar-chart';
 import Container from '@cloudscape-design/components/container';
 import ColumnLayout from '@cloudscape-design/components/column-layout';
 import Grid from '@cloudscape-design/components/grid';
+import Alert from '@cloudscape-design/components/alert';
 
 import {
   CustomAppLayout,
@@ -190,6 +191,14 @@ function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
       >
         Adminstration Dashboard
       </Header>
+
+      <Alert
+        type="info"
+        dismissible
+        header="Dashboard information"
+      >
+        This dashboard displays real-time administrative data and performance metrics. Data is automatically refreshed every 5 minutes.
+      </Alert>
 
       <Grid gridDefinition={[{ colspan: { default: 12, s: 6 } }, { colspan: { default: 12, s: 6 } }]}>
         <Container fitHeight>
