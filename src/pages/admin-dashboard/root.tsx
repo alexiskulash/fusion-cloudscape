@@ -3,13 +3,13 @@
 
 /**
  * Administration Dashboard Component
- * 
+ *
  * This module implements a comprehensive admin dashboard with the following features:
  * - Real-time data visualization using area and bar charts
  * - Interactive data table with filtering, sorting, and pagination
  * - Responsive grid layout that adapts to different screen sizes
  * - Alert banner for system notifications
- * 
+ *
  * The dashboard follows the Cloudscape Design System patterns and provides
  * a complete example of dashboard layout with navigation, tools panel, and data displays.
  */
@@ -55,10 +55,10 @@ import '../../styles/base.scss';
 
 /**
  * Generates mock table data for demonstration purposes
- * 
+ *
  * Creates an array of 12 items, each with 7 columns of placeholder data.
  * In a production environment, this would be replaced with actual data fetching logic.
- * 
+ *
  * @returns {Array} Array of table row objects with id and column values
  */
 const generateTableData = () => {
@@ -80,11 +80,11 @@ const generateTableData = () => {
 
 /**
  * Area Chart Data Configuration
- * 
+ *
  * Defines the series data for the area chart visualization.
  * Includes two data series (Site 1 and Site 2) showing performance trends,
  * plus a threshold line representing the performance goal.
- * 
+ *
  * The data pattern matches the original Figma design specifications.
  * Each data point consists of an x-value (time/category) and y-value (metric).
  */
@@ -135,10 +135,10 @@ const areaChartSeries = [
 
 /**
  * Bar Chart Data Configuration
- * 
+ *
  * Defines the series data for the bar chart visualization.
  * Shows performance metrics across 5 data points with a threshold indicator.
- * 
+ *
  * The threshold line helps users quickly identify whether performance
  * meets the defined goal across different metrics.
  */
@@ -164,13 +164,13 @@ const barChartSeries = [
 
 /**
  * Table Column Definitions
- * 
+ *
  * Configures the columns for the data table, including:
  * - Column IDs for identification
  * - Header text displayed in the table
  * - Cell rendering function to extract data from row items
  * - Sorting field to enable column-based sorting
- * 
+ *
  * Each column definition follows the Cloudscape Table component API.
  * The 'any' type is used here for flexibility; in production, a proper
  * interface should define the exact structure of table items.
@@ -222,7 +222,7 @@ const COLUMN_DEFINITIONS = [
 
 /**
  * Props interface for AdminDashboardContent component
- * 
+ *
  * @property {any[]} tableData - Array of data items to display in the table
  */
 interface AdminDashboardContentProps {
@@ -231,16 +231,16 @@ interface AdminDashboardContentProps {
 
 /**
  * AdminDashboardContent Component
- * 
+ *
  * Renders the main content area of the admin dashboard, including:
  * - Page header with title, description, and action button
  * - Informational alert banner
  * - Responsive grid with area chart and bar chart
  * - Data table with filtering, sorting, pagination, and multi-select capabilities
- * 
+ *
  * This component uses the useCollection hook to manage table state and interactions,
  * providing a fully functional data table experience with minimal custom code.
- * 
+ *
  * @param {AdminDashboardContentProps} props - Component properties
  */
 function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
@@ -375,7 +375,7 @@ function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
 
 /**
  * AdminDashboard Component (Main Export)
- * 
+ *
  * The root component for the administration dashboard page.
  * Implements the full page layout using CustomAppLayout, which includes:
  * - Navigation sidebar with active page highlighting
@@ -383,10 +383,10 @@ function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
  * - Tools panel for contextual help
  * - Notification area
  * - Main content area with the dashboard content
- * 
+ *
  * This component manages the layout-level state (tools panel open/closed)
  * and passes the content to the layout wrapper.
- * 
+ *
  * @returns {JSX.Element} The complete admin dashboard page
  */
 export default function AdminDashboard() {
