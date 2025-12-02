@@ -1,9 +1,28 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
+
+/**
+ * Administration Dashboard Component
+ * 
+ * This module implements a comprehensive admin dashboard with the following features:
+ * - Real-time data visualization using area and bar charts
+ * - Interactive data table with filtering, sorting, and pagination
+ * - Responsive grid layout that adapts to different screen sizes
+ * - Alert banner for system notifications
+ * 
+ * The dashboard follows the Cloudscape Design System patterns and provides
+ * a complete example of dashboard layout with navigation, tools panel, and data displays.
+ */
+
 import React, { useRef, useState } from 'react';
 
+// Collection hooks for managing table data (filtering, sorting, pagination, selection)
 import { useCollection } from '@cloudscape-design/collection-hooks';
+
+// Type definitions for AppLayout component reference
 import { AppLayoutProps } from '@cloudscape-design/components/app-layout';
+
+// Cloudscape UI components for data display and interaction
 import Pagination from '@cloudscape-design/components/pagination';
 import Table from '@cloudscape-design/components/table';
 import TextFilter from '@cloudscape-design/components/text-filter';
@@ -19,6 +38,7 @@ import ColumnLayout from '@cloudscape-design/components/column-layout';
 import Grid from '@cloudscape-design/components/grid';
 import Alert from '@cloudscape-design/components/alert';
 
+// Common components shared across the application
 import {
   CustomAppLayout,
   Navigation,
@@ -26,11 +46,21 @@ import {
   TableEmptyState,
   TableNoMatchState,
 } from '../commons/common-components';
+
+// Shared chart configuration and utilities
 import { commonChartProps } from '../dashboard/widgets/chart-commons';
 
+// Base styles for the application
 import '../../styles/base.scss';
 
-// Mock data for the table
+/**
+ * Generates mock table data for demonstration purposes
+ * 
+ * Creates an array of 12 items, each with 7 columns of placeholder data.
+ * In a production environment, this would be replaced with actual data fetching logic.
+ * 
+ * @returns {Array} Array of table row objects with id and column values
+ */
 const generateTableData = () => {
   const data = [];
   for (let i = 0; i < 12; i++) {
@@ -48,7 +78,16 @@ const generateTableData = () => {
   return data;
 };
 
-// Area chart data - matching Figma design pattern
+/**
+ * Area Chart Data Configuration
+ * 
+ * Defines the series data for the area chart visualization.
+ * Includes two data series (Site 1 and Site 2) showing performance trends,
+ * plus a threshold line representing the performance goal.
+ * 
+ * The data pattern matches the original Figma design specifications.
+ * Each data point consists of an x-value (time/category) and y-value (metric).
+ */
 const areaChartSeries = [
   {
     type: 'area' as const,
@@ -87,13 +126,22 @@ const areaChartSeries = [
     ],
   },
   {
+    // Threshold line representing the performance goal
     type: 'threshold' as const,
     title: 'Performance goal',
     y: 3.5,
   },
 ];
 
-// Bar chart data - matching Figma design pattern
+/**
+ * Bar Chart Data Configuration
+ * 
+ * Defines the series data for the bar chart visualization.
+ * Shows performance metrics across 5 data points with a threshold indicator.
+ * 
+ * The threshold line helps users quickly identify whether performance
+ * meets the defined goal across different metrics.
+ */
 const barChartSeries = [
   {
     type: 'bar' as const,
@@ -107,13 +155,26 @@ const barChartSeries = [
     ],
   },
   {
+    // Performance goal threshold displayed as a horizontal line
     type: 'threshold' as const,
     title: 'Performance goal',
     y: 450,
   },
 ];
 
-// Table column definitions
+/**
+ * Table Column Definitions
+ * 
+ * Configures the columns for the data table, including:
+ * - Column IDs for identification
+ * - Header text displayed in the table
+ * - Cell rendering function to extract data from row items
+ * - Sorting field to enable column-based sorting
+ * 
+ * Each column definition follows the Cloudscape Table component API.
+ * The 'any' type is used here for flexibility; in production, a proper
+ * interface should define the exact structure of table items.
+ */
 const COLUMN_DEFINITIONS = [
   {
     id: 'col1',
@@ -159,27 +220,62 @@ const COLUMN_DEFINITIONS = [
   },
 ];
 
+/**
+ * Props interface for AdminDashboardContent component
+ * 
+ * @property {any[]} tableData - Array of data items to display in the table
+ */
 interface AdminDashboardContentProps {
   tableData: any[];
 }
 
+/**
+ * AdminDashboardContent Component
+ * 
+ * Renders the main content area of the admin dashboard, including:
+ * - Page header with title, description, and action button
+ * - Informational alert banner
+ * - Responsive grid with area chart and bar chart
+ * - Data table with filtering, sorting, pagination, and multi-select capabilities
+ * 
+ * This component uses the useCollection hook to manage table state and interactions,
+ * providing a fully functional data table experience with minimal custom code.
+ * 
+ * @param {AdminDashboardContentProps} props - Component properties
+ */
 function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
+  // Track currently selected items in the table
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
+
+  /**
+   * useCollection hook manages table interactions and state:
+   * - items: Current page of filtered/sorted items
+   * - actions: Methods to control filtering, sorting, etc.
+   * - filteredItemsCount: Number of items matching current filter
+   * - collectionProps: Props to spread on the Table component
+   * - filterProps: Props to spread on the TextFilter component
+   * - paginationProps: Props to spread on the Pagination component
+   */
   const { items, actions, filteredItemsCount, collectionProps, filterProps, paginationProps } = useCollection(
     tableData,
     {
+      // Filtering configuration
       filtering: {
         empty: <TableEmptyState resourceName="Item" />,
         noMatch: <TableNoMatchState onClearFilter={() => actions.setFiltering('')} />,
       },
+      // Pagination configuration - 10 items per page
       pagination: { pageSize: 10 },
+      // Sorting configuration - default sort by first column
       sorting: { defaultState: { sortingColumn: COLUMN_DEFINITIONS[0] } },
+      // Enable row selection
       selection: {},
     },
   );
 
   return (
     <SpaceBetween size="l">
+      {/* Page Header with title, description, and primary action */}
       <Header
         variant="h1"
         description="Collection description"
@@ -192,12 +288,15 @@ function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
         Adminstration Dashboard
       </Header>
 
+      {/* Alert banner providing dashboard context and information */}
       <Alert type="info" dismissible header="Dashboard information">
         This dashboard displays real-time administrative data and performance metrics. Data is automatically refreshed
         every 5 minutes.
       </Alert>
 
+      {/* Responsive grid layout for charts - stacks on mobile, side-by-side on larger screens */}
       <Grid gridDefinition={[{ colspan: { default: 12, s: 6 } }, { colspan: { default: 12, s: 6 } }]}>
+        {/* Area Chart Container */}
         <Container fitHeight>
           <AreaChart
             {...commonChartProps}
@@ -216,6 +315,7 @@ function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
           />
         </Container>
 
+        {/* Bar Chart Container */}
         <Container fitHeight>
           <BarChart
             {...commonChartProps}
@@ -235,11 +335,13 @@ function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
         </Container>
       </Grid>
 
+      {/* Data Table with multi-select, filtering, sorting, and pagination */}
       <Table
         {...collectionProps}
         selectionType="multi"
         header={
           <Header
+            // Show selection count in header (e.g., "(2/12)" when 2 items selected)
             counter={selectedItems.length ? `(${selectedItems.length}/${tableData.length})` : `(${tableData.length})`}
           >
             Data
@@ -258,6 +360,7 @@ function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
         }
         pagination={<Pagination {...paginationProps} />}
         empty={
+          // Empty state shown when table has no data
           <Box textAlign="center" color="inherit">
             <b>No resources</b>
             <Box padding={{ bottom: 's' }} variant="p" color="inherit">
@@ -270,9 +373,30 @@ function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
   );
 }
 
+/**
+ * AdminDashboard Component (Main Export)
+ * 
+ * The root component for the administration dashboard page.
+ * Implements the full page layout using CustomAppLayout, which includes:
+ * - Navigation sidebar with active page highlighting
+ * - Breadcrumb navigation
+ * - Tools panel for contextual help
+ * - Notification area
+ * - Main content area with the dashboard content
+ * 
+ * This component manages the layout-level state (tools panel open/closed)
+ * and passes the content to the layout wrapper.
+ * 
+ * @returns {JSX.Element} The complete admin dashboard page
+ */
 export default function AdminDashboard() {
+  // Track whether the help/tools panel is open
   const [toolsOpen, setToolsOpen] = useState(false);
+
+  // Reference to the AppLayout component for programmatic control
   const appLayout = useRef<AppLayoutProps.Ref>(null);
+
+  // Generate mock table data (in production, this would be fetched from an API)
   const tableData = generateTableData();
 
   return (
@@ -281,6 +405,7 @@ export default function AdminDashboard() {
       contentType="table"
       content={<AdminDashboardContent tableData={tableData} />}
       breadcrumbs={
+        // Breadcrumb navigation showing: Service > Administrative Dashboard
         <BreadcrumbGroup
           items={[
             { text: 'Service', href: '#/' },
@@ -288,8 +413,12 @@ export default function AdminDashboard() {
           ]}
         />
       }
-      navigation={<Navigation activeHref="#/admin-dashboard" />}
+      navigation={
+        // Side navigation with current page highlighted
+        <Navigation activeHref="#/admin-dashboard" />
+      }
       tools={
+        // Help panel content displayed when tools panel is open
         <Box padding="l">
           <SpaceBetween size="l">
             <div>
