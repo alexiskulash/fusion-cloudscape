@@ -239,7 +239,15 @@ export function App() {
           }
         >
           <SpaceBetween size="l">
-            {/* Search and Pagination Controls */}
+            {/*
+              Search and Pagination Controls Section
+
+              Responsive grid layout containing:
+              - Left side (8/12 cols on small+ screens): Search input for filtering data
+              - Right side (4/12 cols on small+ screens): Pagination controls and settings button
+
+              On mobile (default), both sections stack vertically (12/12 cols each)
+            */}
             <Grid gridDefinition={[{ colspan: { default: 12, s: 8 } }, { colspan: { default: 12, s: 4 } }]}>
               <Input
                 type="search"
@@ -259,9 +267,26 @@ export function App() {
               </Box>
             </Grid>
 
-            {/* Charts */}
+            {/*
+              Data Visualization Charts Section
+
+              Two-column responsive layout displaying complementary chart visualizations:
+              - Left column: Area Chart showing multi-series trend data over time
+              - Right column: Bar Chart showing comparative metric values
+
+              On mobile/tablet (default to small), charts stack vertically (12/12 cols each)
+              On medium+ screens, charts display side-by-side (6/12 cols each)
+            */}
             <Grid gridDefinition={[{ colspan: { default: 12, m: 6 } }, { colspan: { default: 12, m: 6 } }]}>
               <Container>
+                {/*
+                  Area Chart Configuration
+
+                  Displays stacked area chart with two data series (Site 1 and Site 2).
+                  - series: Data array defined above with two site performance metrics
+                  - xDomain: All 12 time periods to display on x-axis
+                  - yDomain: Y-axis range from 0 to 6 to accommodate all data points
+                */}
                 <AreaChart
                   series={areaChartData}
                   xDomain={['x1', 'x2', 'x3', 'x4', 'x5', 'x6', 'x7', 'x8', 'x9', 'x10', 'x11', 'x12']}
@@ -301,6 +326,15 @@ export function App() {
               </Container>
 
               <Container>
+                {/*
+                  Bar Chart Configuration
+
+                  Displays vertical bar chart with a single data series.
+                  - series: Single data series with 5 data points showing varying values
+                  - xDomain: 5 categories/time periods on x-axis
+                  - yDomain: Y-axis range from 0 to 300 to accommodate highest value (257)
+                  - valueFormatter: Converts numeric values to strings for display
+                */}
                 <BarChart
                   series={[
                     {
@@ -347,7 +381,19 @@ export function App() {
               </Container>
             </Grid>
 
-            {/* Data Table */}
+            {/*
+              Data Table Section
+
+              Displays tabular data with the following features:
+              - Multi-row selection: Users can select multiple rows for bulk actions
+              - 7 columns: Each column is sortable and displays cell values
+              - 12 rows: Generated sample data (would be dynamic in production)
+              - Full-page variant: Table uses available width for better readability
+
+              State management:
+              - selectedItems tracks which rows are currently selected
+              - onSelectionChange updates state when user selects/deselects rows
+            */}
             <Table
               columnDefinitions={columnDefinitions}
               items={tableItems}
