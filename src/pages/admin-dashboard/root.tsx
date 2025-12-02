@@ -47,42 +47,42 @@ const generateTableData = () => {
   return data;
 };
 
-// Area chart data
+// Area chart data - matching Figma design pattern
 const areaChartSeries = [
   {
     type: 'area' as const,
     title: 'Site 1',
     data: [
-      { x: 1, y: 3 },
-      { x: 2, y: 3.5 },
-      { x: 3, y: 4 },
-      { x: 4, y: 4.5 },
-      { x: 5, y: 5 },
-      { x: 6, y: 5.5 },
-      { x: 7, y: 5 },
-      { x: 8, y: 4.5 },
-      { x: 9, y: 3.5 },
-      { x: 10, y: 3.5 },
-      { x: 11, y: 4 },
-      { x: 12, y: 5 },
+      { x: 1, y: 2.8 },
+      { x: 2, y: 3.2 },
+      { x: 3, y: 3.8 },
+      { x: 4, y: 4.2 },
+      { x: 5, y: 4.8 },
+      { x: 6, y: 5.2 },
+      { x: 7, y: 5.5 },
+      { x: 8, y: 5.8 },
+      { x: 9, y: 5.5 },
+      { x: 10, y: 5.2 },
+      { x: 11, y: 5.5 },
+      { x: 12, y: 5.8 },
     ],
   },
   {
     type: 'area' as const,
     title: 'Site 2',
     data: [
-      { x: 1, y: 2 },
-      { x: 2, y: 2.5 },
-      { x: 3, y: 3 },
-      { x: 4, y: 3.5 },
-      { x: 5, y: 4 },
-      { x: 6, y: 3.5 },
-      { x: 7, y: 3 },
-      { x: 8, y: 2.5 },
-      { x: 9, y: 2 },
-      { x: 10, y: 1.5 },
-      { x: 11, y: 2 },
-      { x: 12, y: 2.5 },
+      { x: 1, y: 1.8 },
+      { x: 2, y: 2.0 },
+      { x: 3, y: 2.5 },
+      { x: 4, y: 3.0 },
+      { x: 5, y: 3.5 },
+      { x: 6, y: 4.0 },
+      { x: 7, y: 3.8 },
+      { x: 8, y: 3.5 },
+      { x: 9, y: 3.0 },
+      { x: 10, y: 2.8 },
+      { x: 11, y: 3.2 },
+      { x: 12, y: 3.8 },
     ],
   },
   {
@@ -92,18 +92,23 @@ const areaChartSeries = [
   },
 ];
 
-// Bar chart data
+// Bar chart data - matching Figma design pattern
 const barChartSeries = [
   {
     type: 'bar' as const,
     title: 'Site 1',
     data: [
       { x: 1, y: 450 },
-      { x: 2, y: 600 },
+      { x: 2, y: 630 },
       { x: 3, y: 520 },
       { x: 4, y: 300 },
       { x: 5, y: 510 },
     ],
+  },
+  {
+    type: 'threshold' as const,
+    title: 'Performance goal',
+    y: 450,
   },
 ];
 
@@ -186,8 +191,8 @@ function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
         Adminstration Dashboard
       </Header>
 
-      <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
-        <Container>
+      <Grid gridDefinition={[{ colspan: { default: 12, s: 6 } }, { colspan: { default: 12, s: 6 } }]}>
+        <Container fitHeight>
           <AreaChart
             {...commonChartProps}
             series={areaChartSeries}
@@ -205,7 +210,7 @@ function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
           />
         </Container>
 
-        <Container>
+        <Container fitHeight>
           <BarChart
             {...commonChartProps}
             series={barChartSeries}
