@@ -1,5 +1,32 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
+
+/**
+ * Administration Dashboard
+ *
+ * A comprehensive dashboard interface demonstrating Cloudscape Design System components
+ * in an administrative context. This page showcases:
+ *
+ * - Data visualization using Area Charts and Bar Charts
+ * - Tabular data display with multi-select functionality
+ * - Search and pagination controls for data filtering
+ * - Responsive grid layouts that adapt to different screen sizes
+ * - Breadcrumb navigation for hierarchical page structure
+ *
+ * This is a demo implementation with sample data. In a production environment,
+ * the data would be fetched from APIs and the interactions would trigger
+ * real backend operations.
+ *
+ * Key Components Used:
+ * - AppLayout: Main page structure
+ * - ContentLayout: Content area organization
+ * - AreaChart: Multi-series trend visualization
+ * - BarChart: Comparative metric visualization
+ * - Table: Structured data display with selection
+ * - Grid: Responsive layout system
+ * - Header, Button, Input, Pagination: Standard UI controls
+ */
+
 import React, { useState } from 'react';
 import AppLayout from '@cloudscape-design/components/app-layout';
 import BreadcrumbGroup from '@cloudscape-design/components/breadcrumb-group';
