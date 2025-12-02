@@ -175,7 +175,7 @@ function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
       pagination: { pageSize: 10 },
       sorting: { defaultState: { sortingColumn: COLUMN_DEFINITIONS[0] } },
       selection: {},
-    }
+    },
   );
 
   return (
@@ -192,12 +192,9 @@ function AdminDashboardContent({ tableData }: AdminDashboardContentProps) {
         Adminstration Dashboard
       </Header>
 
-      <Alert
-        type="info"
-        dismissible
-        header="Dashboard information"
-      >
-        This dashboard displays real-time administrative data and performance metrics. Data is automatically refreshed every 5 minutes.
+      <Alert type="info" dismissible header="Dashboard information">
+        This dashboard displays real-time administrative data and performance metrics. Data is automatically refreshed
+        every 5 minutes.
       </Alert>
 
       <Grid gridDefinition={[{ colspan: { default: 12, s: 6 } }, { colspan: { default: 12, s: 6 } }]}>
