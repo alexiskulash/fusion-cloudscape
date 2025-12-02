@@ -54,7 +54,7 @@ describe('Administrative Dashboard', () => {
     setupTest(async page => {
       const textFilterSelector = wrapper.findTextFilter().toSelector();
       await expect(page.isDisplayed(textFilterSelector)).resolves.toBe(true);
-      
+
       const inputSelector = wrapper.findTextFilter().findInput().toSelector();
       await page.setValue(inputSelector, 'test search');
       const inputValue = await page.getValue(inputSelector);
@@ -75,10 +75,10 @@ describe('Administrative Dashboard', () => {
     setupTest(async page => {
       const paginationSelector = wrapper.findPagination();
       const nextPageButton = paginationSelector.findNextPageButton().toSelector();
-      
+
       await expect(page.isDisplayed(nextPageButton)).resolves.toBe(true);
       await page.click(nextPageButton);
-      
+
       // Verify that clicking worked by checking if page 2 is now selected
       const currentPageLabel = paginationSelector.findPageNumberByIndex(2).toSelector();
       await expect(page.elementHasClass(currentPageLabel, 'awsui_selected')).resolves.toBe(true);
@@ -116,7 +116,7 @@ describe('Administrative Dashboard', () => {
     setupTest(async page => {
       const tableSelector = wrapper.findTable().toSelector();
       await expect(page.isDisplayed(tableSelector)).resolves.toBe(true);
-      
+
       // Check that table has 7 columns
       const headerCells = wrapper.findTable().findColumnHeaders();
       const columnCount = await page.getElementsCount(headerCells.toSelector());
@@ -138,15 +138,15 @@ describe('Administrative Dashboard', () => {
     'Table supports multi-selection',
     setupTest(async page => {
       const tableSelector = wrapper.findTable();
-      
+
       // Click first row checkbox
       const firstRowCheckbox = tableSelector.findRowSelectionArea(1).toSelector();
       await page.click(firstRowCheckbox);
-      
+
       // Click second row checkbox
       const secondRowCheckbox = tableSelector.findRowSelectionArea(2).toSelector();
       await page.click(secondRowCheckbox);
-      
+
       // Verify selections (implementation depends on how selection state is shown)
       await expect(page.isDisplayed(firstRowCheckbox)).resolves.toBe(true);
       await expect(page.isDisplayed(secondRowCheckbox)).resolves.toBe(true);
@@ -158,10 +158,10 @@ describe('Administrative Dashboard', () => {
     setupTest(async page => {
       const tableSelector = wrapper.findTable();
       const selectAllCheckbox = tableSelector.findSelectAllTrigger().toSelector();
-      
+
       await expect(page.isDisplayed(selectAllCheckbox)).resolves.toBe(true);
       await page.click(selectAllCheckbox);
-      
+
       // After clicking select all, it should be checked
       await expect(page.isDisplayed(selectAllCheckbox)).resolves.toBe(true);
     }),
@@ -181,7 +181,7 @@ describe('Administrative Dashboard', () => {
     setupTest(async page => {
       const headerSelector = wrapper.findHeader('h1').toSelector();
       const headerContent = await page.getElementsText(headerSelector);
-      
+
       // Verify description exists
       expect(headerContent).toBeTruthy();
     }),

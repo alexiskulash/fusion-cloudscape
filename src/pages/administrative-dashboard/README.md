@@ -18,6 +18,7 @@ This dashboard includes comprehensive Jest testing:
 Located in `src/pages/administrative-dashboard/app.test.tsx`
 
 Tests cover:
+
 - Data structure validation
 - Area chart series (Site 1, Site 2, threshold)
 - Bar chart series configuration
@@ -27,6 +28,7 @@ Tests cover:
 - Data domain validation
 
 **Run unit tests:**
+
 ```bash
 npm test -- app.test.tsx
 ```
@@ -36,6 +38,7 @@ npm test -- app.test.tsx
 Located in `test/e2e/administrative-dashboard.test.ts`
 
 Tests cover:
+
 - Page rendering and layout
 - Breadcrumb navigation
 - Header and action buttons
@@ -46,11 +49,13 @@ Tests cover:
 - Responsive grid layout
 
 **Run e2e tests:**
+
 ```bash
 npm run jest -- administrative-dashboard.test.ts
 ```
 
 **Run all tests:**
+
 ```bash
 npm test
 ```
@@ -66,19 +71,23 @@ npm test
 ## Data Structures
 
 All data structures are exported from `data.ts` for:
+
 - Easy testing
 - Separation of concerns
 - Potential data source integration
 
 ### Area Chart Data
+
 - 2 area series with 12 data points each
 - 1 threshold line for performance goals
 
 ### Bar Chart Data
+
 - 1 bar series with 5 data points
 - 1 threshold line for performance goals
 
 ### Table Data
+
 - 12 rows of sample data
 - 7 columns with sortable headers
 - Multi-select capability

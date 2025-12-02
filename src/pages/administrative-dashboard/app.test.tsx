@@ -36,7 +36,7 @@ describe('Administrative Dashboard Data Structures', () => {
     it('should have 12 data points per area series', () => {
       const site1 = areaChartSeries.find(s => s.title === 'Site 1' && s.type === 'area');
       const site2 = areaChartSeries.find(s => s.title === 'Site 2' && s.type === 'area');
-      
+
       if (site1 && 'data' in site1) {
         expect(site1.data).toHaveLength(12);
       }
@@ -47,7 +47,7 @@ describe('Administrative Dashboard Data Structures', () => {
 
     it('should have valid data points with x and y values', () => {
       const site1 = areaChartSeries.find(s => s.title === 'Site 1' && s.type === 'area');
-      
+
       if (site1 && 'data' in site1) {
         site1.data.forEach(point => {
           expect(point).toHaveProperty('x');
@@ -84,7 +84,7 @@ describe('Administrative Dashboard Data Structures', () => {
 
     it('should have 5 data points in bar series', () => {
       const site1 = barChartSeries.find(s => s.title === 'Site 1' && s.type === 'bar');
-      
+
       if (site1 && 'data' in site1) {
         expect(site1.data).toHaveLength(5);
       }
@@ -92,7 +92,7 @@ describe('Administrative Dashboard Data Structures', () => {
 
     it('should have valid bar chart data points', () => {
       const site1 = barChartSeries.find(s => s.title === 'Site 1' && s.type === 'bar');
-      
+
       if (site1 && 'data' in site1) {
         site1.data.forEach(point => {
           expect(point).toHaveProperty('x');
@@ -172,7 +172,7 @@ describe('Administrative Dashboard Data Structures', () => {
     it('should render cell content correctly', () => {
       const testItem = tableItems[0];
       const col1 = columnDefinitions[0];
-      
+
       const cellContent = col1.cell(testItem);
       expect(cellContent).toBe('Cell Value');
     });
@@ -181,7 +181,7 @@ describe('Administrative Dashboard Data Structures', () => {
   describe('Data Validation', () => {
     it('should have valid area chart domain', () => {
       const site1 = areaChartSeries.find(s => s.title === 'Site 1' && s.type === 'area');
-      
+
       if (site1 && 'data' in site1) {
         const xValues = site1.data.map(d => d.x);
         expect(Math.min(...xValues)).toBe(1);
@@ -191,7 +191,7 @@ describe('Administrative Dashboard Data Structures', () => {
 
     it('should have valid bar chart domain', () => {
       const site1 = barChartSeries.find(s => s.title === 'Site 1' && s.type === 'bar');
-      
+
       if (site1 && 'data' in site1) {
         const xValues = site1.data.map(d => d.x);
         expect(Math.min(...xValues)).toBe(1);
@@ -201,7 +201,7 @@ describe('Administrative Dashboard Data Structures', () => {
 
     it('should have numeric y values in charts', () => {
       const site1 = areaChartSeries.find(s => s.title === 'Site 1' && s.type === 'area');
-      
+
       if (site1 && 'data' in site1) {
         site1.data.forEach(point => {
           expect(typeof point.y).toBe('number');
@@ -214,7 +214,7 @@ describe('Administrative Dashboard Data Structures', () => {
   describe('Value Formatters', () => {
     it('should format area chart values to 1 decimal place', () => {
       const site1 = areaChartSeries.find(s => s.title === 'Site 1' && s.type === 'area');
-      
+
       if (site1 && site1.valueFormatter) {
         expect(site1.valueFormatter(3.14159)).toBe('3.1');
         expect(site1.valueFormatter(2.5)).toBe('2.5');
@@ -223,7 +223,7 @@ describe('Administrative Dashboard Data Structures', () => {
 
     it('should format threshold values', () => {
       const threshold = areaChartSeries.find(s => s.type === 'threshold');
-      
+
       if (threshold && threshold.valueFormatter) {
         expect(threshold.valueFormatter(3.5)).toBe('3.5');
       }
