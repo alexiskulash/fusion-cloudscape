@@ -211,7 +211,9 @@ export function App() {
   const [selectedItems, setSelectedItems] = useState([]);
 
   return (
+    // AppLayout provides the main page structure with header, navigation, and content areas
     <AppLayout
+      // Breadcrumb navigation showing hierarchical path: Service > Administrative Dashboard
       breadcrumbs={
         <BreadcrumbGroup
           items={[
@@ -220,8 +222,11 @@ export function App() {
           ]}
         />
       }
+      // Hide side navigation panel (not needed for this dashboard view)
       navigationHide
+      // Hide tools/help panel (not needed for this dashboard view)
       toolsHide
+      // Main content area containing the dashboard layout
       content={
         <ContentLayout
           header={
