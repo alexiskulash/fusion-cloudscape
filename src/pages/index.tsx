@@ -31,6 +31,12 @@ const demos = [
   },
   { route: '/dashboard', title: 'Service Dashboard', description: 'Dashboard layout demo.', category: 'Dashboards' },
   {
+    route: '/administration-dashboard',
+    title: 'Administration Dashboard',
+    description: 'Administrative dashboard with charts and data tables.',
+    category: 'Dashboards',
+  },
+  {
     route: '/delete-one-click',
     title: 'One-click Delete',
     description: 'Delete with a single click.',
@@ -169,18 +175,23 @@ export default function Home() {
                 Cloudscape Design System Demos
               </Header>
 
-              <Flashbar
-                items={[
-                  {
-                    type: 'info',
-                    content:
-                      'Welcome to the Cloudscape Design System demo collection. These patterns and components showcase modern cloud application experiences.',
-                    dismissible: true,
-                    buttonText: 'Learn more',
-                    onButtonClick: () => window.open('https://cloudscape.design', '_blank'),
-                  },
-                ]}
-              />
+              <Box
+                textAlign="center"
+                padding={{ vertical: 'xs', horizontal: 's' }}
+              >
+                <Flashbar
+                  items={[
+                    {
+                      type: 'info',
+                      content:
+                        'Welcome to the Cloudscape Design System demo collection. These patterns and components showcase modern cloud application experiences.',
+                      dismissible: true,
+                      buttonText: 'Learn more',
+                      onButtonClick: () => window.open('https://cloudscape.design', '_blank'),
+                    },
+                  ]}
+                />
+              </Box>
             </SpaceBetween>
           }
         >
