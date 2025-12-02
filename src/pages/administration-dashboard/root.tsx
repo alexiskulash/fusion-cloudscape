@@ -183,9 +183,31 @@ const columnDefinitions = [
   },
 ];
 
+/**
+ * Administration Dashboard Component
+ *
+ * Main component for the administration dashboard page.
+ * Displays a comprehensive view with:
+ * - Breadcrumb navigation
+ * - Page header with refresh action
+ * - Search functionality
+ * - Pagination controls
+ * - Dual chart visualizations (Area Chart and Bar Chart)
+ * - Data table with multi-select capability
+ *
+ * State Management:
+ * - searchValue: Current text in the search input field
+ * - currentPageIndex: Active page number for pagination (1-based indexing)
+ * - selectedItems: Array of currently selected table rows
+ */
 export function App() {
+  // Search input state - stores the filter text entered by user
   const [searchValue, setSearchValue] = useState('');
+
+  // Pagination state - tracks which page of results is currently displayed
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
+
+  // Table selection state - maintains list of selected rows for bulk actions
   const [selectedItems, setSelectedItems] = useState([]);
 
   return (
