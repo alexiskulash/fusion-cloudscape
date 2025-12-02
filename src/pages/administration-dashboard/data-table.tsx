@@ -42,74 +42,75 @@ export function DataTable() {
   return (
     <div className="admin-dashboard-table">
       <Table
-      columnDefinitions={[
-        {
-          id: 'column1',
-          header: 'Column header',
-          cell: item => item.column1,
-          sortingField: 'column1',
-        },
-        {
-          id: 'column2',
-          header: 'Column header',
-          cell: item => item.column2,
-          sortingField: 'column2',
-        },
-        {
-          id: 'column3',
-          header: 'Column header',
-          cell: item => item.column3,
-          sortingField: 'column3',
-        },
-        {
-          id: 'column4',
-          header: 'Column header',
-          cell: item => item.column4,
-          sortingField: 'column4',
-        },
-        {
-          id: 'column5',
-          header: 'Column header',
-          cell: item => item.column5,
-          sortingField: 'column5',
-        },
-        {
-          id: 'column6',
-          header: 'Column header',
-          cell: item => item.column6,
-          sortingField: 'column6',
-        },
-        {
-          id: 'column7',
-          header: 'Column header',
-          cell: item => item.column7,
-          sortingField: 'column7',
-        },
-      ]}
-      items={items}
-      loadingText="Loading resources"
-      selectionType="multi"
-      trackBy="id"
-      empty={
-        <Box textAlign="center" color="inherit">
-          <b>No resources</b>
-          <Box padding={{ bottom: 's' }} variant="p" color="inherit">
-            No resources to display.
+        columnDefinitions={[
+          {
+            id: 'column1',
+            header: 'Column header',
+            cell: item => item.column1,
+            sortingField: 'column1',
+          },
+          {
+            id: 'column2',
+            header: 'Column header',
+            cell: item => item.column2,
+            sortingField: 'column2',
+          },
+          {
+            id: 'column3',
+            header: 'Column header',
+            cell: item => item.column3,
+            sortingField: 'column3',
+          },
+          {
+            id: 'column4',
+            header: 'Column header',
+            cell: item => item.column4,
+            sortingField: 'column4',
+          },
+          {
+            id: 'column5',
+            header: 'Column header',
+            cell: item => item.column5,
+            sortingField: 'column5',
+          },
+          {
+            id: 'column6',
+            header: 'Column header',
+            cell: item => item.column6,
+            sortingField: 'column6',
+          },
+          {
+            id: 'column7',
+            header: 'Column header',
+            cell: item => item.column7,
+            sortingField: 'column7',
+          },
+        ]}
+        items={items}
+        loadingText="Loading resources"
+        selectionType="multi"
+        trackBy="id"
+        empty={
+          <Box textAlign="center" color="inherit">
+            <b>No resources</b>
+            <Box padding={{ bottom: 's' }} variant="p" color="inherit">
+              No resources to display.
+            </Box>
           </Box>
-        </Box>
-      }
-      selectedItems={selectedItems}
-      onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
-      ariaLabels={{
-        selectionGroupLabel: 'Items selection',
-        allItemsSelectionLabel: ({ selectedItems }) => `${selectedItems.length} ${selectedItems.length === 1 ? 'item' : 'items'} selected`,
-        itemSelectionLabel: ({ selectedItems }, item) => {
-          const isItemSelected = selectedItems.filter(i => i.id === item.id).length;
-          return `${item.id} is ${isItemSelected ? '' : 'not'} selected`;
-        },
-      }}
-      variant="full-page"
-      stickyHeader
+        }
+        selectedItems={selectedItems}
+        onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
+        ariaLabels={{
+          selectionGroupLabel: 'Items selection',
+          allItemsSelectionLabel: ({ selectedItems }) =>
+            `${selectedItems.length} ${selectedItems.length === 1 ? 'item' : 'items'} selected`,
+          itemSelectionLabel: ({ selectedItems }, item) => {
+            const isItemSelected = selectedItems.filter(i => i.id === item.id).length;
+            return `${item.id} is ${isItemSelected ? '' : 'not'} selected`;
+          },
+        }}
+        variant="full-page"
+        stickyHeader
       />
     </div>
   );
