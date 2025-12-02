@@ -10,7 +10,7 @@ import Container from '@cloudscape-design/components/container';
 
 export function ChartSection() {
   return (
-    <ColumnLayout columns={2} variant="text-grid">
+    <ColumnLayout columns={2} variant="text-grid" className="admin-dashboard-charts">
       <Container fitHeight>
         <AreaChart
           series={[
