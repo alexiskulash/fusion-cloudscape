@@ -16,9 +16,23 @@ import Box from '@cloudscape-design/components/box';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 
-// Sample data for charts
+/**
+ * Area Chart Data Configuration
+ *
+ * This data structure defines two data series for the area chart visualization.
+ * Each series represents performance metrics from different sites over a 12-period timeline.
+ * The area chart will display these as stacked or overlapping areas showing trends over time.
+ *
+ * Structure:
+ * - title: Display name for the data series in the chart legend
+ * - type: Chart type specification (must be 'area' for area charts)
+ * - data: Array of data points with x (time period) and y (metric value) coordinates
+ * - valueFormatter: Function to format displayed values (converts numbers to fixed decimal places)
+ */
 const areaChartData = [
   {
+    // First data series - Site 1 performance metrics
+    // Shows higher overall values with some fluctuation
     title: 'Site 1',
     type: 'area',
     data: [
@@ -35,9 +49,12 @@ const areaChartData = [
       { x: 'x11', y: 5 },
       { x: 'x12', y: 4.8 },
     ],
+    // Format y-axis values to one decimal place (e.g., 3.0, 4.5)
     valueFormatter: (value: number) => value.toFixed(1),
   },
   {
+    // Second data series - Site 2 performance metrics
+    // Shows lower overall values with declining trend in middle period
     title: 'Site 2',
     type: 'area',
     data: [
@@ -54,10 +71,25 @@ const areaChartData = [
       { x: 'x11', y: 2.5 },
       { x: 'x12', y: 2.2 },
     ],
+    // Format y-axis values to one decimal place for consistency
     valueFormatter: (value: number) => value.toFixed(1),
   },
 ];
 
+/**
+ * Bar Chart Data Configuration
+ *
+ * This data structure defines a single data series for the bar chart visualization.
+ * Each data point represents a discrete metric value for different time periods or categories.
+ * The bar chart displays these as vertical bars showing comparative values.
+ *
+ * Structure:
+ * - x: Category or time period identifier (displayed on x-axis)
+ * - y: Numeric value to be visualized as bar height (displayed on y-axis)
+ *
+ * In this example, the data shows varying performance metrics across 5 periods,
+ * with values ranging from 122 to 257, demonstrating significant variance.
+ */
 const barChartData = [
   { x: 'x1', y: 183 },
   { x: 'x2', y: 257 },
@@ -66,7 +98,20 @@ const barChartData = [
   { x: 'x5', y: 210 },
 ];
 
-// Sample table data
+/**
+ * Table Data Generation
+ *
+ * Generates sample data for the administration dashboard table.
+ * Creates an array of 12 items, each representing a row in the table.
+ * In a real application, this data would come from an API or database.
+ *
+ * Each item contains:
+ * - id: Unique identifier for the row (used for selection and React keys)
+ * - col1-col7: Seven columns of data (placeholder values in this demo)
+ *
+ * Array.from() is used to create exactly 12 rows with consistent structure.
+ * The second parameter is a mapping function that generates each item.
+ */
 const tableItems = Array.from({ length: 12 }, (_, i) => ({
   id: `item-${i + 1}`,
   col1: 'Cell Value',
@@ -78,6 +123,21 @@ const tableItems = Array.from({ length: 12 }, (_, i) => ({
   col7: 'Cell Value',
 }));
 
+/**
+ * Table Column Definitions
+ *
+ * Defines the structure and behavior of each column in the data table.
+ * Each column definition specifies how data should be displayed and sorted.
+ *
+ * Properties:
+ * - id: Unique identifier for the column (must match data field name)
+ * - header: Display text shown in the column header
+ * - cell: Function that extracts and formats the cell value from the row item
+ * - sortingField: Field name used when sorting this column
+ *
+ * In this configuration, all 7 columns follow the same pattern,
+ * displaying string values with sortable headers.
+ */
 const columnDefinitions = [
   {
     id: 'col1',
