@@ -19,6 +19,8 @@ import Icon from '@cloudscape-design/components/icon';
 import Flashbar from '@cloudscape-design/components/flashbar';
 import Link from '@cloudscape-design/components/link';
 
+import '../styles/home-flashbar.scss';
+
 // Demo definitions with category information
 const demos = [
   { route: '/cards', title: 'Card View', description: 'Demo of Cloudscape Cards component.', category: 'Components' },
@@ -175,10 +177,7 @@ export default function Home() {
                 Cloudscape Design System Demos
               </Header>
 
-              <Box
-                textAlign="center"
-                padding={{ vertical: 'xs', horizontal: 's' }}
-              >
+              <div className="custom-flashbar-wrapper">
                 <Flashbar
                   items={[
                     {
@@ -191,7 +190,7 @@ export default function Home() {
                     },
                   ]}
                 />
-              </Box>
+              </div>
             </SpaceBetween>
           }
         >
