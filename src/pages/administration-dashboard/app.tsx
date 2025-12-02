@@ -116,7 +116,7 @@ export function App() {
                 </Button>
               }
             >
-              Administration Dashboard
+              Adminstration Dashboard
             </Header>
 
             <Container>
