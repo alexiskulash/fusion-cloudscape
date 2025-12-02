@@ -40,7 +40,8 @@ export function DataTable() {
   const items = generateTableData();
 
   return (
-    <Table
+    <div className="admin-dashboard-table">
+      <Table
       columnDefinitions={[
         {
           id: 'column1',
@@ -109,6 +110,7 @@ export function DataTable() {
       }}
       variant="full-page"
       stickyHeader
-    />
+      />
+    </div>
   );
 }
