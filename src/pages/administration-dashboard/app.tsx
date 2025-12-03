@@ -47,11 +47,11 @@ const BAR_CHART_DATA = [
     type: 'bar' as const,
     title: 'Site 1',
     data: [
-      { x: 1, y: 183 },
-      { x: 2, y: 257 },
-      { x: 3, y: 213 },
-      { x: 4, y: 122 },
-      { x: 5, y: 210 },
+      { x: 'x1', y: 183 },
+      { x: 'x2', y: 257 },
+      { x: 'x3', y: 213 },
+      { x: 'x4', y: 122 },
+      { x: 'x5', y: 210 },
     ]
   },
   { type: 'threshold' as const, title: 'Performance goal', y: 150 },
@@ -163,7 +163,7 @@ export function App() {
                 <BarChart
                   series={BAR_CHART_DATA}
                   height={300}
-                  xScaleType="linear"
+                  xScaleType="categorical"
                   xTitle="X-axis label"
                   yTitle="y-axis label"
                   ariaLabel="Bar chart showing metrics data"
@@ -175,8 +175,6 @@ export function App() {
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'bar chart',
-                    xTickFormatter: (value) => `x${value}`,
-                    yTickFormatter: (value) => `y${value}`,
                   }}
                 />
               </Container>
