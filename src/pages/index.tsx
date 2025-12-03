@@ -31,6 +31,12 @@ const demos = [
   },
   { route: '/dashboard', title: 'Service Dashboard', description: 'Dashboard layout demo.', category: 'Dashboards' },
   {
+    route: '/administration-dashboard',
+    title: 'Administration Dashboard',
+    description: 'Dashboard with charts and data table.',
+    category: 'Dashboards',
+  },
+  {
     route: '/delete-one-click',
     title: 'One-click Delete',
     description: 'Delete with a single click.',
