@@ -25,19 +25,37 @@ const AREA_CHART_DATA = [
     type: 'area' as const,
     title: 'Site 1',
     data: [
-      { x: 1, y: 95 }, { x: 2, y: 85 }, { x: 3, y: 90 }, { x: 4, y: 88 },
-      { x: 5, y: 92 }, { x: 6, y: 96 }, { x: 7, y: 100 }, { x: 8, y: 98 },
-      { x: 9, y: 102 }, { x: 10, y: 95 }, { x: 11, y: 105 }, { x: 12, y: 98 }
-    ]
+      { x: 1, y: 95 },
+      { x: 2, y: 85 },
+      { x: 3, y: 90 },
+      { x: 4, y: 88 },
+      { x: 5, y: 92 },
+      { x: 6, y: 96 },
+      { x: 7, y: 100 },
+      { x: 8, y: 98 },
+      { x: 9, y: 102 },
+      { x: 10, y: 95 },
+      { x: 11, y: 105 },
+      { x: 12, y: 98 },
+    ],
   },
   {
     type: 'area' as const,
     title: 'Site 2',
     data: [
-      { x: 1, y: 62 }, { x: 2, y: 68 }, { x: 3, y: 75 }, { x: 4, y: 78 },
-      { x: 5, y: 82 }, { x: 6, y: 85 }, { x: 7, y: 88 }, { x: 8, y: 86 },
-      { x: 9, y: 80 }, { x: 10, y: 73 }, { x: 11, y: 65 }, { x: 12, y: 62 }
-    ]
+      { x: 1, y: 62 },
+      { x: 2, y: 68 },
+      { x: 3, y: 75 },
+      { x: 4, y: 78 },
+      { x: 5, y: 82 },
+      { x: 6, y: 85 },
+      { x: 7, y: 88 },
+      { x: 8, y: 86 },
+      { x: 9, y: 80 },
+      { x: 10, y: 73 },
+      { x: 11, y: 65 },
+      { x: 12, y: 62 },
+    ],
   },
   { type: 'threshold' as const, title: 'Performance goal', y: 85 },
 ];
@@ -52,7 +70,7 @@ const BAR_CHART_DATA = [
       { x: 'x3', y: 213 },
       { x: 'x4', y: 122 },
       { x: 'x5', y: 210 },
-    ]
+    ],
   },
   { type: 'threshold' as const, title: 'Performance goal', y: 150 },
 ];
@@ -72,43 +90,43 @@ const COLUMN_DEFINITIONS = [
   {
     id: 'col1',
     header: 'Column header',
-    cell: (item: typeof TABLE_ITEMS[0]) => item.col1,
+    cell: (item: (typeof TABLE_ITEMS)[0]) => item.col1,
     sortingField: 'col1',
   },
   {
     id: 'col2',
     header: 'Column header',
-    cell: (item: typeof TABLE_ITEMS[0]) => item.col2,
+    cell: (item: (typeof TABLE_ITEMS)[0]) => item.col2,
     sortingField: 'col2',
   },
   {
     id: 'col3',
     header: 'Column header',
-    cell: (item: typeof TABLE_ITEMS[0]) => item.col3,
+    cell: (item: (typeof TABLE_ITEMS)[0]) => item.col3,
     sortingField: 'col3',
   },
   {
     id: 'col4',
     header: 'Column header',
-    cell: (item: typeof TABLE_ITEMS[0]) => item.col4,
+    cell: (item: (typeof TABLE_ITEMS)[0]) => item.col4,
     sortingField: 'col4',
   },
   {
     id: 'col5',
     header: 'Column header',
-    cell: (item: typeof TABLE_ITEMS[0]) => item.col5,
+    cell: (item: (typeof TABLE_ITEMS)[0]) => item.col5,
     sortingField: 'col5',
   },
   {
     id: 'col6',
     header: 'Column header',
-    cell: (item: typeof TABLE_ITEMS[0]) => item.col6,
+    cell: (item: (typeof TABLE_ITEMS)[0]) => item.col6,
     sortingField: 'col6',
   },
   {
     id: 'col7',
     header: 'Column header',
-    cell: (item: typeof TABLE_ITEMS[0]) => item.col7,
+    cell: (item: (typeof TABLE_ITEMS)[0]) => item.col7,
     sortingField: 'col7',
   },
 ];
@@ -154,8 +172,8 @@ export function App() {
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'area chart',
-                    xTickFormatter: (value) => `x${value}`,
-                    yTickFormatter: (value) => `y${value}`,
+                    xTickFormatter: value => `x${value}`,
+                    yTickFormatter: value => `y${value}`,
                   }}
                 />
               </Container>
@@ -187,7 +205,9 @@ export function App() {
               onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
               header={
                 <Header
-                  counter={selectedItems.length ? `(${selectedItems.length}/${TABLE_ITEMS.length})` : `(${TABLE_ITEMS.length})`}
+                  counter={
+                    selectedItems.length ? `(${selectedItems.length}/${TABLE_ITEMS.length})` : `(${TABLE_ITEMS.length})`
+                  }
                 >
                   Data
                 </Header>
@@ -207,7 +227,7 @@ export function App() {
                   ariaLabels={{
                     nextPageLabel: 'Next page',
                     previousPageLabel: 'Previous page',
-                    pageLabel: (pageNumber) => `Page ${pageNumber}`,
+                    pageLabel: pageNumber => `Page ${pageNumber}`,
                   }}
                 />
               }
