@@ -20,6 +20,19 @@ import { CustomAppLayout } from '../commons/common-components';
 
 import '@cloudscape-design/global-styles/dark-mode-utils.css';
 
+/**
+ * Area chart data configuration
+ * 
+ * This defines a multi-series area chart with:
+ * - Two data series (Site 1 and Site 2) showing performance metrics over 12 time periods
+ * - A horizontal threshold line at y=85 representing the performance goal
+ * 
+ * Data structure:
+ * - type: 'area' for data series, 'threshold' for reference lines
+ * - title: Series name displayed in the legend
+ * - data: Array of {x, y} coordinate pairs
+ * - y: Threshold value (for threshold type only)
+ */
 const AREA_CHART_DATA = [
   {
     type: 'area' as const,
@@ -57,24 +70,47 @@ const AREA_CHART_DATA = [
       { x: 12, y: 62 },
     ],
   },
+  // Horizontal threshold line showing the performance goal across all x values
   { type: 'threshold' as const, title: 'Performance goal', y: 85 },
 ];
 
+/**
+ * Bar chart data configuration
+ * 
+ * This defines a vertical bar chart with:
+ * - One data series (Site 1) with 5 categorical data points
+ * - A horizontal threshold line at y=150 representing the performance goal
+ * 
+ * Important: Uses categorical x-axis with string values ('x1', 'x2', etc.)
+ * to ensure proper bar rendering and positioning
+ */
 const BAR_CHART_DATA = [
   {
     type: 'bar' as const,
     title: 'Site 1',
     data: [
-      { x: 'x1', y: 183 },
-      { x: 'x2', y: 257 },
-      { x: 'x3', y: 213 },
-      { x: 'x4', y: 122 },
-      { x: 'x5', y: 210 },
+      { x: 'x1', y: 183 }, // Bar 1: 183 units
+      { x: 'x2', y: 257 }, // Bar 2: 257 units (highest)
+      { x: 'x3', y: 213 }, // Bar 3: 213 units
+      { x: 'x4', y: 122 }, // Bar 4: 122 units (lowest)
+      { x: 'x5', y: 210 }, // Bar 5: 210 units
     ],
   },
+  // Horizontal threshold line at y=150 showing the performance goal
   { type: 'threshold' as const, title: 'Performance goal', y: 150 },
 ];
 
+/**
+ * Sample table data
+ * 
+ * Generates 12 rows of placeholder data for demonstration purposes.
+ * Each row contains:
+ * - id: Unique identifier for the row
+ * - col1-col7: Seven columns with 'Cell Value' as placeholder text
+ * 
+ * In a real application, this would be replaced with actual data
+ * fetched from an API or database.
+ */
 const TABLE_ITEMS = Array.from({ length: 12 }, (_, i) => ({
   id: `item-${i + 1}`,
   col1: 'Cell Value',
@@ -86,6 +122,17 @@ const TABLE_ITEMS = Array.from({ length: 12 }, (_, i) => ({
   col7: 'Cell Value',
 }));
 
+/**
+ * Table column definitions
+ * 
+ * Defines the structure and behavior of each column in the data table:
+ * - id: Unique identifier for the column
+ * - header: Column header text displayed in the table
+ * - cell: Function that extracts and formats the cell value from the row data
+ * - sortingField: Field name used for sorting functionality
+ * 
+ * All columns are sortable and follow the same pattern for consistency.
+ */
 const COLUMN_DEFINITIONS = [
   {
     id: 'col1',
@@ -131,9 +178,27 @@ const COLUMN_DEFINITIONS = [
   },
 ];
 
+/**
+ * Administration Dashboard Component
+ * 
+ * Main dashboard page that displays:
+ * 1. Page header with title, description, and refresh action
+ * 2. Two side-by-side charts (area chart and bar chart) in a responsive grid
+ * 3. Data table with filtering, pagination, and multi-select capabilities
+ * 
+ * State management:
+ * - filterText: Stores the current text filter value for the table
+ * - currentPageIndex: Tracks the active page in the pagination
+ * - selectedItems: Maintains the list of selected table rows
+ */
 export function App() {
+  // Table filter state - used for searching/filtering table rows
   const [filterText, setFilterText] = useState('');
+  
+  // Pagination state - tracks which page is currently displayed (1-based index)
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
+  
+  // Multi-select state - stores array of currently selected table items
   const [selectedItems, setSelectedItems] = useState<typeof TABLE_ITEMS>([]);
 
   return (
@@ -141,6 +206,7 @@ export function App() {
       content={
         <ContentLayout
           header={
+            // Page header with title, description, and primary action button
             <Header
               variant="h1"
               description="Collection description"
@@ -154,39 +220,45 @@ export function App() {
             </Header>
           }
         >
+          {/* Main content area with consistent vertical spacing */}
           <SpaceBetween size="l">
+            {/* Two-column responsive grid for side-by-side charts */}
             <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
+              {/* Left column: Area Chart */}
               <Container>
                 <AreaChart
                   series={AREA_CHART_DATA}
                   height={300}
-                  xScaleType="linear"
+                  xScaleType="linear" // Linear scale for numeric x-axis values (1-12)
                   xTitle="X-axis label"
                   yTitle="y-axis label"
                   ariaLabel="Area chart showing performance data"
                   legendTitle="Legend"
-                  hideFilter={false}
+                  hideFilter={false} // Show series filter dropdown
                   i18nStrings={{
                     filterLabel: 'Filter displayed data',
                     filterPlaceholder: 'Filter data',
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'area chart',
+                    // Format axis tick labels (e.g., "1" becomes "x1")
                     xTickFormatter: value => `x${value}`,
                     yTickFormatter: value => `y${value}`,
                   }}
                 />
               </Container>
+              
+              {/* Right column: Bar Chart */}
               <Container>
                 <BarChart
                   series={BAR_CHART_DATA}
                   height={300}
-                  xScaleType="categorical"
+                  xScaleType="categorical" // Categorical scale for string x-axis values
                   xTitle="X-axis label"
                   yTitle="y-axis label"
                   ariaLabel="Bar chart showing metrics data"
                   legendTitle="Legend"
-                  hideFilter={false}
+                  hideFilter={false} // Show series filter dropdown
                   i18nStrings={{
                     filterLabel: 'Filter displayed data',
                     filterPlaceholder: 'Filter data',
@@ -197,14 +269,17 @@ export function App() {
                 />
               </Container>
             </Grid>
+            
+            {/* Data table with multi-select, filtering, and pagination */}
             <Table
               columnDefinitions={COLUMN_DEFINITIONS}
               items={TABLE_ITEMS}
-              selectionType="multi"
+              selectionType="multi" // Enable checkbox selection for multiple rows
               selectedItems={selectedItems}
               onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
               header={
                 <Header
+                  // Show count of selected items or total items in header
                   counter={
                     selectedItems.length ? `(${selectedItems.length}/${TABLE_ITEMS.length})` : `(${TABLE_ITEMS.length})`
                   }
@@ -213,6 +288,7 @@ export function App() {
                 </Header>
               }
               filter={
+                // Search/filter input above the table
                 <TextFilter
                   filteringText={filterText}
                   onChange={({ detail }) => setFilterText(detail.filteringText)}
@@ -220,10 +296,11 @@ export function App() {
                 />
               }
               pagination={
+                // Pagination controls below the table
                 <Pagination
                   currentPageIndex={currentPageIndex}
                   onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                  pagesCount={5}
+                  pagesCount={5} // Total number of pages
                   ariaLabels={{
                     nextPageLabel: 'Next page',
                     previousPageLabel: 'Previous page',
@@ -236,6 +313,7 @@ export function App() {
         </ContentLayout>
       }
       breadcrumbs={
+        // Breadcrumb navigation showing: Service > Administrative Dashboard
         <Breadcrumbs
           items={[
             { text: 'Service', href: '#/' },
@@ -243,8 +321,8 @@ export function App() {
           ]}
         />
       }
-      navigationHide
-      toolsHide
+      navigationHide // Hide side navigation panel
+      toolsHide // Hide help/tools panel
     />
   );
 }
