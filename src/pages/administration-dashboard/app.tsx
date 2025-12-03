@@ -22,11 +22,11 @@ import '@cloudscape-design/global-styles/dark-mode-utils.css';
 
 /**
  * Area chart data configuration
- * 
+ *
  * This defines a multi-series area chart with:
  * - Two data series (Site 1 and Site 2) showing performance metrics over 12 time periods
  * - A horizontal threshold line at y=85 representing the performance goal
- * 
+ *
  * Data structure:
  * - type: 'area' for data series, 'threshold' for reference lines
  * - title: Series name displayed in the legend
@@ -76,11 +76,11 @@ const AREA_CHART_DATA = [
 
 /**
  * Bar chart data configuration
- * 
+ *
  * This defines a vertical bar chart with:
  * - One data series (Site 1) with 5 categorical data points
  * - A horizontal threshold line at y=150 representing the performance goal
- * 
+ *
  * Important: Uses categorical x-axis with string values ('x1', 'x2', etc.)
  * to ensure proper bar rendering and positioning
  */
@@ -102,12 +102,12 @@ const BAR_CHART_DATA = [
 
 /**
  * Sample table data
- * 
+ *
  * Generates 12 rows of placeholder data for demonstration purposes.
  * Each row contains:
  * - id: Unique identifier for the row
  * - col1-col7: Seven columns with 'Cell Value' as placeholder text
- * 
+ *
  * In a real application, this would be replaced with actual data
  * fetched from an API or database.
  */
@@ -124,13 +124,13 @@ const TABLE_ITEMS = Array.from({ length: 12 }, (_, i) => ({
 
 /**
  * Table column definitions
- * 
+ *
  * Defines the structure and behavior of each column in the data table:
  * - id: Unique identifier for the column
  * - header: Column header text displayed in the table
  * - cell: Function that extracts and formats the cell value from the row data
  * - sortingField: Field name used for sorting functionality
- * 
+ *
  * All columns are sortable and follow the same pattern for consistency.
  */
 const COLUMN_DEFINITIONS = [
@@ -180,12 +180,12 @@ const COLUMN_DEFINITIONS = [
 
 /**
  * Administration Dashboard Component
- * 
+ *
  * Main dashboard page that displays:
  * 1. Page header with title, description, and refresh action
  * 2. Two side-by-side charts (area chart and bar chart) in a responsive grid
  * 3. Data table with filtering, pagination, and multi-select capabilities
- * 
+ *
  * State management:
  * - filterText: Stores the current text filter value for the table
  * - currentPageIndex: Tracks the active page in the pagination
@@ -194,10 +194,10 @@ const COLUMN_DEFINITIONS = [
 export function App() {
   // Table filter state - used for searching/filtering table rows
   const [filterText, setFilterText] = useState('');
-  
+
   // Pagination state - tracks which page is currently displayed (1-based index)
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
-  
+
   // Multi-select state - stores array of currently selected table items
   const [selectedItems, setSelectedItems] = useState<typeof TABLE_ITEMS>([]);
 
@@ -247,7 +247,7 @@ export function App() {
                   }}
                 />
               </Container>
-              
+
               {/* Right column: Bar Chart */}
               <Container>
                 <BarChart
@@ -269,7 +269,7 @@ export function App() {
                 />
               </Container>
             </Grid>
-            
+
             {/* Data table with multi-select, filtering, and pagination */}
             <Table
               columnDefinitions={COLUMN_DEFINITIONS}
