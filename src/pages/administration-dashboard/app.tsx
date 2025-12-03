@@ -21,19 +21,39 @@ import { CustomAppLayout } from '../commons/common-components';
 import '@cloudscape-design/global-styles/dark-mode-utils.css';
 
 const AREA_CHART_DATA = [
-  { type: 'area' as const, title: 'Site 1', data: Array.from({ length: 12 }, (_, i) => ({ x: i + 1, y: Math.floor(Math.random() * 40) + 60 })) },
-  { type: 'area' as const, title: 'Site 2', data: Array.from({ length: 12 }, (_, i) => ({ x: i + 1, y: Math.floor(Math.random() * 40) + 40 })) },
-  { type: 'threshold' as const, title: 'Performance goal', y: 70 },
+  {
+    type: 'area' as const,
+    title: 'Site 1',
+    data: [
+      { x: 1, y: 95 }, { x: 2, y: 85 }, { x: 3, y: 90 }, { x: 4, y: 88 },
+      { x: 5, y: 92 }, { x: 6, y: 96 }, { x: 7, y: 100 }, { x: 8, y: 98 },
+      { x: 9, y: 102 }, { x: 10, y: 95 }, { x: 11, y: 105 }, { x: 12, y: 98 }
+    ]
+  },
+  {
+    type: 'area' as const,
+    title: 'Site 2',
+    data: [
+      { x: 1, y: 62 }, { x: 2, y: 68 }, { x: 3, y: 75 }, { x: 4, y: 78 },
+      { x: 5, y: 82 }, { x: 6, y: 85 }, { x: 7, y: 88 }, { x: 8, y: 86 },
+      { x: 9, y: 80 }, { x: 10, y: 73 }, { x: 11, y: 65 }, { x: 12, y: 62 }
+    ]
+  },
+  { type: 'threshold' as const, title: 'Performance goal', y: 85 },
 ];
 
 const BAR_CHART_DATA = [
-  { type: 'bar' as const, title: 'Site 1', data: [
-    { x: 'x1', y: 183 },
-    { x: 'x2', y: 257 },
-    { x: 'x3', y: 213 },
-    { x: 'x4', y: 122 },
-    { x: 'x5', y: 210 },
-  ]},
+  {
+    type: 'bar' as const,
+    title: 'Site 1',
+    data: [
+      { x: 1, y: 183 },
+      { x: 2, y: 257 },
+      { x: 3, y: 213 },
+      { x: 4, y: 122 },
+      { x: 5, y: 210 },
+    ]
+  },
   { type: 'threshold' as const, title: 'Performance goal', y: 150 },
 ];
 
@@ -122,11 +142,12 @@ export function App() {
                 <AreaChart
                   series={AREA_CHART_DATA}
                   height={300}
-                  xScaleType="categorical"
+                  xScaleType="linear"
                   xTitle="X-axis label"
                   yTitle="y-axis label"
                   ariaLabel="Area chart showing performance data"
                   legendTitle="Legend"
+                  hideFilter={false}
                   i18nStrings={{
                     filterLabel: 'Filter displayed data',
                     filterPlaceholder: 'Filter data',
@@ -142,17 +163,20 @@ export function App() {
                 <BarChart
                   series={BAR_CHART_DATA}
                   height={300}
-                  xScaleType="categorical"
+                  xScaleType="linear"
                   xTitle="X-axis label"
                   yTitle="y-axis label"
                   ariaLabel="Bar chart showing metrics data"
                   legendTitle="Legend"
+                  hideFilter={false}
                   i18nStrings={{
                     filterLabel: 'Filter displayed data',
                     filterPlaceholder: 'Filter data',
                     filterSelectedAriaLabel: 'selected',
                     legendAriaLabel: 'Legend',
                     chartAriaRoleDescription: 'bar chart',
+                    xTickFormatter: (value) => `x${value}`,
+                    yTickFormatter: (value) => `y${value}`,
                   }}
                 />
               </Container>
