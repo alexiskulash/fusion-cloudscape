@@ -203,26 +203,23 @@ export function App() {
             Adminstration Dashboard
           </Header>
 
-          <Container>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-              <div style={{ flex: 1, maxWidth: '400px' }}>
-                <TextFilter
-                  {...filterProps}
-                  filteringPlaceholder="Placeholder"
-                  filteringAriaLabel="Filter data"
-                  countText={`${filteredItemsCount} matches`}
-                />
-              </div>
-              <Pagination
-                {...paginationProps}
-                ariaLabels={{
-                  nextPageLabel: 'Next page',
-                  previousPageLabel: 'Previous page',
-                  pageLabel: pageNumber => `Page ${pageNumber}`,
-                }}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
+            <div style={{ flex: 1, maxWidth: '500px' }}>
+              <TextFilter
+                {...filterProps}
+                filteringPlaceholder="Placeholder"
+                filteringAriaLabel="Filter data"
               />
             </div>
-          </Container>
+            <Pagination
+              {...paginationProps}
+              ariaLabels={{
+                nextPageLabel: 'Next page',
+                previousPageLabel: 'Previous page',
+                pageLabel: pageNumber => `Page ${pageNumber}`,
+              }}
+            />
+          </div>
 
           <ColumnLayout columns={2} variant="default">
             <Container>
