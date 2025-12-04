@@ -254,7 +254,7 @@ export function App() {
               <BarChart
                 {...commonChartProps}
                 series={barChartSeries}
-                xDomain={[1, 2, 3, 4, 5]}
+                xDomain={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
                 yDomain={[0, 300]}
                 xScaleType="categorical"
                 xTitle="X-axis label"
