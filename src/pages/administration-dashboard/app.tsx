@@ -212,11 +212,7 @@ export function App() {
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
             <div style={{ flex: 1, maxWidth: '500px' }}>
-              <TextFilter
-                {...filterProps}
-                filteringPlaceholder="Placeholder"
-                filteringAriaLabel="Filter data"
-              />
+              <TextFilter {...filterProps} filteringPlaceholder="Placeholder" filteringAriaLabel="Filter data" />
             </div>
             <Pagination
               {...paginationProps}
