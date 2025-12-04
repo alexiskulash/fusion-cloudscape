@@ -46,7 +46,18 @@ export function App() {
         toolsOpen={toolsOpen}
         tools={toolsContent}
         onToolsChange={({ detail }) => setToolsOpen(detail.open)}
-        notifications={<Notifications />}
+        notifications={
+          <Notifications
+            customNotifications={[
+              {
+                type: 'warning',
+                content: 'This dashboard is currently in maintenance mode. Some features may be temporarily unavailable.',
+                dismissible: true,
+                id: 'dashboard-alert',
+              },
+            ]}
+          />
+        }
         content={
           <Content
             layout={filteredLayout ?? null}
