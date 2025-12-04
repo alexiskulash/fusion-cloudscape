@@ -17,7 +17,7 @@ import Table from '@cloudscape-design/components/table';
 import TextFilter from '@cloudscape-design/components/text-filter';
 
 import { CustomAppLayout } from '../commons/common-components';
-import { barChartInstructions, commonChartProps } from '../dashboard/widgets/chart-commons';
+import { commonChartProps } from '../dashboard/widgets/chart-commons';
 
 import '../../styles/base.scss';
 
@@ -25,24 +25,6 @@ import '../../styles/base.scss';
 const areaChartSeries: AreaChartProps<number>['series'] = [
   {
     title: 'Site 1',
-    type: 'area',
-    data: [
-      { x: 1, y: 3 },
-      { x: 2, y: 3.5 },
-      { x: 3, y: 3.8 },
-      { x: 4, y: 4.2 },
-      { x: 5, y: 4.5 },
-      { x: 6, y: 5 },
-      { x: 7, y: 4.8 },
-      { x: 8, y: 4.5 },
-      { x: 9, y: 4.2 },
-      { x: 10, y: 3.8 },
-      { x: 11, y: 3.5 },
-      { x: 12, y: 3.2 },
-    ],
-  },
-  {
-    title: 'Site 2',
     type: 'area',
     data: [
       { x: 1, y: 2 },
@@ -57,6 +39,24 @@ const areaChartSeries: AreaChartProps<number>['series'] = [
       { x: 10, y: 3.5 },
       { x: 11, y: 3.2 },
       { x: 12, y: 2.8 },
+    ],
+  },
+  {
+    title: 'Site 2',
+    type: 'area',
+    data: [
+      { x: 1, y: 3 },
+      { x: 2, y: 3.5 },
+      { x: 3, y: 3.8 },
+      { x: 4, y: 4.2 },
+      { x: 5, y: 4.5 },
+      { x: 6, y: 5 },
+      { x: 7, y: 4.8 },
+      { x: 8, y: 4.5 },
+      { x: 9, y: 4.2 },
+      { x: 10, y: 3.8 },
+      { x: 11, y: 3.5 },
+      { x: 12, y: 3.2 },
     ],
   },
 ];
@@ -200,89 +200,88 @@ export function App() {
               </Button>
             }
           >
-            Administration Dashboard
+            Adminstration Dashboard
           </Header>
 
           <Container>
-            <SpaceBetween size="l">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+              <div style={{ flex: 1, maxWidth: '400px' }}>
                 <TextFilter
                   {...filterProps}
                   filteringPlaceholder="Placeholder"
                   filteringAriaLabel="Filter data"
                   countText={`${filteredItemsCount} matches`}
                 />
-                <Pagination
-                  {...paginationProps}
-                  ariaLabels={{
-                    nextPageLabel: 'Next page',
-                    previousPageLabel: 'Previous page',
-                    pageLabel: pageNumber => `Page ${pageNumber}`,
-                  }}
-                />
               </div>
-
-              <ColumnLayout columns={2} variant="default">
-                <Container>
-                  <AreaChart
-                    {...commonChartProps}
-                    series={areaChartSeries}
-                    xDomain={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
-                    yDomain={[0, 6]}
-                    xScaleType="categorical"
-                    xTitle="X-axis label"
-                    yTitle="y-axis label"
-                    height={300}
-                    hideFilter
-                    i18nStrings={{
-                      ...commonChartProps.i18nStrings,
-                      chartAriaRoleDescription: 'area chart',
-                      xTickFormatter: (value: number) => `x${value}`,
-                      yTickFormatter: (value: number) => `y${value}`,
-                    }}
-                    ariaLabel="Administration metrics area chart"
-                  />
-                </Container>
-
-                <Container>
-                  <BarChart
-                    {...commonChartProps}
-                    series={barChartSeries}
-                    xDomain={[1, 2, 3, 4, 5]}
-                    yDomain={[0, 300]}
-                    xScaleType="categorical"
-                    xTitle="X-axis label"
-                    yTitle="y-axis label"
-                    height={300}
-                    hideFilter
-                    i18nStrings={{
-                      ...commonChartProps.i18nStrings,
-                      chartAriaRoleDescription: 'bar chart',
-                      xTickFormatter: (value: number) => `x${value}`,
-                    }}
-                    ariaLabel="Administration metrics bar chart"
-                    ariaDescription={`Bar chart showing metrics. ${barChartInstructions}`}
-                  />
-                </Container>
-              </ColumnLayout>
-
-              <Table
-                {...collectionProps}
-                columnDefinitions={columnDefinitions}
-                items={items}
-                selectionType="multi"
-                selectedItems={selectedItems}
-                onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
-                variant="container"
+              <Pagination
+                {...paginationProps}
                 ariaLabels={{
-                  selectionGroupLabel: 'Items selection',
-                  allItemsSelectionLabel: ({ selectedItems }) =>
-                    `${selectedItems.length} ${selectedItems.length === 1 ? 'item' : 'items'} selected`,
-                  itemSelectionLabel: ({ selectedItems }, item) => item.id,
+                  nextPageLabel: 'Next page',
+                  previousPageLabel: 'Previous page',
+                  pageLabel: pageNumber => `Page ${pageNumber}`,
                 }}
               />
-            </SpaceBetween>
+            </div>
           </Container>
+
+          <ColumnLayout columns={2} variant="default">
+            <Container>
+              <AreaChart
+                {...commonChartProps}
+                series={areaChartSeries}
+                xDomain={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+                yDomain={[0, 6]}
+                xScaleType="categorical"
+                xTitle="X-axis label"
+                yTitle="y-axis label"
+                height={300}
+                hideFilter
+                i18nStrings={{
+                  ...commonChartProps.i18nStrings,
+                  chartAriaRoleDescription: 'area chart',
+                  xTickFormatter: (value: number) => `x${value}`,
+                  yTickFormatter: (value: number) => `y${value}`,
+                }}
+                ariaLabel="Administration metrics area chart"
+              />
+            </Container>
+
+            <Container>
+              <BarChart
+                {...commonChartProps}
+                series={barChartSeries}
+                xDomain={[1, 2, 3, 4, 5]}
+                yDomain={[0, 300]}
+                xScaleType="categorical"
+                xTitle="X-axis label"
+                yTitle="y-axis label"
+                height={300}
+                hideFilter
+                i18nStrings={{
+                  ...commonChartProps.i18nStrings,
+                  chartAriaRoleDescription: 'bar chart',
+                  xTickFormatter: (value: number) => `x${value}`,
+                }}
+                ariaLabel="Administration metrics bar chart"
+              />
+            </Container>
+          </ColumnLayout>
+
+          <Table
+            {...collectionProps}
+            columnDefinitions={columnDefinitions}
+            items={items}
+            selectionType="multi"
+            selectedItems={selectedItems}
+            onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
+            variant="container"
+            ariaLabels={{
+              selectionGroupLabel: 'Items selection',
+              allItemsSelectionLabel: ({ selectedItems }) =>
+                `${selectedItems.length} ${selectedItems.length === 1 ? 'item' : 'items'} selected`,
+              itemSelectionLabel: ({ selectedItems }, item) => item.id,
+            }}
+          />
         </SpaceBetween>
       }
     />
