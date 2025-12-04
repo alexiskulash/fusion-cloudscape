@@ -72,6 +72,13 @@ const barChartSeries: BarChartProps<number>['series'] = [
       { x: 3, y: 213 },
       { x: 4, y: 122 },
       { x: 5, y: 210 },
+      { x: 6, y: 245 },
+      { x: 7, y: 198 },
+      { x: 8, y: 276 },
+      { x: 9, y: 234 },
+      { x: 10, y: 167 },
+      { x: 11, y: 221 },
+      { x: 12, y: 189 },
     ],
   },
 ];
