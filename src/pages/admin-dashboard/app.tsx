@@ -15,6 +15,7 @@ import Pagination from '@cloudscape-design/components/pagination';
 import Grid from '@cloudscape-design/components/grid';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
+import TextFilter from '@cloudscape-design/components/text-filter';
 
 export function App() {
   const [searchValue, setSearchValue] = useState('');
