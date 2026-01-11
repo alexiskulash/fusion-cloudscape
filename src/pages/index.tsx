@@ -18,6 +18,7 @@ import Container from '@cloudscape-design/components/container';
 import Icon from '@cloudscape-design/components/icon';
 import Flashbar from '@cloudscape-design/components/flashbar';
 import Link from '@cloudscape-design/components/link';
+import Toggle from '@cloudscape-design/components/toggle';
 
 // Demo definitions with category information
 const demos = [
@@ -137,6 +138,7 @@ export default function Home() {
   const [filterText, setFilterText] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
+  const [isGridView, setIsGridView] = useState(true);
   const itemsPerPage = 12;
 
   // Filter demos based on filter text and selected category
@@ -249,12 +251,16 @@ export default function Home() {
                   },
                 ],
               }}
-              cardsPerRow={[
-                { cards: 1, minWidth: 0 },
-                { cards: 2, minWidth: 600 },
-                { cards: 3, minWidth: 900 },
-                { cards: 4, minWidth: 1200 },
-              ]}
+              cardsPerRow={
+                isGridView
+                  ? [
+                      { cards: 1, minWidth: 0 },
+                      { cards: 2, minWidth: 600 },
+                      { cards: 3, minWidth: 900 },
+                      { cards: 4, minWidth: 1200 },
+                    ]
+                  : [{ cards: 1, minWidth: 0 }]
+              }
               items={paginatedDemos}
               loadingText="Loading demos"
               trackBy="title"
@@ -283,7 +289,20 @@ export default function Home() {
                 />
               }
               header={
-                <Header counter={filteredDemos.length > 0 ? `(${filteredDemos.length})` : undefined}>
+                <Header
+                  counter={filteredDemos.length > 0 ? `(${filteredDemos.length})` : undefined}
+                  actions={
+                    activeCategory === 'Dashboards' ? (
+                      <Toggle
+                        checked={isGridView}
+                        onChange={({ detail }) => setIsGridView(detail.checked)}
+                        ariaLabel="Toggle between grid and list view"
+                      >
+                        Grid view
+                      </Toggle>
+                    ) : undefined
+                  }
+                >
                   Available demos
                 </Header>
               }
