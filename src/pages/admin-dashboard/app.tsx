@@ -65,11 +65,16 @@ const areaChartSeries = [
       { x: 11, y: 5.3 },
       { x: 12, y: 4.9 },
     ],
-    valueFormatter: (value: number) => `${value.toFixed(1)}`,
+    valueFormatter: (value: number) => `${value.toFixed(1)}`, // Format tooltip values to 1 decimal
   },
+  /**
+   * Site 2 Data Series
+   * Represents performance metrics for the second site over 12 time periods.
+   * Values range from 1.8 to 5.5, showing similar upward trend to Site 1.
+   */
   {
-    type: 'area' as const,
-    title: 'Site 2',
+    type: 'area' as const, // Chart type: area (filled region under line)
+    title: 'Site 2', // Legend label
     data: [
       { x: 1, y: 1.8 },
       { x: 2, y: 2.2 },
@@ -84,13 +89,18 @@ const areaChartSeries = [
       { x: 11, y: 5.2 },
       { x: 12, y: 4.8 },
     ],
-    valueFormatter: (value: number) => `${value.toFixed(1)}`,
+    valueFormatter: (value: number) => `${value.toFixed(1)}`, // Format tooltip values to 1 decimal
   },
+  /**
+   * Performance Goal Threshold
+   * Horizontal line marking the target performance level.
+   * Helps users quickly identify if sites are meeting goals.
+   */
   {
-    type: 'threshold' as const,
-    title: 'Performance goal',
-    y: 3.5,
-    valueFormatter: (value: number) => `${value.toFixed(1)}`,
+    type: 'threshold' as const, // Chart type: horizontal threshold line
+    title: 'Performance goal', // Legend label
+    y: 3.5, // Y-axis value where line is drawn
+    valueFormatter: (value: number) => `${value.toFixed(1)}`, // Format tooltip values to 1 decimal
   },
 ];
 
@@ -103,9 +113,14 @@ const areaChartSeries = [
  * Useful for comparing discrete values across different categories.
  */
 const barChartSeries = [
+  /**
+   * Site 1 Bar Data Series
+   * Displays discrete metric values across 5 different categories.
+   * Values represent specific measurements at different points (x1-x5).
+   */
   {
-    type: 'bar' as const,
-    title: 'Site 1',
+    type: 'bar' as const, // Chart type: vertical bars
+    title: 'Site 1', // Legend label
     data: [
       { x: 'x1', y: 183 },
       { x: 'x2', y: 257 },
@@ -113,13 +128,18 @@ const barChartSeries = [
       { x: 'x4', y: 122 },
       { x: 'x5', y: 210 },
     ],
-    valueFormatter: (value: number) => `${value}`,
+    valueFormatter: (value: number) => `${value}`, // Format tooltip values as integers
   },
+  /**
+   * Performance Goal Threshold for Bar Chart
+   * Horizontal line at y=200 marking the target performance level.
+   * Provides quick visual reference for comparing bar heights.
+   */
   {
-    type: 'threshold' as const,
-    title: 'Performance goal',
-    y: 200,
-    valueFormatter: (value: number) => `${value}`,
+    type: 'threshold' as const, // Chart type: horizontal threshold line
+    title: 'Performance goal', // Legend label
+    y: 200, // Y-axis value where line is drawn
+    valueFormatter: (value: number) => `${value}`, // Format tooltip values as integers
   },
 ];
 
