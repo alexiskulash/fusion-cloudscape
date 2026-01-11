@@ -16,7 +16,7 @@ import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
 import Input from '@cloudscape-design/components/input';
 
-// Mock data for charts
+// Mock data for area chart matching Figma design
 const areaChartSeries = [
   {
     type: 'area' as const,
@@ -24,12 +24,12 @@ const areaChartSeries = [
     data: [
       { x: 1, y: 2 },
       { x: 2, y: 2.5 },
-      { x: 3, y: 3 },
-      { x: 4, y: 4 },
-      { x: 5, y: 4.5 },
-      { x: 6, y: 5 },
-      { x: 7, y: 5.2 },
-      { x: 8, y: 5 },
+      { x: 3, y: 2.8 },
+      { x: 4, y: 3.2 },
+      { x: 5, y: 3.5 },
+      { x: 6, y: 3.8 },
+      { x: 7, y: 4.2 },
+      { x: 8, y: 4.5 },
       { x: 9, y: 4.8 },
       { x: 10, y: 5.1 },
       { x: 11, y: 5.3 },
@@ -43,16 +43,16 @@ const areaChartSeries = [
     data: [
       { x: 1, y: 1.8 },
       { x: 2, y: 2.2 },
-      { x: 3, y: 2.8 },
-      { x: 4, y: 3.2 },
-      { x: 5, y: 3.8 },
-      { x: 6, y: 4.2 },
-      { x: 7, y: 4.5 },
-      { x: 8, y: 4.8 },
-      { x: 9, y: 5.2 },
-      { x: 10, y: 5.5 },
-      { x: 11, y: 5.8 },
-      { x: 12, y: 5.5 },
+      { x: 3, y: 2.6 },
+      { x: 4, y: 2.9 },
+      { x: 5, y: 3.3 },
+      { x: 6, y: 3.7 },
+      { x: 7, y: 4.0 },
+      { x: 8, y: 4.3 },
+      { x: 9, y: 4.7 },
+      { x: 10, y: 5.0 },
+      { x: 11, y: 5.2 },
+      { x: 12, y: 4.8 },
     ],
     valueFormatter: (value: number) => `${value.toFixed(1)}`,
   },
@@ -64,6 +64,7 @@ const areaChartSeries = [
   },
 ];
 
+// Mock data for bar chart matching Figma design
 const barChartSeries = [
   {
     type: 'bar' as const,
@@ -115,7 +116,8 @@ export function App() {
     Object.values(item).some(value => String(value).toLowerCase().includes(filteringText.toLowerCase())),
   );
 
-  const paginatedItems = filteredItems.slice((currentPageIndex - 1) * 10, currentPageIndex * 10);
+  const itemsPerPage = 10;
+  const paginatedItems = filteredItems.slice((currentPageIndex - 1) * itemsPerPage, currentPageIndex * itemsPerPage);
 
   const handleRefresh = () => {
     setIsRefreshing(true);
@@ -125,7 +127,7 @@ export function App() {
   };
 
   return (
-    <div>
+    <div className="admin-dashboard">
       {/* Top Navigation */}
       <TopNavigation
         identity={{
@@ -183,72 +185,71 @@ export function App() {
       />
 
       {/* Main Content */}
-      <div style={{ padding: '40px 80px' }}>
+      <div className="dashboard-content">
         <SpaceBetween size="l">
           {/* Breadcrumbs */}
           <BreadcrumbGroup
             items={[
-              { text: 'Service', href: '#' },
+              { text: 'Service', href: '/' },
               { text: 'Administrative Dashboard', href: '#' },
             ]}
             ariaLabel="Breadcrumbs"
           />
 
-          {/* Header with search and pagination */}
-          <SpaceBetween size="m">
-            <Header
-              variant="h1"
-              description="Collection description"
-              actions={
-                <Button
-                  variant="primary"
-                  iconName="external"
-                  iconAlign="right"
-                  loading={isRefreshing}
-                  onClick={handleRefresh}
-                >
-                  Refresh Data
-                </Button>
-              }
-            >
-              Administration Dashboard
-            </Header>
+          {/* Header with description and action button */}
+          <Header
+            variant="h1"
+            description="Collection description"
+            actions={
+              <Button
+                variant="primary"
+                iconName="external"
+                iconAlign="right"
+                loading={isRefreshing}
+                onClick={handleRefresh}
+              >
+                Refresh Data
+              </Button>
+            }
+          >
+            Administration Dashboard
+          </Header>
 
-            <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
-              <TextFilter
-                filteringText={filteringText}
-                filteringPlaceholder="Placeholder"
-                filteringAriaLabel="Filter items"
-                onChange={({ detail }) => {
-                  setFilteringText(detail.filteringText);
-                  setCurrentPageIndex(1);
+          {/* Search and Pagination Controls */}
+          <Grid gridDefinition={[{ colspan: { default: 12, xxs: 12, xs: 6 } }, { colspan: { default: 12, xxs: 12, xs: 6 } }]}>
+            <TextFilter
+              filteringText={filteringText}
+              filteringPlaceholder="Placeholder"
+              filteringAriaLabel="Filter items"
+              onChange={({ detail }) => {
+                setFilteringText(detail.filteringText);
+                setCurrentPageIndex(1);
+              }}
+            />
+            <div className="pagination-controls">
+              <Pagination
+                currentPageIndex={currentPageIndex}
+                onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
+                pagesCount={5}
+                ariaLabels={{
+                  nextPageLabel: 'Next page',
+                  previousPageLabel: 'Previous page',
+                  pageLabel: pageNumber => `Page ${pageNumber}`,
                 }}
               />
-              <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '8px' }}>
-                <Pagination
-                  currentPageIndex={currentPageIndex}
-                  onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                  pagesCount={5}
-                  ariaLabels={{
-                    nextPageLabel: 'Next page',
-                    previousPageLabel: 'Previous page',
-                    pageLabel: pageNumber => `Page ${pageNumber}`,
-                  }}
-                />
-                <div
-                  style={{
-                    width: '2px',
-                    height: '32px',
-                    backgroundColor: 'var(--awsui-color-border-divider-default, #414d5c)',
-                  }}
-                />
-                <Button iconName="settings" variant="icon" ariaLabel="Settings" />
-              </div>
-            </Grid>
-          </SpaceBetween>
+              <div className="divider" />
+              <Button iconName="settings" variant="icon" ariaLabel="Settings" />
+            </div>
+          </Grid>
 
-          {/* Charts */}
-          <Grid gridDefinition={[{ colspan: 6 }, { colspan: 6 }]}>
+          {/* Charts Section */}
+          <Grid
+            gridDefinition={[
+              { colspan: { default: 12, xxs: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
+              { colspan: { default: 12, xxs: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
+            ]}
+          >
+            {/* Area Chart */}
             <Container>
               <AreaChart
                 series={areaChartSeries}
@@ -257,7 +258,7 @@ export function App() {
                 yTitle="y-axis label"
                 xScaleType="linear"
                 yScaleType="linear"
-                ariaLabel="Area chart"
+                ariaLabel="Area chart showing site performance"
                 i18nStrings={{
                   filterLabel: 'Filter displayed data',
                   filterPlaceholder: 'Filter data',
@@ -270,6 +271,7 @@ export function App() {
               />
             </Container>
 
+            {/* Bar Chart */}
             <Container>
               <BarChart
                 series={barChartSeries}
@@ -278,7 +280,7 @@ export function App() {
                 yTitle="y-axis label"
                 xScaleType="categorical"
                 yScaleType="linear"
-                ariaLabel="Bar chart"
+                ariaLabel="Bar chart showing site metrics"
                 i18nStrings={{
                   filterLabel: 'Filter displayed data',
                   filterPlaceholder: 'Filter data',
@@ -291,15 +293,9 @@ export function App() {
             </Container>
           </Grid>
 
-          {/* Table */}
+          {/* Data Table */}
           <Table
             columnDefinitions={[
-              {
-                id: 'selection',
-                header: '',
-                cell: () => null,
-                width: 50,
-              },
               {
                 id: 'column1',
                 header: 'Column header',
@@ -348,10 +344,14 @@ export function App() {
             selectedItems={selectedItems}
             onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
             trackBy="id"
+            sortingDisabled={false}
             empty={
               <Box textAlign="center" color="inherit">
                 <Box padding={{ bottom: 's' }} variant="p" color="inherit">
                   <b>No data</b>
+                </Box>
+                <Box variant="p" color="inherit">
+                  No data available to display
                 </Box>
               </Box>
             }
