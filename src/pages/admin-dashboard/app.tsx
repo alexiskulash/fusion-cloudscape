@@ -216,7 +216,12 @@ export function App() {
           </Header>
 
           {/* Search and Pagination Controls */}
-          <Grid gridDefinition={[{ colspan: { default: 12, xxs: 12, xs: 6 } }, { colspan: { default: 12, xxs: 12, xs: 6 } }]}>
+          <Grid
+            gridDefinition={[
+              { colspan: { default: 12, xxs: 12, xs: 6 } },
+              { colspan: { default: 12, xxs: 12, xs: 6 } },
+            ]}
+          >
             <TextFilter
               filteringText={filteringText}
               filteringPlaceholder="Placeholder"
