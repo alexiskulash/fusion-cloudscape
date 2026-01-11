@@ -214,7 +214,15 @@ export function App() {
 
   return (
     <div className="admin-dashboard">
-      {/* Top Navigation */}
+      {/*
+        Top Navigation Bar
+
+        Provides global navigation with:
+        - Service branding and logo
+        - Global search functionality
+        - Utility controls (notifications, settings, user profile)
+        - External link to related resources
+      */}
       <TopNavigation
         identity={{
           href: '/',
@@ -270,10 +278,20 @@ export function App() {
         }}
       />
 
-      {/* Main Content */}
+      {/*
+        Main Dashboard Content Area
+
+        Contains all dashboard elements with consistent spacing.
+        Responsive padding adjusts based on screen size (see admin-dashboard.scss).
+      */}
       <div className="dashboard-content">
         <SpaceBetween size="l">
-          {/* Breadcrumbs */}
+          {/*
+            Breadcrumb Navigation
+
+            Shows the user's location in the application hierarchy.
+            Helps users understand context and navigate back to parent pages.
+          */}
           <BreadcrumbGroup
             items={[
               { text: 'Service', href: '/' },
@@ -282,7 +300,12 @@ export function App() {
             ariaLabel="Breadcrumbs"
           />
 
-          {/* Header with description and action button */}
+          {/*
+            Page Header
+
+            Displays the main page title, descriptive text, and primary actions.
+            The "Refresh Data" button allows users to manually update dashboard data.
+          */}
           <Header
             variant="h1"
             description="Collection description"
@@ -301,13 +324,27 @@ export function App() {
             Administration Dashboard
           </Header>
 
-          {/* Search and Pagination Controls */}
+          {/*
+            Search and Pagination Controls
+
+            Two-column responsive layout:
+            - Left: Text filter for searching table data
+            - Right: Pagination controls with settings button
+
+            On mobile (< xs breakpoint), columns stack vertically.
+          */}
           <Grid
             gridDefinition={[
               { colspan: { default: 12, xxs: 12, xs: 6 } },
               { colspan: { default: 12, xxs: 12, xs: 6 } },
             ]}
           >
+            {/*
+              Table Search Filter
+
+              Allows users to filter table data by typing search terms.
+              Resets pagination to page 1 when filter changes.
+            */}
             <TextFilter
               filteringText={filteringText}
               filteringPlaceholder="Placeholder"
@@ -317,7 +354,21 @@ export function App() {
                 setCurrentPageIndex(1);
               }}
             />
+            {/*
+              Pagination and Settings Controls
+
+              Right-aligned group containing:
+              - Page navigation controls
+              - Visual divider
+              - Settings button for table preferences
+            */}
             <div className="pagination-controls">
+              {/*
+                Pagination Component
+
+                Allows navigation between table pages.
+                Shows current page and total page count.
+              */}
               <Pagination
                 currentPageIndex={currentPageIndex}
                 onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
@@ -328,19 +379,40 @@ export function App() {
                   pageLabel: pageNumber => `Page ${pageNumber}`,
                 }}
               />
+              {/* Visual divider between pagination and settings */}
               <div className="divider" />
+
+              {/* Settings button for table configuration (e.g., column visibility, page size) */}
               <Button iconName="settings" variant="icon" ariaLabel="Settings" />
             </div>
           </Grid>
 
-          {/* Charts Section */}
+          {/*
+            Data Visualization Charts Section
+
+            Two-column responsive grid layout:
+            - Desktop/Tablet (≥m): Charts displayed side-by-side (50% width each)
+            - Mobile (<m): Charts stack vertically (100% width each)
+
+            Both charts are wrapped in Container components for consistent styling.
+          */}
           <Grid
             gridDefinition={[
               { colspan: { default: 12, xxs: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
               { colspan: { default: 12, xxs: 12, xs: 12, s: 12, m: 6, l: 6, xl: 6 } },
             ]}
           >
-            {/* Area Chart */}
+            {/*
+              Area Chart - Site Performance Trends
+
+              Visualizes performance trends for two sites over 12 time periods.
+              Includes a threshold line to indicate the performance goal.
+
+              Features:
+              - Stacked area visualization for easy comparison
+              - Interactive legend for toggling series visibility
+              - Labeled axes with custom formatters
+            */}
             <Container>
               <AreaChart
                 series={areaChartSeries}
@@ -362,7 +434,17 @@ export function App() {
               />
             </Container>
 
-            {/* Bar Chart */}
+            {/*
+              Bar Chart - Site Metrics Comparison
+
+              Displays discrete values across 5 categories for a single site.
+              Useful for comparing performance across different metrics or time periods.
+
+              Features:
+              - Vertical bars for easy value comparison
+              - Threshold line marking target performance
+              - Categorical x-axis with linear y-axis scale
+            */}
             <Container>
               <BarChart
                 series={barChartSeries}
@@ -384,7 +466,22 @@ export function App() {
             </Container>
           </Grid>
 
-          {/* Data Table */}
+          {/*
+            Administrative Data Table
+
+            Interactive table displaying administrative records with:
+            - Multi-select functionality for bulk actions
+            - 7 sortable columns
+            - Pagination (10 items per page)
+            - Search/filter integration
+            - Empty state messaging
+
+            Features:
+            - Row selection with checkboxes
+            - Column sorting (click headers)
+            - Responsive layout
+            - Accessibility labels for screen readers
+          */}
           <Table
             columnDefinitions={[
               {
