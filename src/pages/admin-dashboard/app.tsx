@@ -148,157 +148,152 @@ export function App() {
       <AppLayout
         navigationHide
         toolsHide
+        breadcrumbs={
+          <BreadcrumbGroup
+            items={[
+              { text: 'Service', href: '#' },
+              { text: 'Administrative Dashboard', href: '#' },
+            ]}
+          />
+        }
         content={
-          <ContentLayout
-            header={
-              <SpaceBetween size="m">
-                <BreadcrumbGroup
-                  items={[
-                    { text: 'Service', href: '#' },
-                    { text: 'Administrative Dashboard', href: '#' },
-                  ]}
-                />
-                <Header
-                  variant="h1"
-                  description="Collection description"
-                  actions={
-                    <Button variant="primary" iconName="external" iconAlign="right">
-                      Refresh Data
-                    </Button>
-                  }
-                >
-                  Adminstration Dashboard
-                </Header>
-                <SpaceBetween direction="horizontal" size="l">
-                  <Input
-                    type="search"
-                    placeholder="Placeholder"
-                    ariaLabel="Filter demos"
-                    value={searchValue}
-                    onChange={({ detail }) => setSearchValue(detail.value)}
-                  />
-                  <Pagination
-                    currentPageIndex={currentPageIndex}
-                    onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                    pagesCount={5}
-                  />
-                </SpaceBetween>
-              </SpaceBetween>
-            }
-          >
-            <SpaceBetween size="l">
-              <Grid
-                gridDefinition={[
-                  { colspan: { default: 12, s: 6 } },
-                  { colspan: { default: 12, s: 6 } },
-                ]}
-              >
-                <Container>
-                  <AreaChart
-                    series={areaChartData}
-                    xDomain={['x1', 'x2', 'x3', 'x4', 'x5', 'x6', 'x7', 'x8', 'x9', 'x10', 'x11', 'x12']}
-                    yDomain={[0, 6]}
-                    xScaleType="categorical"
-                    xTitle="X-axis label"
-                    yTitle="y-axis label"
-                    height={300}
-                    statusType="finished"
-                    legendTitle="Legend"
-                    i18nStrings={{
-                      xTickFormatter: (value) => value,
-                      yTickFormatter: (value) => `y${value}`,
-                    }}
-                    ariaLabel="Area chart"
-                  />
-                </Container>
+          <SpaceBetween size="l">
+            <Header
+              variant="h1"
+              description="Collection description"
+              actions={
+                <Button variant="primary" iconName="external" iconAlign="right">
+                  Refresh Data
+                </Button>
+              }
+            >
+              Adminstration Dashboard
+            </Header>
 
-                <Container>
-                  <BarChart
-                    series={barChartData}
-                    xDomain={['x1', 'x2', 'x3', 'x4', 'x5']}
-                    yDomain={[0, 300]}
-                    xScaleType="categorical"
-                    xTitle="X-axis label"
-                    yTitle="y-axis label"
-                    height={300}
-                    statusType="finished"
-                    legendTitle="Legend"
-                    i18nStrings={{
-                      xTickFormatter: (value) => value,
-                      yTickFormatter: (value) => `y${Math.round(value / 50)}`,
-                    }}
-                    ariaLabel="Bar chart"
-                  />
-                </Container>
-              </Grid>
-
-              <Table
-                columnDefinitions={[
-                  {
-                    id: 'column1',
-                    header: 'Column header',
-                    cell: (item) => item.column1,
-                    sortingField: 'column1',
-                  },
-                  {
-                    id: 'column2',
-                    header: 'Column header',
-                    cell: (item) => item.column2,
-                    sortingField: 'column2',
-                  },
-                  {
-                    id: 'column3',
-                    header: 'Column header',
-                    cell: (item) => item.column3,
-                    sortingField: 'column3',
-                  },
-                  {
-                    id: 'column4',
-                    header: 'Column header',
-                    cell: (item) => item.column4,
-                    sortingField: 'column4',
-                  },
-                  {
-                    id: 'column5',
-                    header: 'Column header',
-                    cell: (item) => item.column5,
-                    sortingField: 'column5',
-                  },
-                  {
-                    id: 'column6',
-                    header: 'Column header',
-                    cell: (item) => item.column6,
-                    sortingField: 'column6',
-                  },
-                  {
-                    id: 'column7',
-                    header: 'Column header',
-                    cell: (item) => item.column7,
-                    sortingField: 'column7',
-                  },
-                ]}
-                items={tableItems}
-                loadingText="Loading resources"
-                selectionType="multi"
-                trackBy="id"
-                empty={
-                  <Box textAlign="center" color="inherit">
-                    <Box padding={{ bottom: 's' }} variant="p" color="inherit">
-                      <b>No resources</b>
-                    </Box>
-                    <Button>Create resource</Button>
-                  </Box>
-                }
-                pagination={
-                  <Pagination
-                    currentPageIndex={currentPageIndex}
-                    onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                    pagesCount={2}
-                  />
-                }
+            <SpaceBetween direction="horizontal" size="l">
+              <TextFilter
+                filteringPlaceholder="Placeholder"
+                filteringText={searchValue}
+                onChange={({ detail }) => setSearchValue(detail.filteringText)}
+              />
+              <Pagination
+                currentPageIndex={currentPageIndex}
+                onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
+                pagesCount={5}
               />
             </SpaceBetween>
-          </ContentLayout>
+
+            <Grid
+              gridDefinition={[
+                { colspan: { default: 12, s: 6 } },
+                { colspan: { default: 12, s: 6 } },
+              ]}
+            >
+              <Container>
+                <AreaChart
+                  series={areaChartData}
+                  xDomain={['x1', 'x2', 'x3', 'x4', 'x5', 'x6', 'x7', 'x8', 'x9', 'x10', 'x11', 'x12']}
+                  yDomain={[0, 6]}
+                  xScaleType="categorical"
+                  xTitle="X-axis label"
+                  yTitle="y-axis label"
+                  height={300}
+                  statusType="finished"
+                  legendTitle="Legend"
+                  i18nStrings={{
+                    xTickFormatter: (value) => value,
+                    yTickFormatter: (value) => `y${value}`,
+                  }}
+                  ariaLabel="Area chart"
+                />
+              </Container>
+
+              <Container>
+                <BarChart
+                  series={barChartData}
+                  xDomain={['x1', 'x2', 'x3', 'x4', 'x5']}
+                  yDomain={[0, 300]}
+                  xScaleType="categorical"
+                  xTitle="X-axis label"
+                  yTitle="y-axis label"
+                  height={300}
+                  statusType="finished"
+                  legendTitle="Legend"
+                  i18nStrings={{
+                    xTickFormatter: (value) => value,
+                    yTickFormatter: (value) => `y${Math.round(value / 50)}`,
+                  }}
+                  ariaLabel="Bar chart"
+                />
+              </Container>
+            </Grid>
+
+            <Table
+              columnDefinitions={[
+                {
+                  id: 'column1',
+                  header: 'Column header',
+                  cell: (item) => item.column1,
+                  sortingField: 'column1',
+                },
+                {
+                  id: 'column2',
+                  header: 'Column header',
+                  cell: (item) => item.column2,
+                  sortingField: 'column2',
+                },
+                {
+                  id: 'column3',
+                  header: 'Column header',
+                  cell: (item) => item.column3,
+                  sortingField: 'column3',
+                },
+                {
+                  id: 'column4',
+                  header: 'Column header',
+                  cell: (item) => item.column4,
+                  sortingField: 'column4',
+                },
+                {
+                  id: 'column5',
+                  header: 'Column header',
+                  cell: (item) => item.column5,
+                  sortingField: 'column5',
+                },
+                {
+                  id: 'column6',
+                  header: 'Column header',
+                  cell: (item) => item.column6,
+                  sortingField: 'column6',
+                },
+                {
+                  id: 'column7',
+                  header: 'Column header',
+                  cell: (item) => item.column7,
+                  sortingField: 'column7',
+                },
+              ]}
+              items={tableItems}
+              loadingText="Loading resources"
+              selectionType="multi"
+              trackBy="id"
+              empty={
+                <Box textAlign="center" color="inherit">
+                  <Box padding={{ bottom: 's' }} variant="p" color="inherit">
+                    <b>No resources</b>
+                  </Box>
+                  <Button>Create resource</Button>
+                </Box>
+              }
+              pagination={
+                <Pagination
+                  currentPageIndex={currentPageIndex}
+                  onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
+                  pagesCount={2}
+                />
+              }
+            />
+          </SpaceBetween>
         }
       />
     </div>
