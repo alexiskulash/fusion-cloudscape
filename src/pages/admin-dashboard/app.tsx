@@ -43,9 +43,14 @@ import Table from '@cloudscape-design/components/table';
  * Data points represent monthly performance metrics (x-axis: months 1-12)
  */
 const areaChartSeries = [
+  /**
+   * Site 1 Data Series
+   * Represents performance metrics for the first site over 12 time periods.
+   * Values range from 2.0 to 5.3, showing an overall upward trend.
+   */
   {
-    type: 'area' as const,
-    title: 'Site 1',
+    type: 'area' as const, // Chart type: area (filled region under line)
+    title: 'Site 1', // Legend label
     data: [
       { x: 1, y: 2 },
       { x: 2, y: 2.5 },
