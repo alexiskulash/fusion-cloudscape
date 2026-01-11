@@ -4,6 +4,7 @@ import React from 'react';
 import { App } from './app';
 
 import '../../styles/base.scss';
+import '../../styles/admin-dashboard.scss';
 
 export default function AdminDashboard() {
   return <App />;
