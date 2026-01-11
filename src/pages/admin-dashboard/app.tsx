@@ -112,7 +112,7 @@ export function App() {
 
   const tableData = generateTableData();
   const filteredItems = tableData.filter(item =>
-    Object.values(item).some(value => String(value).toLowerCase().includes(filteringText.toLowerCase()))
+    Object.values(item).some(value => String(value).toLowerCase().includes(filteringText.toLowerCase())),
   );
 
   const paginatedItems = filteredItems.slice((currentPageIndex - 1) * 10, currentPageIndex * 10);
