@@ -285,7 +285,20 @@ export default function Home() {
                 />
               }
               header={
-                <Header counter={filteredDemos.length > 0 ? `(${filteredDemos.length})` : undefined}>
+                <Header
+                  counter={filteredDemos.length > 0 ? `(${filteredDemos.length})` : undefined}
+                  actions={
+                    activeCategory === 'Dashboards' ? (
+                      <Toggle
+                        checked={isGridView}
+                        onChange={({ detail }) => setIsGridView(detail.checked)}
+                        ariaLabel="Toggle between grid and list view"
+                      >
+                        Grid view
+                      </Toggle>
+                    ) : undefined
+                  }
+                >
                   Available demos
                 </Header>
               }
