@@ -156,18 +156,21 @@ const barChartSeries = [
  */
 const generateTableData = () => {
   const data = [];
+
+  // Generate 12 rows of sample data
   for (let i = 1; i <= 12; i++) {
     data.push({
-      id: `item-${i}`,
-      column1: 'Cell Value',
-      column2: 'Cell Value',
-      column3: 'Cell Value',
-      column4: 'Cell Value',
-      column5: 'Cell Value',
-      column6: 'Cell Value',
-      column7: 'Cell Value',
+      id: `item-${i}`, // Unique identifier for row tracking and selection
+      column1: 'Cell Value', // Placeholder data for column 1
+      column2: 'Cell Value', // Placeholder data for column 2
+      column3: 'Cell Value', // Placeholder data for column 3
+      column4: 'Cell Value', // Placeholder data for column 4
+      column5: 'Cell Value', // Placeholder data for column 5
+      column6: 'Cell Value', // Placeholder data for column 6
+      column7: 'Cell Value', // Placeholder data for column 7
     });
   }
+
   return data;
 };
 
