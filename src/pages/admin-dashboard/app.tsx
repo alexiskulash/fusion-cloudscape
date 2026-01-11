@@ -33,7 +33,15 @@ import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import Table from '@cloudscape-design/components/table';
 
-// Mock data for area chart matching Figma design
+/**
+ * Area Chart Data Configuration
+ *
+ * Defines two data series (Site 1 and Site 2) with overlapping area charts
+ * to show performance trends over time. Includes a threshold line to mark
+ * the performance goal.
+ *
+ * Data points represent monthly performance metrics (x-axis: months 1-12)
+ */
 const areaChartSeries = [
   {
     type: 'area' as const,
@@ -81,7 +89,14 @@ const areaChartSeries = [
   },
 ];
 
-// Mock data for bar chart matching Figma design
+/**
+ * Bar Chart Data Configuration
+ *
+ * Displays vertical bar chart data for a single site across 5 data points.
+ * Includes a horizontal threshold line to indicate the performance goal.
+ *
+ * Useful for comparing discrete values across different categories.
+ */
 const barChartSeries = [
   {
     type: 'bar' as const,
@@ -103,7 +118,17 @@ const barChartSeries = [
   },
 ];
 
-// Mock table data
+/**
+ * Generate Mock Table Data
+ *
+ * Creates sample data for the administration table with 12 rows.
+ * Each row contains 7 columns of placeholder data.
+ *
+ * In a production environment, this would be replaced with actual
+ * API calls to fetch real administrative data.
+ *
+ * @returns {Array} Array of table items with id and column values
+ */
 const generateTableData = () => {
   const data = [];
   for (let i = 1; i <= 12; i++) {
@@ -121,23 +146,67 @@ const generateTableData = () => {
   return data;
 };
 
+/**
+ * Administration Dashboard Component
+ *
+ * Main component that renders the complete dashboard interface including:
+ * - Top navigation with search and utilities
+ * - Breadcrumb navigation
+ * - Page header with actions
+ * - Data visualization charts (area and bar)
+ * - Interactive data table with filtering and pagination
+ */
 export function App() {
+  // State Management
+
+  /** Search input value for top navigation search bar */
   const [searchValue, setSearchValue] = useState('');
+
+  /** Filter text for table data filtering */
   const [filteringText, setFilteringText] = useState('');
+
+  /** Currently selected table rows for bulk actions */
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
+
+  /** Current page number for table pagination (1-indexed) */
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
+
+  /** Loading state for refresh data button */
   const [isRefreshing, setIsRefreshing] = useState(false);
 
+  // Data Processing
+
+  /** Generate the full dataset (in production, this would come from an API) */
   const tableData = generateTableData();
+
+  /**
+   * Filter table data based on user's search input
+   * Searches across all column values for matches
+   */
   const filteredItems = tableData.filter(item =>
     Object.values(item).some(value => String(value).toLowerCase().includes(filteringText.toLowerCase())),
   );
 
+  /** Number of rows to display per page */
   const itemsPerPage = 10;
+
+  /**
+   * Slice filtered data to show only items for current page
+   * Calculates the start and end indices based on current page number
+   */
   const paginatedItems = filteredItems.slice((currentPageIndex - 1) * itemsPerPage, currentPageIndex * itemsPerPage);
 
+  /**
+   * Handle Refresh Data Action
+   *
+   * Simulates a data refresh operation with loading state.
+   * In production, this would trigger an API call to fetch fresh data.
+   *
+   * Shows loading indicator for 1 second to simulate network request.
+   */
   const handleRefresh = () => {
     setIsRefreshing(true);
+    // Simulate API call with timeout
     setTimeout(() => {
       setIsRefreshing(false);
     }, 1000);
