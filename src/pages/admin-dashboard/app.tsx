@@ -1,20 +1,37 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
+
+/**
+ * Administration Dashboard
+ *
+ * This component implements a comprehensive admin dashboard with:
+ * - Top navigation with search and user utilities
+ * - Real-time data visualization through charts
+ * - Interactive data table with filtering and pagination
+ * - Responsive layout that adapts to different screen sizes
+ */
+
 import React, { useState } from 'react';
+
+// Navigation and Layout Components
 import TopNavigation from '@cloudscape-design/components/top-navigation';
 import BreadcrumbGroup from '@cloudscape-design/components/breadcrumb-group';
 import Header from '@cloudscape-design/components/header';
-import Button from '@cloudscape-design/components/button';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import Container from '@cloudscape-design/components/container';
 import Grid from '@cloudscape-design/components/grid';
+import Box from '@cloudscape-design/components/box';
+
+// Interactive Components
+import Button from '@cloudscape-design/components/button';
+import Input from '@cloudscape-design/components/input';
+import TextFilter from '@cloudscape-design/components/text-filter';
+import Pagination from '@cloudscape-design/components/pagination';
+
+// Data Visualization Components
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
 import Table from '@cloudscape-design/components/table';
-import Box from '@cloudscape-design/components/box';
-import TextFilter from '@cloudscape-design/components/text-filter';
-import Pagination from '@cloudscape-design/components/pagination';
-import Input from '@cloudscape-design/components/input';
 
 // Mock data for area chart matching Figma design
 const areaChartSeries = [
