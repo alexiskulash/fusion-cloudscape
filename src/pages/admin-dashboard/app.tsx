@@ -241,7 +241,20 @@ export function App() {
             ariaLabel="Search"
           />
         }
+        /**
+         * Utility Controls
+         *
+         * Right-aligned controls in the top navigation providing:
+         * - External links to related resources
+         * - Notification center with badge indicator
+         * - Application settings
+         * - User profile menu with account actions
+         */
         utilities={[
+          /**
+           * External Link Button
+           * Opens a related resource or documentation in a new tab
+           */
           {
             type: 'button',
             text: 'Link',
@@ -249,32 +262,50 @@ export function App() {
             iconName: 'external',
             iconAlign: 'right',
           },
+          /**
+           * Notifications Button
+           * Shows notification center with badge for unread notifications
+           */
           {
             type: 'button',
             iconName: 'notification',
             ariaLabel: 'Notifications',
-            badge: true,
+            badge: true, // Red dot indicator for new notifications
           },
+          /**
+           * Settings Button
+           * Opens application settings/preferences panel
+           */
           {
             type: 'button',
             iconName: 'settings',
             ariaLabel: 'Settings',
           },
+          /**
+           * User Profile Dropdown Menu
+           * Provides access to user account actions and sign out
+           */
           {
             type: 'menu-dropdown',
             text: 'Customer name',
             iconName: 'user-profile',
             items: [
-              { id: 'profile', text: 'Profile' },
-              { id: 'settings', text: 'Settings' },
-              { id: 'signout', text: 'Sign out' },
+              { id: 'profile', text: 'Profile' }, // View/edit user profile
+              { id: 'settings', text: 'Settings' }, // User-specific settings
+              { id: 'signout', text: 'Sign out' }, // Log out action
             ],
           },
         ]}
+        /**
+         * Internationalization Strings for Top Navigation
+         *
+         * Provides accessible labels for navigation controls.
+         * These can be translated for multi-language support.
+         */
         i18nStrings={{
-          searchIconAriaLabel: 'Search',
-          searchDismissIconAriaLabel: 'Close search',
-          overflowMenuTriggerText: 'More',
+          searchIconAriaLabel: 'Search', // Label for search icon button
+          searchDismissIconAriaLabel: 'Close search', // Label for close search button
+          overflowMenuTriggerText: 'More', // Text for overflow menu on small screens
         }}
       />
 
@@ -415,13 +446,19 @@ export function App() {
             */}
             <Container>
               <AreaChart
-                series={areaChartSeries}
-                height={300}
-                xTitle="X-axis label"
-                yTitle="y-axis label"
-                xScaleType="linear"
-                yScaleType="linear"
-                ariaLabel="Area chart showing site performance"
+                series={areaChartSeries} // Data series defined above (Site 1, Site 2, threshold)
+                height={300} // Fixed height in pixels for consistent layout
+                xTitle="X-axis label" // Label displayed below x-axis
+                yTitle="y-axis label" // Label displayed beside y-axis
+                xScaleType="linear" // Linear scale for continuous time/numeric data
+                yScaleType="linear" // Linear scale for performance values
+                ariaLabel="Area chart showing site performance" // Screen reader description
+                /**
+                 * Internationalization Strings
+                 *
+                 * Provides text labels for interactive chart features.
+                 * Can be customized for different languages/locales.
+                 */
                 i18nStrings={{
                   filterLabel: 'Filter displayed data',
                   filterPlaceholder: 'Filter data',
@@ -447,13 +484,18 @@ export function App() {
             */}
             <Container>
               <BarChart
-                series={barChartSeries}
-                height={360}
-                xTitle="X-axis label"
-                yTitle="y-axis label"
-                xScaleType="categorical"
-                yScaleType="linear"
-                ariaLabel="Bar chart showing site metrics"
+                series={barChartSeries} // Data series defined above (Site 1 bars, threshold)
+                height={360} // Fixed height in pixels (slightly taller than area chart)
+                xTitle="X-axis label" // Label displayed below x-axis
+                yTitle="y-axis label" // Label displayed beside y-axis
+                xScaleType="categorical" // Categorical scale for discrete x-axis values
+                yScaleType="linear" // Linear scale for metric values
+                ariaLabel="Bar chart showing site metrics" // Screen reader description
+                /**
+                 * Internationalization Strings
+                 *
+                 * Provides text labels for chart interaction and accessibility.
+                 */
                 i18nStrings={{
                   filterLabel: 'Filter displayed data',
                   filterPlaceholder: 'Filter data',
