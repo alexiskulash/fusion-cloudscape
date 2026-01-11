@@ -541,6 +541,8 @@ export function App() {
                 cell: item => item.column1,
                 sortingField: 'column1',
               },
+              // Columns 2-7 follow the same pattern as Column 1
+              // Each supports sorting and displays data from the corresponding item property
               {
                 id: 'column2',
                 header: 'Column header',
