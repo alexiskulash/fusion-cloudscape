@@ -484,6 +484,15 @@ export function App() {
           */}
           <Table
             columnDefinitions={[
+              /**
+               * Column 1 Definition
+               *
+               * Defines the first column with:
+               * - Unique ID for referencing
+               * - Header text displayed at top of column
+               * - Cell renderer function to display data
+               * - Sorting field for enabling sort functionality
+               */
               {
                 id: 'column1',
                 header: 'Column header',
@@ -527,12 +536,14 @@ export function App() {
                 sortingField: 'column7',
               },
             ]}
-            items={paginatedItems}
-            selectionType="multi"
-            selectedItems={selectedItems}
-            onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
-            trackBy="id"
-            sortingDisabled={false}
+            // Data and interaction props
+            items={paginatedItems} // Current page of filtered/paginated data
+            selectionType="multi" // Enable multi-row selection with checkboxes
+            selectedItems={selectedItems} // Currently selected rows
+            onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)} // Update selection state
+            trackBy="id" // Unique identifier for each row (optimization)
+            sortingDisabled={false} // Allow column sorting
+            // Empty state displayed when no data matches filters
             empty={
               <Box textAlign="center" color="inherit">
                 <Box padding={{ bottom: 's' }} variant="p" color="inherit">
@@ -543,9 +554,22 @@ export function App() {
                 </Box>
               </Box>
             }
+            /**
+             * Accessibility Labels
+             *
+             * Provides screen reader-friendly labels for table interactions.
+             * These labels help users with assistive technologies understand
+             * the table structure and selection state.
+             */
             ariaLabels={{
+              // Label for the selection column
               selectionGroupLabel: 'Items selection',
+
+              // Label for the "select all" checkbox in header
               allItemsSelectionLabel: () => 'select all',
+
+              // Dynamic label for each row's selection checkbox
+              // Announces whether the specific item is selected or not
               itemSelectionLabel: ({ selectedItems }, item) => {
                 const isItemSelected = selectedItems.filter(i => i.id === item.id).length;
                 return `${item.id} is ${isItemSelected ? '' : 'not'} selected`;
