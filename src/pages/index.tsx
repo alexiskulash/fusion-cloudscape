@@ -138,6 +138,7 @@ export default function Home() {
   const [filterText, setFilterText] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
+  const [isGridView, setIsGridView] = useState(true);
   const itemsPerPage = 12;
 
   // Filter demos based on filter text and selected category
