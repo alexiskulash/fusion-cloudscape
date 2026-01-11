@@ -251,12 +251,16 @@ export default function Home() {
                   },
                 ],
               }}
-              cardsPerRow={[
-                { cards: 1, minWidth: 0 },
-                { cards: 2, minWidth: 600 },
-                { cards: 3, minWidth: 900 },
-                { cards: 4, minWidth: 1200 },
-              ]}
+              cardsPerRow={
+                isGridView
+                  ? [
+                      { cards: 1, minWidth: 0 },
+                      { cards: 2, minWidth: 600 },
+                      { cards: 3, minWidth: 900 },
+                      { cards: 4, minWidth: 1200 },
+                    ]
+                  : [{ cards: 1, minWidth: 0 }]
+              }
               items={paginatedDemos}
               loadingText="Loading demos"
               trackBy="title"
