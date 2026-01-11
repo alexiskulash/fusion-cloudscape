@@ -18,6 +18,7 @@ import Container from '@cloudscape-design/components/container';
 import Icon from '@cloudscape-design/components/icon';
 import Flashbar from '@cloudscape-design/components/flashbar';
 import Link from '@cloudscape-design/components/link';
+import Toggle from '@cloudscape-design/components/toggle';
 
 // Demo definitions with category information
 const demos = [
