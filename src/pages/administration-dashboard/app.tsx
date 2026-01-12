@@ -21,15 +21,20 @@ import '../../styles/administration-dashboard.scss';
 
 // Mock data for the table
 const generateMockData = (count: number) => {
+  const statuses = ['Active', 'Inactive', 'Pending', 'Suspended'];
+  const regions = ['us-east-1', 'us-west-2', 'eu-west-1', 'ap-southeast-1'];
+  const types = ['Standard', 'Premium', 'Enterprise', 'Trial'];
+  const owners = ['John Smith', 'Sarah Johnson', 'Michael Chen', 'Emily Davis', 'Robert Wilson'];
+
   return Array.from({ length: count }, (_, i) => ({
-    id: `item-${i + 1}`,
-    col1: 'Cell Value',
-    col2: 'Cell Value',
-    col3: 'Cell Value',
-    col4: 'Cell Value',
-    col5: 'Cell Value',
-    col6: 'Cell Value',
-    col7: 'Cell Value',
+    id: `resource-${String(i + 1).padStart(4, '0')}`,
+    name: `Resource ${i + 1}`,
+    status: statuses[i % statuses.length],
+    type: types[i % types.length],
+    region: regions[i % regions.length],
+    owner: owners[i % owners.length],
+    created: new Date(2024, 0, 1 + (i % 365)).toLocaleDateString(),
+    instances: Math.floor(Math.random() * 50) + 1,
   }));
 };
 
@@ -112,46 +117,47 @@ export function App() {
 
   const tableColumns = [
     {
-      id: 'col1',
-      header: 'Column header',
-      cell: (item: any) => item.col1,
-      sortingField: 'col1',
+      id: 'name',
+      header: 'Resource Name',
+      cell: (item: any) => item.name,
+      sortingField: 'name',
+      isRowHeader: true,
     },
     {
-      id: 'col2',
-      header: 'Column header',
-      cell: (item: any) => item.col2,
-      sortingField: 'col2',
+      id: 'status',
+      header: 'Status',
+      cell: (item: any) => item.status,
+      sortingField: 'status',
     },
     {
-      id: 'col3',
-      header: 'Column header',
-      cell: (item: any) => item.col3,
-      sortingField: 'col3',
+      id: 'type',
+      header: 'Type',
+      cell: (item: any) => item.type,
+      sortingField: 'type',
     },
     {
-      id: 'col4',
-      header: 'Column header',
-      cell: (item: any) => item.col4,
-      sortingField: 'col4',
+      id: 'region',
+      header: 'Region',
+      cell: (item: any) => item.region,
+      sortingField: 'region',
     },
     {
-      id: 'col5',
-      header: 'Column header',
-      cell: (item: any) => item.col5,
-      sortingField: 'col5',
+      id: 'owner',
+      header: 'Owner',
+      cell: (item: any) => item.owner,
+      sortingField: 'owner',
     },
     {
-      id: 'col6',
-      header: 'Column header',
-      cell: (item: any) => item.col6,
-      sortingField: 'col6',
+      id: 'created',
+      header: 'Created Date',
+      cell: (item: any) => item.created,
+      sortingField: 'created',
     },
     {
-      id: 'col7',
-      header: 'Column header',
-      cell: (item: any) => item.col7,
-      sortingField: 'col7',
+      id: 'instances',
+      header: 'Instances',
+      cell: (item: any) => item.instances,
+      sortingField: 'instances',
     },
   ];
 
