@@ -189,88 +189,68 @@ export function App() {
         >
           <SpaceBetween size="l">
             {/* Charts Section */}
-            <div
-              style={{
-                display: 'flex',
-                gap: '16px',
-                flexWrap: 'wrap',
-              }}
-            >
+            <div className="charts-grid">
               {/* Area Chart */}
-              <Container
-                header={<Box variant="h3">y-axis label</Box>}
-                footer={
-                  <SpaceBetween size="xs">
-                    <Box textAlign="center" fontWeight="bold">
-                      X-axis label
-                    </Box>
-                  </SpaceBetween>
-                }
-                fitHeight
-                className="chart-container"
-              >
-                <AreaChart
-                  series={areaChartSeries}
-                  height={300}
-                  xScaleType="linear"
-                  yScaleType="linear"
-                  xDomain={[1, 12]}
-                  yDomain={[0, 6]}
-                  xTitle=""
-                  yTitle=""
-                  ariaLabel="Area chart showing site performance"
-                  hideFilter
-                  hideLegend={false}
-                  legendTitle="Legend"
-                  i18nStrings={{
-                    filterLabel: 'Filter',
-                    filterPlaceholder: 'Filter data',
-                    filterSelectedAriaLabel: 'selected',
-                    detailPopoverDismissAriaLabel: 'Dismiss',
-                    legendAriaLabel: 'Legend',
-                    chartAriaRoleDescription: 'area chart',
-                    xAxisAriaRoleDescription: 'x axis',
-                    yAxisAriaRoleDescription: 'y axis',
-                  }}
-                />
+              <Container className="chart-container">
+                <SpaceBetween size="m">
+                  <Box variant="h3" fontWeight="bold">
+                    y-axis label
+                  </Box>
+                  <AreaChart
+                    series={areaChartSeries}
+                    height={300}
+                    xScaleType="linear"
+                    yScaleType="linear"
+                    xDomain={[1, 12]}
+                    yDomain={[0, 6]}
+                    xTitle="X-axis label"
+                    yTitle=""
+                    ariaLabel="Area chart showing site performance"
+                    hideFilter
+                    hideLegend={false}
+                    i18nStrings={{
+                      filterLabel: 'Filter',
+                      filterPlaceholder: 'Filter data',
+                      filterSelectedAriaLabel: 'selected',
+                      detailPopoverDismissAriaLabel: 'Dismiss',
+                      legendAriaLabel: 'Legend',
+                      chartAriaRoleDescription: 'area chart',
+                      xAxisAriaRoleDescription: 'x axis',
+                      yAxisAriaRoleDescription: 'y axis',
+                    }}
+                  />
+                </SpaceBetween>
               </Container>
 
               {/* Bar Chart */}
-              <Container
-                header={<Box variant="h3">y-axis label</Box>}
-                footer={
-                  <SpaceBetween size="xs">
-                    <Box textAlign="center" fontWeight="bold">
-                      X-axis label
-                    </Box>
-                  </SpaceBetween>
-                }
-                fitHeight
-                className="chart-container"
-              >
-                <BarChart
-                  series={barChartSeries}
-                  height={300}
-                  xScaleType="categorical"
-                  xDomain={['x1', 'x2', 'x3', 'x4', 'x5']}
-                  yDomain={[0, 300]}
-                  xTitle=""
-                  yTitle=""
-                  ariaLabel="Bar chart showing site metrics"
-                  hideFilter
-                  hideLegend={false}
-                  legendTitle="Legend"
-                  i18nStrings={{
-                    filterLabel: 'Filter',
-                    filterPlaceholder: 'Filter data',
-                    filterSelectedAriaLabel: 'selected',
-                    detailPopoverDismissAriaLabel: 'Dismiss',
-                    legendAriaLabel: 'Legend',
-                    chartAriaRoleDescription: 'bar chart',
-                    xAxisAriaRoleDescription: 'x axis',
-                    yAxisAriaRoleDescription: 'y axis',
-                  }}
-                />
+              <Container className="chart-container">
+                <SpaceBetween size="m">
+                  <Box variant="h3" fontWeight="bold">
+                    y-axis label
+                  </Box>
+                  <BarChart
+                    series={barChartSeries}
+                    height={300}
+                    xScaleType="categorical"
+                    xDomain={['x1', 'x2', 'x3', 'x4', 'x5']}
+                    yDomain={[0, 300]}
+                    xTitle="X-axis label"
+                    yTitle=""
+                    ariaLabel="Bar chart showing site metrics"
+                    hideFilter
+                    hideLegend={false}
+                    i18nStrings={{
+                      filterLabel: 'Filter',
+                      filterPlaceholder: 'Filter data',
+                      filterSelectedAriaLabel: 'selected',
+                      detailPopoverDismissAriaLabel: 'Dismiss',
+                      legendAriaLabel: 'Legend',
+                      chartAriaRoleDescription: 'bar chart',
+                      xAxisAriaRoleDescription: 'x axis',
+                      yAxisAriaRoleDescription: 'y axis',
+                    }}
+                  />
+                </SpaceBetween>
               </Container>
             </div>
 
