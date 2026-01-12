@@ -55,7 +55,7 @@ export function DashboardCharts() {
         valueFormatter: (value: number) => `${value}%`,
       },
     ],
-    []
+    [],
   );
 
   const barSeries = useMemo(
@@ -77,7 +77,7 @@ export function DashboardCharts() {
         y: 50,
       },
     ],
-    []
+    [],
   );
 
   return (
@@ -96,7 +96,7 @@ export function DashboardCharts() {
             filterSelectedAriaLabel: 'selected',
             legendAriaLabel: 'Legend',
             chartAriaRoleDescription: 'area chart',
-            yTickFormatter: (value) => `${value}%`,
+            yTickFormatter: value => `${value}%`,
           }}
           hideFilter
           statusType="finished"

@@ -41,44 +41,44 @@ const COLUMN_DEFINITIONS: TableProps.ColumnDefinition<DataItem>[] = [
   {
     id: 'col1',
     header: 'Column header',
-    cell: (item) => item.col1,
+    cell: item => item.col1,
     sortingField: 'col1',
     isRowHeader: true,
   },
   {
     id: 'col2',
     header: 'Column header',
-    cell: (item) => item.col2,
+    cell: item => item.col2,
     sortingField: 'col2',
   },
   {
     id: 'col3',
     header: 'Column header',
-    cell: (item) => item.col3,
+    cell: item => item.col3,
     sortingField: 'col3',
   },
   {
     id: 'col4',
     header: 'Column header',
-    cell: (item) => item.col4,
+    cell: item => item.col4,
     sortingField: 'col4',
   },
   {
     id: 'col5',
     header: 'Column header',
-    cell: (item) => item.col5,
+    cell: item => item.col5,
     sortingField: 'col5',
   },
   {
     id: 'col6',
     header: 'Column header',
-    cell: (item) => item.col6,
+    cell: item => item.col6,
     sortingField: 'col6',
   },
   {
     id: 'col7',
     header: 'Column header',
-    cell: (item) => item.col7,
+    cell: item => item.col7,
     sortingField: 'col7',
   },
 ];
@@ -136,12 +136,21 @@ export function DashboardTable() {
       selectedItems={selectedItems}
       onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
       trackBy="id"
-      pagination={<Pagination {...paginationProps} ariaLabels={{ nextPageLabel: 'Next page', previousPageLabel: 'Previous page', pageLabel: (pageNumber) => `Page ${pageNumber}` }} />}
+      pagination={
+        <Pagination
+          {...paginationProps}
+          ariaLabels={{
+            nextPageLabel: 'Next page',
+            previousPageLabel: 'Previous page',
+            pageLabel: pageNumber => `Page ${pageNumber}`,
+          }}
+        />
+      }
       ariaLabels={{
         selectionGroupLabel: 'Items selection',
         allItemsSelectionLabel: () => 'select all',
         itemSelectionLabel: ({ selectedItems }, item) => {
-          const isItemSelected = selectedItems.filter((i) => i.id === item.id).length;
+          const isItemSelected = selectedItems.filter(i => i.id === item.id).length;
           return `${item.col1} is ${isItemSelected ? '' : 'not'} selected`;
         },
       }}
