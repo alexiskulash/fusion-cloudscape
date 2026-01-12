@@ -21,6 +21,12 @@ import Link from '@cloudscape-design/components/link';
 
 // Demo definitions with category information
 const demos = [
+  {
+    route: '/administrative-dashboard',
+    title: 'Administrative Dashboard',
+    description: 'Dashboard with charts, tables, and data visualization.',
+    category: 'Dashboards',
+  },
   { route: '/cards', title: 'Card View', description: 'Demo of Cloudscape Cards component.', category: 'Components' },
   { route: '/chat', title: 'Chat', description: 'Chat UI demo.', category: 'Applications' },
   {
