@@ -108,10 +108,7 @@ export function App() {
   );
 
   // Paginate filtered items
-  const paginatedItems = filteredItems.slice(
-    (currentPageIndex - 1) * itemsPerPage,
-    currentPageIndex * itemsPerPage,
-  );
+  const paginatedItems = filteredItems.slice((currentPageIndex - 1) * itemsPerPage, currentPageIndex * itemsPerPage);
 
   const tableColumns = [
     {
