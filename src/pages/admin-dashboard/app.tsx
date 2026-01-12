@@ -15,6 +15,8 @@ import Container from '@cloudscape-design/components/container';
 import { DashboardCharts } from './components/charts';
 import { DashboardTable } from './components/table';
 
+import '../../styles/admin-dashboard.scss';
+
 export function App() {
   const [searchValue, setSearchValue] = useState('');
 
