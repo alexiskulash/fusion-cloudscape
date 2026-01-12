@@ -17,6 +17,7 @@ import TextFilter from '@cloudscape-design/components/text-filter';
 import Pagination from '@cloudscape-design/components/pagination';
 
 import '@cloudscape-design/global-styles/index.css';
+import './styles.scss';
 
 // Sample data for the area chart
 const areaChartData = [
