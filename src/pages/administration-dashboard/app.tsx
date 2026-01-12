@@ -17,6 +17,8 @@ import {
   Box,
 } from '@cloudscape-design/components';
 
+import '../../styles/administration-dashboard.scss';
+
 // Mock data for the table
 const generateMockData = (count: number) => {
   return Array.from({ length: count }, (_, i) => ({
