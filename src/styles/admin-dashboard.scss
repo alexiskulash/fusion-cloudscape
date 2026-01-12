@@ -1,0 +1,53 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+
+/**
+ * Administration Dashboard Styles
+ *
+ * Custom styles for the admin dashboard that complement
+ * Cloudscape Design System components.
+ */
+
+/**
+ * Chart Container
+ *
+ * Wrapper for chart components (AreaChart, BarChart) that provides:
+ * - White background to stand out against the page background
+ * - Rounded corners (16px) for modern appearance
+ * - Internal padding (20px) for spacing around chart content
+ * - Shadow effect for depth and visual separation
+ *
+ * Responsive behavior:
+ * - On mobile/tablet (≤768px): Adds bottom margin to separate stacked charts
+ * - On desktop (>768px): No bottom margin needed (charts are side-by-side)
+ */
+.chart-container {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25); // Subtle shadow for elevation
+
+  // Mobile/Tablet: Add spacing between vertically stacked charts
+  @media (max-width: 768px) {
+    margin-bottom: 16px;
+  }
+}
+
+/**
+ * Empty State
+ *
+ * Styling for empty state messages in the table component.
+ * Used when:
+ * - No data exists in the table (empty state)
+ * - Filter returns no results (no match state)
+ *
+ * Provides:
+ * - Centered text for better visual hierarchy
+ * - Generous padding for breathing room
+ * - Inherits text color from parent for theme compatibility
+ */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: inherit; // Use parent text color for theme support
+}
