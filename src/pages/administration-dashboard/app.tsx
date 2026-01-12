@@ -163,167 +163,164 @@ export function App() {
               Adminstration Dashboard
             </Header>
 
-            <SpaceBetween size="m">
-              <div className="search-pagination-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div style={{ flex: 1 }}>
-                  <Input
-                    value=""
-                    type="search"
-                    placeholder="Placeholder"
-                    ariaLabel="Search"
-                  />
-                </div>
-                <Pagination
-                  currentPageIndex={currentPageIndex}
-                  onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                  pagesCount={5}
-                />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ flex: 1 }}>
+                <Input value="" type="search" placeholder="Placeholder" ariaLabel="Search" />
               </div>
-
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <div style={{ flex: '1 1 400px', minWidth: '400px' }}>
-                  <Container>
-                    <AreaChart
-                      series={areaChartData}
-                      xDomain={['x1', 'x2', 'x3', 'x4', 'x5', 'x6', 'x7', 'x8', 'x9', 'x10', 'x11', 'x12']}
-                      yDomain={[0, 7]}
-                      i18nStrings={{
-                        filterLabel: 'Filter displayed data',
-                        filterPlaceholder: 'Filter data',
-                        filterSelectedAriaLabel: 'selected',
-                        legendAriaLabel: 'Legend',
-                        chartAriaRoleDescription: 'area chart',
-                        xAxisAriaRoleDescription: 'x axis',
-                        yAxisAriaRoleDescription: 'y axis',
-                      }}
-                      ariaLabel="Area chart"
-                      height={300}
-                      xTitle="X-axis label"
-                      yTitle="y-axis label"
-                      empty={
-                        <Box textAlign="center" color="inherit">
-                          <b>No data available</b>
-                          <Box variant="p" color="inherit">
-                            There is no data available
-                          </Box>
-                        </Box>
-                      }
-                      noMatch={
-                        <Box textAlign="center" color="inherit">
-                          <b>No matching data</b>
-                          <Box variant="p" color="inherit">
-                            There is no matching data to display
-                          </Box>
-                        </Box>
-                      }
-                    />
-                  </Container>
-                </div>
-
-                <div style={{ flex: '1 1 400px', minWidth: '400px' }}>
-                  <Container>
-                    <BarChart
-                      series={[
-                        {
-                          title: 'Site 1',
-                          type: 'bar',
-                          data: barChartData,
-                        },
-                      ]}
-                      xDomain={['x1', 'x2', 'x3', 'x4', 'x5']}
-                      yDomain={[0, 300]}
-                      i18nStrings={{
-                        filterLabel: 'Filter displayed data',
-                        filterPlaceholder: 'Filter data',
-                        filterSelectedAriaLabel: 'selected',
-                        legendAriaLabel: 'Legend',
-                        chartAriaRoleDescription: 'bar chart',
-                        xAxisAriaRoleDescription: 'x axis',
-                        yAxisAriaRoleDescription: 'y axis',
-                      }}
-                      ariaLabel="Bar chart"
-                      height={300}
-                      xTitle="X-axis label"
-                      yTitle="y-axis label"
-                      empty={
-                        <Box textAlign="center" color="inherit">
-                          <b>No data available</b>
-                          <Box variant="p" color="inherit">
-                            There is no data available
-                          </Box>
-                        </Box>
-                      }
-                      noMatch={
-                        <Box textAlign="center" color="inherit">
-                          <b>No matching data</b>
-                          <Box variant="p" color="inherit">
-                            There is no matching data to display
-                          </Box>
-                        </Box>
-                      }
-                    />
-                  </Container>
-                </div>
-              </div>
-
-              <Table
-                columnDefinitions={[
-                  {
-                    id: 'column1',
-                    header: 'Column header',
-                    cell: item => item.column1,
-                    sortingField: 'column1',
-                  },
-                  {
-                    id: 'column2',
-                    header: 'Column header',
-                    cell: item => item.column2,
-                    sortingField: 'column2',
-                  },
-                  {
-                    id: 'column3',
-                    header: 'Column header',
-                    cell: item => item.column3,
-                    sortingField: 'column3',
-                  },
-                  {
-                    id: 'column4',
-                    header: 'Column header',
-                    cell: item => item.column4,
-                    sortingField: 'column4',
-                  },
-                  {
-                    id: 'column5',
-                    header: 'Column header',
-                    cell: item => item.column5,
-                    sortingField: 'column5',
-                  },
-                  {
-                    id: 'column6',
-                    header: 'Column header',
-                    cell: item => item.column6,
-                    sortingField: 'column6',
-                  },
-                  {
-                    id: 'column7',
-                    header: 'Column header',
-                    cell: item => item.column7,
-                    sortingField: 'column7',
-                  },
-                ]}
-                items={tableItems}
-                selectionType="multi"
-                selectedItems={selectedItems}
-                onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
-                ariaLabels={{
-                  selectionGroupLabel: 'Items selection',
-                  allItemsSelectionLabel: () => 'select all',
-                  itemSelectionLabel: (data, row) => `select ${row.id}`,
-                }}
-                variant="full-page"
-                stickyHeader
+              <Pagination
+                currentPageIndex={currentPageIndex}
+                onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
+                pagesCount={5}
               />
-            </SpaceBetween>
+            </div>
+
+            <ColumnLayout columns={2} variant="default">
+              <Container header={<Box variant="h3">y-axis label</Box>}>
+                <SpaceBetween size="s">
+                  <AreaChart
+                    series={areaChartData}
+                    xDomain={['x1', 'x2', 'x3', 'x4', 'x5', 'x6', 'x7', 'x8', 'x9', 'x10', 'x11', 'x12']}
+                    yDomain={[0, 7]}
+                    i18nStrings={{
+                      filterLabel: 'Filter displayed data',
+                      filterPlaceholder: 'Filter data',
+                      filterSelectedAriaLabel: 'selected',
+                      legendAriaLabel: 'Legend',
+                      chartAriaRoleDescription: 'area chart',
+                      xAxisAriaRoleDescription: 'x axis',
+                      yAxisAriaRoleDescription: 'y axis',
+                    }}
+                    ariaLabel="Area chart"
+                    height={300}
+                    xTitle="X-axis label"
+                    yTitle=""
+                    hideFilter
+                    hideLegend={false}
+                    empty={
+                      <Box textAlign="center" color="inherit">
+                        <b>No data available</b>
+                        <Box variant="p" color="inherit">
+                          There is no data available
+                        </Box>
+                      </Box>
+                    }
+                    noMatch={
+                      <Box textAlign="center" color="inherit">
+                        <b>No matching data</b>
+                        <Box variant="p" color="inherit">
+                          There is no matching data to display
+                        </Box>
+                      </Box>
+                    }
+                  />
+                </SpaceBetween>
+              </Container>
+
+              <Container header={<Box variant="h3">y-axis label</Box>}>
+                <SpaceBetween size="s">
+                  <BarChart
+                    series={[
+                      {
+                        title: 'Site 1',
+                        type: 'bar',
+                        data: barChartData,
+                      },
+                    ]}
+                    xDomain={['x1', 'x2', 'x3', 'x4', 'x5']}
+                    yDomain={[0, 300]}
+                    i18nStrings={{
+                      filterLabel: 'Filter displayed data',
+                      filterPlaceholder: 'Filter data',
+                      filterSelectedAriaLabel: 'selected',
+                      legendAriaLabel: 'Legend',
+                      chartAriaRoleDescription: 'bar chart',
+                      xAxisAriaRoleDescription: 'x axis',
+                      yAxisAriaRoleDescription: 'y axis',
+                    }}
+                    ariaLabel="Bar chart"
+                    height={300}
+                    xTitle="X-axis label"
+                    yTitle=""
+                    hideFilter
+                    hideLegend={false}
+                    empty={
+                      <Box textAlign="center" color="inherit">
+                        <b>No data available</b>
+                        <Box variant="p" color="inherit">
+                          There is no data available
+                        </Box>
+                      </Box>
+                    }
+                    noMatch={
+                      <Box textAlign="center" color="inherit">
+                        <b>No matching data</b>
+                        <Box variant="p" color="inherit">
+                          There is no matching data to display
+                        </Box>
+                      </Box>
+                    }
+                  />
+                </SpaceBetween>
+              </Container>
+            </ColumnLayout>
+
+            <Table
+              columnDefinitions={[
+                {
+                  id: 'column1',
+                  header: 'Column header',
+                  cell: item => item.column1,
+                  sortingField: 'column1',
+                },
+                {
+                  id: 'column2',
+                  header: 'Column header',
+                  cell: item => item.column2,
+                  sortingField: 'column2',
+                },
+                {
+                  id: 'column3',
+                  header: 'Column header',
+                  cell: item => item.column3,
+                  sortingField: 'column3',
+                },
+                {
+                  id: 'column4',
+                  header: 'Column header',
+                  cell: item => item.column4,
+                  sortingField: 'column4',
+                },
+                {
+                  id: 'column5',
+                  header: 'Column header',
+                  cell: item => item.column5,
+                  sortingField: 'column5',
+                },
+                {
+                  id: 'column6',
+                  header: 'Column header',
+                  cell: item => item.column6,
+                  sortingField: 'column6',
+                },
+                {
+                  id: 'column7',
+                  header: 'Column header',
+                  cell: item => item.column7,
+                  sortingField: 'column7',
+                },
+              ]}
+              items={tableItems}
+              selectionType="multi"
+              selectedItems={selectedItems}
+              onSelectionChange={({ detail }) => setSelectedItems(detail.selectedItems)}
+              ariaLabels={{
+                selectionGroupLabel: 'Items selection',
+                allItemsSelectionLabel: () => 'select all',
+                itemSelectionLabel: (data, row) => `select ${row.id}`,
+              }}
+              variant="full-page"
+              stickyHeader
+            />
           </SpaceBetween>
         }
       />
