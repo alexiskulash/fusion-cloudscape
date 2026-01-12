@@ -259,12 +259,22 @@ export function DashboardContent() {
             countText={`${filteredItemsCount} ${filteredItemsCount === 1 ? 'match' : 'matches'}`}
           />
         }
-        pagination={<Pagination {...paginationProps} ariaLabels={{ nextPageLabel: 'Next page', previousPageLabel: 'Previous page', pageLabel: (pageNumber) => `Page ${pageNumber}` }} />}
+        pagination={
+          <Pagination
+            {...paginationProps}
+            ariaLabels={{
+              nextPageLabel: 'Next page',
+              previousPageLabel: 'Previous page',
+              pageLabel: pageNumber => `Page ${pageNumber}`,
+            }}
+          />
+        }
         ariaLabels={{
           selectionGroupLabel: 'Items selection',
-          allItemsSelectionLabel: ({ selectedItems }) => `${selectedItems.length} ${selectedItems.length === 1 ? 'item' : 'items'} selected`,
+          allItemsSelectionLabel: ({ selectedItems }) =>
+            `${selectedItems.length} ${selectedItems.length === 1 ? 'item' : 'items'} selected`,
           itemSelectionLabel: ({ selectedItems }, item) => {
-            const isItemSelected = selectedItems.filter((i) => i.id === item.id).length;
+            const isItemSelected = selectedItems.filter(i => i.id === item.id).length;
             return `${item.col1} is ${isItemSelected ? '' : 'not '}selected`;
           },
         }}
