@@ -23,10 +23,5 @@ module.exports = {
     '^@cloudscape-design/(.*)$': '<rootDir>/node_modules/@cloudscape-design/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/setupJest.unit.js'],
-  collectCoverageFrom: [
-    'src/**/*.{ts,tsx}',
-    '!src/**/*.d.ts',
-    '!src/main.tsx',
-    '!src/vite-env.d.ts',
-  ],
+  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.d.ts', '!src/main.tsx', '!src/vite-env.d.ts'],
 };

@@ -40,20 +40,24 @@ Add the following script to your `package.json`:
 The unit tests for the Administrative Dashboard cover:
 
 ### Page Header
+
 - ✅ Renders the page title "Administration Dashboard"
 - ✅ Renders the page description
 - ✅ Renders the "Refresh Data" button with icon
 
 ### Breadcrumbs
+
 - ✅ Renders breadcrumb navigation
 - ✅ Shows "Service" and "Administrative Dashboard" breadcrumb items
 
 ### Charts
+
 - ✅ Renders area chart with y-axis and x-axis labels
 - ✅ Renders bar chart with y-axis and x-axis labels
 - ✅ Charts display with proper data series
 
 ### Data Table
+
 - ✅ Renders table with column headers
 - ✅ Displays table rows with cell values
 - ✅ Text filter input for searching
@@ -61,23 +65,28 @@ The unit tests for the Administrative Dashboard cover:
 - ✅ Pagination controls (next/previous buttons)
 
 ### Table Selection
+
 - ✅ Multi-select checkboxes in table
 - ✅ Selection state updates on checkbox click
 
 ### Pagination
+
 - ✅ Page changes when pagination buttons are clicked
 - ✅ Displays correct number of pages based on data
 
 ### Accessibility
+
 - ✅ Proper ARIA labels for charts
 - ✅ Proper ARIA labels for pagination controls
 - ✅ Screen reader friendly component structure
 
 ### Layout
+
 - ✅ Renders content in CustomAppLayout
 - ✅ Navigation and tools panels hidden as configured
 
 ### Data Integration
+
 - ✅ Area chart renders with mock data
 - ✅ Bar chart renders with mock data
 - ✅ Table generates correct number of items (12 total)
@@ -95,6 +104,7 @@ src/pages/administrative-dashboard/
 ## Mocking Strategy
 
 The tests use mocking for:
+
 - `CustomAppLayout` - Simplified layout wrapper
 - `Breadcrumbs` - Basic breadcrumb display
 - `HelpPanelProvider` - Context provider wrapper

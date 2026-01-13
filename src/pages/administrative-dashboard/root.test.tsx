@@ -98,9 +98,9 @@ describe('Administrative Dashboard', () => {
     it('updates filter text when user types', () => {
       render(<App />);
       const filterInput = screen.getByPlaceholderText('Placeholder') as HTMLInputElement;
-      
+
       fireEvent.change(filterInput, { target: { value: 'test filter' } });
-      
+
       expect(filterInput.value).toBe('test filter');
     });
 
@@ -108,7 +108,7 @@ describe('Administrative Dashboard', () => {
       render(<App />);
       const nextButton = screen.getByLabelText('Next page');
       const prevButton = screen.getByLabelText('Previous page');
-      
+
       expect(nextButton).toBeInTheDocument();
       expect(prevButton).toBeInTheDocument();
     });
@@ -118,7 +118,7 @@ describe('Administrative Dashboard', () => {
     it('allows selecting table items', () => {
       render(<App />);
       const checkboxes = screen.getAllByRole('checkbox');
-      
+
       // Should have checkboxes for header + rows
       expect(checkboxes.length).toBeGreaterThan(0);
     });
@@ -126,10 +126,10 @@ describe('Administrative Dashboard', () => {
     it('updates selection when checkbox is clicked', () => {
       render(<App />);
       const checkboxes = screen.getAllByRole('checkbox');
-      
+
       // Get first data row checkbox (skip header checkbox)
       const firstRowCheckbox = checkboxes[1];
-      
+
       expect(firstRowCheckbox).not.toBeChecked();
       fireEvent.click(firstRowCheckbox);
       expect(firstRowCheckbox).toBeChecked();
@@ -140,10 +140,10 @@ describe('Administrative Dashboard', () => {
     it('changes page when pagination is clicked', () => {
       render(<App />);
       const nextButton = screen.getByLabelText('Next page');
-      
+
       // Click next page button
       fireEvent.click(nextButton);
-      
+
       // The button should still exist after clicking
       expect(nextButton).toBeInTheDocument();
     });
@@ -159,18 +159,18 @@ describe('Administrative Dashboard', () => {
   describe('Accessibility', () => {
     it('has proper ARIA labels for charts', () => {
       const { container } = render(<App />);
-      
+
       // Check that charts have proper aria labels
       const areaChart = container.querySelector('[aria-label="Area chart showing site performance"]');
       const barChart = container.querySelector('[aria-label="Bar chart showing site metrics"]');
-      
+
       expect(areaChart).toBeInTheDocument();
       expect(barChart).toBeInTheDocument();
     });
 
     it('has proper ARIA labels for pagination', () => {
       render(<App />);
-      
+
       expect(screen.getByLabelText('Next page')).toBeInTheDocument();
       expect(screen.getByLabelText('Previous page')).toBeInTheDocument();
     });
