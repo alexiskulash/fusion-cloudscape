@@ -148,6 +148,12 @@ export function App() {
                 xTitle="X-axis label"
                 yTitle="y-axis label"
                 ariaLabel="Area chart showing site performance"
+                horizontalBars={[
+                  {
+                    y: 3,
+                    label: 'Performance goal',
+                  },
+                ]}
                 i18nStrings={{
                   filterLabel: 'Filter displayed data',
                   filterPlaceholder: 'Filter data',
@@ -173,6 +179,12 @@ export function App() {
                 yTitle="y-axis label"
                 yDomain={[0, 6]}
                 ariaLabel="Bar chart showing site metrics"
+                horizontalBars={[
+                  {
+                    y: 3,
+                    label: 'Performance goal',
+                  },
+                ]}
                 i18nStrings={{
                   filterLabel: 'Filter displayed data',
                   filterPlaceholder: 'Filter data',
