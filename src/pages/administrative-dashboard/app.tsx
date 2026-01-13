@@ -119,23 +119,21 @@ export function App() {
 
           {/* Search and Pagination Controls */}
           <div className="header-controls">
-            <SpaceBetween direction="horizontal" size="m">
-              <Input
-                type="search"
-                placeholder="Placeholder"
-                value={searchValue}
-                onChange={({ detail }) => setSearchValue(detail.value)}
-                className="search-input"
+            <Input
+              type="search"
+              placeholder="Placeholder"
+              value={searchValue}
+              onChange={({ detail }) => setSearchValue(detail.value)}
+              className="search-input"
+            />
+            <div className="pagination-wrapper">
+              <Pagination
+                currentPageIndex={currentPageIndex}
+                pagesCount={5}
+                onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
               />
-              <div className="pagination-wrapper">
-                <Pagination
-                  currentPageIndex={currentPageIndex}
-                  pagesCount={5}
-                  onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                />
-                <Button variant="icon" iconName="settings" />
-              </div>
-            </SpaceBetween>
+              <Button variant="icon" iconName="settings" ariaLabel="Settings" />
+            </div>
           </div>
 
           {/* Charts */}
