@@ -6,9 +6,11 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
 
   .search-input {
-    flex: 1;
+    flex: 1 1 auto;
+    min-width: 280px;
     max-width: 500px;
   }
 
@@ -16,6 +18,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    flex-shrink: 0;
   }
 }
 
@@ -26,10 +29,12 @@
 
     .search-input {
       max-width: 100%;
+      min-width: 100%;
     }
 
     .pagination-wrapper {
       justify-content: center;
+      width: 100%;
     }
   }
 }
