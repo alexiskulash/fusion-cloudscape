@@ -19,6 +19,7 @@ import Table from '@cloudscape-design/components/table';
 
 import { CustomAppLayout } from '../commons/common-components';
 
+import '../../styles/administrative-dashboard.scss';
 import '@cloudscape-design/global-styles/dark-mode-utils.css';
 
 // Sample data for Area Chart
