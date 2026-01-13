@@ -38,7 +38,7 @@ const areaChartSeries: AreaChartProps.Series<Date>[] = [
       { x: new Date(2024, 0, 11), y: 47 },
       { x: new Date(2024, 0, 12), y: 50 },
     ],
-    valueFormatter: (value) => `${value}`,
+    valueFormatter: value => `${value}`,
   },
   {
     type: 'area',
@@ -57,7 +57,7 @@ const areaChartSeries: AreaChartProps.Series<Date>[] = [
       { x: new Date(2024, 0, 11), y: 37 },
       { x: new Date(2024, 0, 12), y: 40 },
     ],
-    valueFormatter: (value) => `${value}`,
+    valueFormatter: value => `${value}`,
   },
   {
     type: 'threshold',
@@ -78,7 +78,7 @@ const barChartSeries: BarChartProps.Series<string>[] = [
       { x: 'x4', y: 30 },
       { x: 'x5', y: 52 },
     ],
-    valueFormatter: (value) => `${value}`,
+    valueFormatter: value => `${value}`,
   },
   {
     type: 'threshold',
@@ -294,7 +294,7 @@ export function App() {
                   ariaLabels={{
                     nextPageLabel: 'Next page',
                     previousPageLabel: 'Previous page',
-                    pageLabel: (pageNumber) => `Page ${pageNumber}`,
+                    pageLabel: pageNumber => `Page ${pageNumber}`,
                   }}
                 />
               }
