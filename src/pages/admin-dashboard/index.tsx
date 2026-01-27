@@ -17,67 +17,95 @@ import BarChart from '@cloudscape-design/components/bar-chart';
 
 import '../../styles/base.scss';
 
-// Sample data for the charts
+// Sample data for the charts - simulating realistic metrics over time
 const areaChartData = [
   {
-    title: 'Site 1',
+    title: 'North America Traffic',
     type: 'area',
     data: [
-      { x: new Date('2024-01-01'), y: 2 },
-      { x: new Date('2024-02-01'), y: 3 },
-      { x: new Date('2024-03-01'), y: 3.5 },
-      { x: new Date('2024-04-01'), y: 4 },
-      { x: new Date('2024-05-01'), y: 4.5 },
-      { x: new Date('2024-06-01'), y: 5 },
-      { x: new Date('2024-07-01'), y: 5 },
-      { x: new Date('2024-08-01'), y: 4.8 },
-      { x: new Date('2024-09-01'), y: 5.2 },
-      { x: new Date('2024-10-01'), y: 5.5 },
-      { x: new Date('2024-11-01'), y: 5.3 },
-      { x: new Date('2024-12-01'), y: 5.5 },
+      { x: new Date('2024-01-01'), y: 12500 },
+      { x: new Date('2024-02-01'), y: 14200 },
+      { x: new Date('2024-03-01'), y: 15800 },
+      { x: new Date('2024-04-01'), y: 18300 },
+      { x: new Date('2024-05-01'), y: 21500 },
+      { x: new Date('2024-06-01'), y: 24100 },
+      { x: new Date('2024-07-01'), y: 26700 },
+      { x: new Date('2024-08-01'), y: 25300 },
+      { x: new Date('2024-09-01'), y: 28900 },
+      { x: new Date('2024-10-01'), y: 31200 },
+      { x: new Date('2024-11-01'), y: 29800 },
+      { x: new Date('2024-12-01'), y: 33500 },
     ],
   },
   {
-    title: 'Site 2',
+    title: 'Europe Traffic',
     type: 'area',
     data: [
-      { x: new Date('2024-01-01'), y: 2.5 },
-      { x: new Date('2024-02-01'), y: 3.2 },
-      { x: new Date('2024-03-01'), y: 3 },
-      { x: new Date('2024-04-01'), y: 3.8 },
-      { x: new Date('2024-05-01'), y: 4.2 },
-      { x: new Date('2024-06-01'), y: 4.5 },
-      { x: new Date('2024-07-01'), y: 4.3 },
-      { x: new Date('2024-08-01'), y: 4.7 },
-      { x: new Date('2024-09-01'), y: 4.9 },
-      { x: new Date('2024-10-01'), y: 5.1 },
-      { x: new Date('2024-11-01'), y: 5.3 },
-      { x: new Date('2024-12-01'), y: 5.2 },
+      { x: new Date('2024-01-01'), y: 8900 },
+      { x: new Date('2024-02-01'), y: 10200 },
+      { x: new Date('2024-03-01'), y: 9500 },
+      { x: new Date('2024-04-01'), y: 11800 },
+      { x: new Date('2024-05-01'), y: 14200 },
+      { x: new Date('2024-06-01'), y: 16500 },
+      { x: new Date('2024-07-01'), y: 15900 },
+      { x: new Date('2024-08-01'), y: 17400 },
+      { x: new Date('2024-09-01'), y: 19200 },
+      { x: new Date('2024-10-01'), y: 20800 },
+      { x: new Date('2024-11-01'), y: 22100 },
+      { x: new Date('2024-12-01'), y: 21500 },
+    ],
+  },
+  {
+    title: 'Asia Pacific Traffic',
+    type: 'area',
+    data: [
+      { x: new Date('2024-01-01'), y: 6200 },
+      { x: new Date('2024-02-01'), y: 7800 },
+      { x: new Date('2024-03-01'), y: 8900 },
+      { x: new Date('2024-04-01'), y: 10500 },
+      { x: new Date('2024-05-01'), y: 12800 },
+      { x: new Date('2024-06-01'), y: 14200 },
+      { x: new Date('2024-07-01'), y: 16900 },
+      { x: new Date('2024-08-01'), y: 18500 },
+      { x: new Date('2024-09-01'), y: 20100 },
+      { x: new Date('2024-10-01'), y: 22700 },
+      { x: new Date('2024-11-01'), y: 24300 },
+      { x: new Date('2024-12-01'), y: 26800 },
     ],
   },
 ];
 
 const barChartData = [
-  { x: 'x1', y: 183 },
-  { x: 'x2', y: 257 },
-  { x: 'x3', y: 213 },
-  { x: 'x4', y: 122 },
-  { x: 'x5', y: 210 },
+  { x: 'Q1 2024', y: 18300 },
+  { x: 'Q2 2024', y: 25700 },
+  { x: 'Q3 2024', y: 21300 },
+  { x: 'Q4 2024', y: 29400 },
+  { x: 'Q1 2025', y: 32100 },
+  { x: 'Q2 2025 (Projected)', y: 35800 },
 ];
 
-// Sample table data
+// Sample table data - simulating resource metrics
 const generateTableData = () => {
+  const regions = ['us-east-1', 'us-west-2', 'eu-west-1', 'eu-central-1', 'ap-southeast-1', 'ap-northeast-1'];
+  const statuses = ['Active', 'Idle', 'Maintenance', 'Active', 'Active', 'Idle'];
+  const instanceTypes = ['t3.large', 't3.xlarge', 'm5.large', 'm5.xlarge', 'c5.large', 'c5.xlarge'];
+
   const data = [];
-  for (let i = 1; i <= 12; i++) {
+  for (let i = 0; i < 12; i++) {
+    const region = regions[i % regions.length];
+    const cpuUsage = Math.floor(Math.random() * 60) + 20;
+    const memoryUsage = Math.floor(Math.random() * 70) + 15;
+    const networkIO = (Math.random() * 500 + 100).toFixed(2);
+
     data.push({
-      id: `item-${i}`,
-      column1: 'Cell Value',
-      column2: 'Cell Value',
-      column3: 'Cell Value',
-      column4: 'Cell Value',
-      column5: 'Cell Value',
-      column6: 'Cell Value',
-      column7: 'Cell Value',
+      id: `resource-${i + 1}`,
+      column1: `srv-${region}-${String(i + 1).padStart(3, '0')}`,
+      column2: region,
+      column3: instanceTypes[i % instanceTypes.length],
+      column4: statuses[i % statuses.length],
+      column5: `${cpuUsage}%`,
+      column6: `${memoryUsage}%`,
+      column7: `${networkIO} Mbps`,
     });
   }
   return data;
@@ -93,45 +121,52 @@ export default function AdminDashboard() {
   const columnDefinitions = [
     {
       id: 'column1',
-      header: 'Column header',
+      header: 'Resource ID',
       cell: (item: any) => item.column1,
       sortingField: 'column1',
+      width: 180,
     },
     {
       id: 'column2',
-      header: 'Column header',
+      header: 'Region',
       cell: (item: any) => item.column2,
       sortingField: 'column2',
+      width: 140,
     },
     {
       id: 'column3',
-      header: 'Column header',
+      header: 'Instance Type',
       cell: (item: any) => item.column3,
       sortingField: 'column3',
+      width: 130,
     },
     {
       id: 'column4',
-      header: 'Column header',
+      header: 'Status',
       cell: (item: any) => item.column4,
       sortingField: 'column4',
+      width: 110,
     },
     {
       id: 'column5',
-      header: 'Column header',
+      header: 'CPU Usage',
       cell: (item: any) => item.column5,
       sortingField: 'column5',
+      width: 110,
     },
     {
       id: 'column6',
-      header: 'Column header',
+      header: 'Memory Usage',
       cell: (item: any) => item.column6,
       sortingField: 'column6',
+      width: 130,
     },
     {
       id: 'column7',
-      header: 'Column header',
+      header: 'Network I/O',
       cell: (item: any) => item.column7,
       sortingField: 'column7',
+      width: 120,
     },
   ];
 
@@ -172,7 +207,7 @@ export default function AdminDashboard() {
               <AreaChart
                 series={areaChartData}
                 xDomain={[new Date('2024-01-01'), new Date('2024-12-01')]}
-                yDomain={[0, 6]}
+                yDomain={[0, 35000]}
                 i18nStrings={{
                   filterLabel: 'Filter displayed data',
                   filterPlaceholder: 'Filter data',
@@ -216,7 +251,7 @@ export default function AdminDashboard() {
                   },
                 ]}
                 xDomain={barChartData.map(d => d.x)}
-                yDomain={[0, 300]}
+                yDomain={[0, 40000]}
                 i18nStrings={{
                   filterLabel: 'Filter displayed data',
                   filterPlaceholder: 'Filter data',
