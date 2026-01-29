@@ -110,12 +110,6 @@ const tableItems = Array.from({ length: 12 }, (_, i) => ({
 
 const tableColumnDefinitions = [
   {
-    id: 'selection',
-    header: '',
-    cell: () => '',
-    width: 50,
-  },
-  {
     id: 'col1',
     header: 'Column header',
     cell: (item: any) => item.col1,
@@ -165,8 +159,8 @@ const Content = () => {
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
   return (
-    <Box padding={{ top: isVisualRefresh ? 's' : 'n' }}>
-      <SpaceBetween size="l">
+    <ContentLayout
+      header={
         <Header
           variant="h1"
           description="Collection description"
@@ -178,33 +172,31 @@ const Content = () => {
         >
           Administration Dashboard
         </Header>
-
+      }
+    >
+      <SpaceBetween size="l">
         <Container>
-          <SpaceBetween size="m">
-            <div className="search-pagination-container">
-              <Grid gridDefinition={[{ colspan: { default: 12, xs: 8 } }, { colspan: { default: 12, xs: 4 } }]}>
-                <Input
-                  type="search"
-                  value={searchValue}
-                  onChange={({ detail }) => setSearchValue(detail.value)}
-                  placeholder="Placeholder"
-                  ariaLabel="Search"
-                />
-                <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                  <Pagination
-                    currentPageIndex={currentPageIndex}
-                    onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
-                    pagesCount={5}
-                    ariaLabels={{
-                      nextPageLabel: 'Next page',
-                      previousPageLabel: 'Previous page',
-                      pageLabel: pageNumber => `Page ${pageNumber}`,
-                    }}
-                  />
-                </div>
-              </Grid>
+          <Grid gridDefinition={[{ colspan: { default: 12, xs: 8 } }, { colspan: { default: 12, xs: 4 } }]}>
+            <Input
+              type="search"
+              value={searchValue}
+              onChange={({ detail }) => setSearchValue(detail.value)}
+              placeholder="Placeholder"
+              ariaLabel="Search"
+            />
+            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+              <Pagination
+                currentPageIndex={currentPageIndex}
+                onChange={({ detail }) => setCurrentPageIndex(detail.currentPageIndex)}
+                pagesCount={5}
+                ariaLabels={{
+                  nextPageLabel: 'Next page',
+                  previousPageLabel: 'Previous page',
+                  pageLabel: pageNumber => `Page ${pageNumber}`,
+                }}
+              />
             </div>
-          </SpaceBetween>
+          </Grid>
         </Container>
 
         <Grid gridDefinition={[{ colspan: { default: 12, m: 6 } }, { colspan: { default: 12, m: 6 } }]}>
@@ -296,7 +288,7 @@ const Content = () => {
           variant="container"
         />
       </SpaceBetween>
-    </Box>
+    </ContentLayout>
   );
 };
 
