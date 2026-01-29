@@ -37,6 +37,12 @@ const demos = [
   },
   { route: '/dashboard', title: 'Service Dashboard', description: 'Dashboard layout demo.', category: 'Dashboards' },
   {
+    route: '/performance-dashboard',
+    title: 'Performance Monitoring Dashboard',
+    description: 'Real-time application performance metrics with response times, error rates, and endpoint analysis.',
+    category: 'Dashboards',
+  },
+  {
     route: '/delete-one-click',
     title: 'One-click Delete',
     description: 'Delete with a single click.',
