@@ -1,11 +1,13 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
 import React, { useState } from 'react';
+import Alert from '@cloudscape-design/components/alert';
 import Box from '@cloudscape-design/components/box';
 import BreadcrumbGroup from '@cloudscape-design/components/breadcrumb-group';
 import Button from '@cloudscape-design/components/button';
 import Header from '@cloudscape-design/components/header';
 import Input from '@cloudscape-design/components/input';
+import Link from '@cloudscape-design/components/link';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
@@ -157,6 +159,7 @@ const Content = () => {
   const [searchValue, setSearchValue] = useState('');
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
+  const [alertVisible, setAlertVisible] = useState(true);
 
   return (
     <ContentLayout
@@ -175,6 +178,27 @@ const Content = () => {
       }
     >
       <SpaceBetween size="l">
+        {alertVisible && (
+          <Alert
+            type="warning"
+            dismissible
+            onDismiss={() => setAlertVisible(false)}
+            header="Resource usage overage detected"
+            action={
+              <Button href="#" variant="primary">
+                View details
+              </Button>
+            }
+          >
+            Your account has exceeded allocated resource limits. Current usage is at 127% of your plan capacity. To
+            avoid service interruptions,{' '}
+            <Link external href="#">
+              upgrade your plan
+            </Link>{' '}
+            or reduce resource consumption.
+          </Alert>
+        )}
+
         <Container>
           <Grid gridDefinition={[{ colspan: { default: 12, xs: 8 } }, { colspan: { default: 12, xs: 4 } }]}>
             <Input
