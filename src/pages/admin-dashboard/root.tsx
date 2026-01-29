@@ -1,14 +1,11 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
-import React, { ReactNode, useState } from 'react';
-import { createPortal } from 'react-dom';
+import React, { useState } from 'react';
 import Box from '@cloudscape-design/components/box';
 import BreadcrumbGroup from '@cloudscape-design/components/breadcrumb-group';
 import Button from '@cloudscape-design/components/button';
 import Header from '@cloudscape-design/components/header';
 import Input from '@cloudscape-design/components/input';
-import TopNavigation from '@cloudscape-design/components/top-navigation';
-import SideNavigation, { SideNavigationProps } from '@cloudscape-design/components/side-navigation';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import AreaChart from '@cloudscape-design/components/area-chart';
 import BarChart from '@cloudscape-design/components/bar-chart';
@@ -16,60 +13,18 @@ import Table from '@cloudscape-design/components/table';
 import Pagination from '@cloudscape-design/components/pagination';
 import Container from '@cloudscape-design/components/container';
 import Grid from '@cloudscape-design/components/grid';
-
-import { CustomAppLayout } from '../commons/common-components';
-import { Notifications } from '../non-console/notifications';
-import { isVisualRefresh } from '../../common/apply-mode';
-import logo from '../non-console/logo.svg';
-
-const navItems: SideNavigationProps.Item[] = [
-  {
-    type: 'link',
-    text: 'Service',
-    href: '#/service',
-  },
-];
+import ContentLayout from '@cloudscape-design/components/content-layout';
+import AppLayout from '@cloudscape-design/components/app-layout';
 
 const breadcrumbs = [
   {
     text: 'Service',
-    href: '#/service',
+    href: '#',
   },
   {
     text: 'Administrative Dashboard',
     href: '#',
   },
-];
-
-const i18nStrings = {
-  searchIconAriaLabel: 'Search',
-  searchDismissIconAriaLabel: 'Close search',
-  overflowMenuTriggerText: 'More',
-  overflowMenuTitleText: 'All',
-  overflowMenuBackIconAriaLabel: 'Back',
-  overflowMenuDismissIconAriaLabel: 'Close menu',
-};
-
-const profileActions = [
-  { id: 'profile', text: 'Profile' },
-  { id: 'preferences', text: 'Preferences' },
-  { id: 'security', text: 'Security' },
-  {
-    id: 'support-group',
-    text: 'Support',
-    items: [
-      {
-        id: 'documentation',
-        text: 'Documentation',
-        href: '#',
-        external: true,
-        externalIconAriaLabel: ' (opens in new tab)',
-      },
-      { id: 'feedback', text: 'Feedback', href: '#', external: true, externalIconAriaLabel: ' (opens in new tab)' },
-      { id: 'support', text: 'Customer support' },
-    ],
-  },
-  { id: 'signout', text: 'Sign out' },
 ];
 
 // Sample data for area chart
@@ -345,71 +300,13 @@ const Content = () => {
   );
 };
 
-interface DemoHeaderPortalProps {
-  children: ReactNode;
-}
-
-const DemoHeaderPortal = ({ children }: DemoHeaderPortalProps) => {
-  const domNode = document.querySelector('#h')!;
-  return createPortal(children, domNode);
-};
-
 export function App() {
-  const [topNavSearchValue, setTopNavSearchValue] = useState('');
-
   return (
-    <>
-      <DemoHeaderPortal>
-        <TopNavigation
-          i18nStrings={i18nStrings}
-          identity={{
-            href: '#',
-            title: 'Service name',
-            logo: { src: logo, alt: 'Service name logo' },
-          }}
-          search={
-            <Input
-              ariaLabel="Search"
-              clearAriaLabel="Clear"
-              value={topNavSearchValue}
-              type="search"
-              placeholder="Search"
-              onChange={({ detail }) => setTopNavSearchValue(detail.value)}
-            />
-          }
-          utilities={[
-            {
-              type: 'button',
-              text: 'Link',
-              href: '#',
-              external: true,
-              externalIconAriaLabel: ' (opens in new tab)',
-            },
-            {
-              type: 'button',
-              iconName: 'notification',
-              ariaLabel: 'Notifications',
-              badge: true,
-              disableUtilityCollapse: true,
-            },
-            { type: 'button', iconName: 'settings', title: 'Settings', ariaLabel: 'Settings' },
-            {
-              type: 'menu-dropdown',
-              text: 'Customer name',
-              iconName: 'user-profile',
-              items: profileActions,
-            },
-          ]}
-        />
-      </DemoHeaderPortal>
-      <CustomAppLayout
-        stickyNotifications
-        toolsHide
-        navigation={<SideNavigation activeHref="#/service" items={navItems} />}
-        breadcrumbs={<BreadcrumbGroup items={breadcrumbs} expandAriaLabel="Show path" ariaLabel="Breadcrumbs" />}
-        content={<Content />}
-        notifications={<Notifications />}
-      />
-    </>
+    <AppLayout
+      navigationHide
+      toolsHide
+      breadcrumbs={<BreadcrumbGroup items={breadcrumbs} expandAriaLabel="Show path" ariaLabel="Breadcrumbs" />}
+      content={<Content />}
+    />
   );
 }
