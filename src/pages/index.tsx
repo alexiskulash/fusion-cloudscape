@@ -21,6 +21,12 @@ import Link from '@cloudscape-design/components/link';
 
 // Demo definitions with category information
 const demos = [
+  {
+    route: '/admin-dashboard',
+    title: 'Administration Dashboard',
+    description: 'Administrative dashboard with charts and data tables.',
+    category: 'Dashboards',
+  },
   { route: '/cards', title: 'Card View', description: 'Demo of Cloudscape Cards component.', category: 'Components' },
   { route: '/chat', title: 'Chat', description: 'Chat UI demo.', category: 'Applications' },
   {
@@ -30,6 +36,12 @@ const demos = [
     category: 'Dashboards',
   },
   { route: '/dashboard', title: 'Service Dashboard', description: 'Dashboard layout demo.', category: 'Dashboards' },
+  {
+    route: '/performance-dashboard',
+    title: 'Performance Monitoring Dashboard',
+    description: 'Real-time application performance metrics with response times, error rates, and endpoint analysis.',
+    category: 'Dashboards',
+  },
   {
     route: '/delete-one-click',
     title: 'One-click Delete',
