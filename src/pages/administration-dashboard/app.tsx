@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 
 import { useCollection } from '@cloudscape-design/collection-hooks';
-import { AppLayoutProps } from '@cloudscape-design/components/app-layout';
 import AreaChart, { AreaChartProps } from '@cloudscape-design/components/area-chart';
 import BarChart, { BarChartProps } from '@cloudscape-design/components/bar-chart';
 import Box from '@cloudscape-design/components/box';
@@ -21,7 +20,7 @@ import Table from '@cloudscape-design/components/table';
 import { CustomAppLayout } from '../commons/common-components';
 
 // Sample data for area chart
-const areaChartData: AreaChartProps.Series<number>[] = [
+const areaChartSeries: AreaChartProps.Series<number>[] = [
   {
     title: 'Site 1',
     type: 'area',
@@ -114,6 +113,51 @@ const generateTableData = (): TableItem[] => {
   return data;
 };
 
+const columnDefinitions = [
+  {
+    id: 'column1',
+    header: 'Column header',
+    cell: (item: TableItem) => item.column1,
+    sortingField: 'column1',
+  },
+  {
+    id: 'column2',
+    header: 'Column header',
+    cell: (item: TableItem) => item.column2,
+    sortingField: 'column2',
+  },
+  {
+    id: 'column3',
+    header: 'Column header',
+    cell: (item: TableItem) => item.column3,
+    sortingField: 'column3',
+  },
+  {
+    id: 'column4',
+    header: 'Column header',
+    cell: (item: TableItem) => item.column4,
+    sortingField: 'column4',
+  },
+  {
+    id: 'column5',
+    header: 'Column header',
+    cell: (item: TableItem) => item.column5,
+    sortingField: 'column5',
+  },
+  {
+    id: 'column6',
+    header: 'Column header',
+    cell: (item: TableItem) => item.column6,
+    sortingField: 'column6',
+  },
+  {
+    id: 'column7',
+    header: 'Column header',
+    cell: (item: TableItem) => item.column7,
+    sortingField: 'column7',
+  },
+];
+
 export function App() {
   const [searchValue, setSearchValue] = useState('');
   const tableData = generateTableData();
@@ -122,51 +166,6 @@ export function App() {
     pagination: { pageSize: 10 },
     selection: {},
   });
-
-  const columnDefinitions = [
-    {
-      id: 'column1',
-      header: 'Column header',
-      cell: (item: TableItem) => item.column1,
-      sortingField: 'column1',
-    },
-    {
-      id: 'column2',
-      header: 'Column header',
-      cell: (item: TableItem) => item.column2,
-      sortingField: 'column2',
-    },
-    {
-      id: 'column3',
-      header: 'Column header',
-      cell: (item: TableItem) => item.column3,
-      sortingField: 'column3',
-    },
-    {
-      id: 'column4',
-      header: 'Column header',
-      cell: (item: TableItem) => item.column4,
-      sortingField: 'column4',
-    },
-    {
-      id: 'column5',
-      header: 'Column header',
-      cell: (item: TableItem) => item.column5,
-      sortingField: 'column5',
-    },
-    {
-      id: 'column6',
-      header: 'Column header',
-      cell: (item: TableItem) => item.column6,
-      sortingField: 'column6',
-    },
-    {
-      id: 'column7',
-      header: 'Column header',
-      cell: (item: TableItem) => item.column7,
-      sortingField: 'column7',
-    },
-  ];
 
   return (
     <CustomAppLayout
@@ -217,7 +216,7 @@ export function App() {
           <ColumnLayout columns={2} variant="default">
             <Container fitHeight={true}>
               <AreaChart
-                series={areaChartData}
+                series={areaChartSeries}
                 xDomain={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
                 yDomain={[0, 7]}
                 xScaleType="categorical"
