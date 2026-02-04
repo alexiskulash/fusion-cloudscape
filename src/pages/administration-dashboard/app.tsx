@@ -67,7 +67,7 @@ const areaChartData: AreaChartProps.Series<number>[] = [
 ];
 
 // Sample data for bar chart
-const barChartData: BarChartProps.BarDataSeries<number>[] = [
+const barChartSeries: BarChartProps<number>['series'] = [
   {
     title: 'Site 1',
     type: 'bar',
@@ -79,13 +79,12 @@ const barChartData: BarChartProps.BarDataSeries<number>[] = [
       { x: 5, y: 5 },
     ],
   },
+  {
+    title: 'Performance goal',
+    type: 'threshold',
+    y: 3.5,
+  },
 ];
-
-const barChartThreshold: BarChartProps.ThresholdSeries = {
-  title: 'Performance goal',
-  type: 'threshold',
-  y: 3.5,
-};
 
 // Sample table data
 interface TableItem {
