@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 
 import { useCollection } from '@cloudscape-design/collection-hooks';
+import Alert from '@cloudscape-design/components/alert';
 import AreaChart, { AreaChartProps } from '@cloudscape-design/components/area-chart';
 import BarChart, { BarChartProps } from '@cloudscape-design/components/bar-chart';
 import Box from '@cloudscape-design/components/box';
