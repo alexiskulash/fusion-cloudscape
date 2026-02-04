@@ -245,7 +245,7 @@ export function App() {
 
             <Container fitHeight={true}>
               <BarChart
-                series={[...barChartData, barChartThreshold]}
+                series={barChartSeries}
                 xDomain={[1, 2, 3, 4, 5]}
                 yDomain={[0, 7]}
                 xScaleType="categorical"
