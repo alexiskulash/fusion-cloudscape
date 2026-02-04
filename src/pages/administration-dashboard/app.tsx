@@ -17,7 +17,6 @@ import Input from '@cloudscape-design/components/input';
 import Pagination from '@cloudscape-design/components/pagination';
 import SpaceBetween from '@cloudscape-design/components/space-between';
 import Table from '@cloudscape-design/components/table';
-import TopNavigation from '@cloudscape-design/components/top-navigation';
 
 import { CustomAppLayout } from '../commons/common-components';
 
