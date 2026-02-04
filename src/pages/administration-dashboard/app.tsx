@@ -196,6 +196,19 @@ export function App() {
             Administration Dashboard
           </Header>
 
+          {/* Alert Banner */}
+          {showAlert && (
+            <Alert
+              type="info"
+              dismissible={true}
+              onDismiss={() => setShowAlert(false)}
+              header="Welcome to the Administration Dashboard"
+            >
+              This dashboard provides real-time insights into your system performance. Monitor key metrics, analyze
+              trends, and manage your administrative tasks efficiently.
+            </Alert>
+          )}
+
           {/* Search and Pagination Controls */}
           <Grid
             gridDefinition={[
