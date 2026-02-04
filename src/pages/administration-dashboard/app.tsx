@@ -161,6 +161,7 @@ const columnDefinitions = [
 
 export function App() {
   const [searchValue, setSearchValue] = useState('');
+  const [showAlert, setShowAlert] = useState(true);
   const tableData = generateTableData();
 
   const { items, collectionProps, paginationProps } = useCollection(tableData, {
