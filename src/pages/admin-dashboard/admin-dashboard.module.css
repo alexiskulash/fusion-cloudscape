@@ -1,0 +1,35 @@
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.filter-pagination-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.filter-wrapper {
+  flex: 1;
+  max-width: 600px;
+}
+
+.chart-container {
+  background: #fff;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  padding: 16px;
+}
+
+@media (max-width: 688px) {
+  .filter-pagination-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+}
